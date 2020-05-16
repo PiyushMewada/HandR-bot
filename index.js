@@ -32,33 +32,10 @@ client.on("message", async msg => {
     }
     //If message is a command with prefix '+'
     if(msg.content.startsWith("+")){
-        
         switch(msg.content.substring(1)){
             case "ping":
                 msg.reply("Pong!")
                 break;
-            case "wipe":
-                if(msg.content.length > 5){
-                    amount = parseInt(msg.content.substring(5))
-                    }
-                    if(amount >= 0 && amount <= 100){
-                       msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$"))
-                            msg.channel.bulkDelete(botmessages)
-                            msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
-                                tempMessage.react('687914531820666906')
-                                tempMessage.delete({timeout : 5000})
-                            })
-                        })
-                    } else {
-                        if(amount > 100){
-                            msg.channel.send("That's too many messages.")
-                        } else {
-                            msg.channel.send("How am I supposed to delete a negative amount of messages?")
-                        }
-                    }
-                    amount = 50
-                    break;
             case "info":
                 msg.channel.send(CommandList)
                 break;
@@ -137,7 +114,31 @@ client.on("message", async msg => {
                 msg.member.voice.channel.leave()
                 break;
             default:
-                msg.channel.send("Specify a command. Try +info for help.")
+                //Wipe command to remove bot messages and commands
+                if(msg.content.substring(1, 5) === "wipe"){
+                    if(msg.content.length > 5){
+                    amount = parseInt(msg.content.substring(5))
+                    }
+                    if(amount >= 0 && amount <= 100){
+                       msg.channel.messages.fetch({ limit: amount }).then(messages => {
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$"))
+                            msg.channel.bulkDelete(botmessages)
+                            msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
+                                tempMessage.react('687914531820666906')
+                                tempMessage.delete({timeout : 5000})
+                            })
+                        })
+                    } else {
+                        if(amount > 100){
+                            msg.channel.send("That's too many messages.")
+                        } else {
+                            msg.channel.send("How am I supposed to delete a negative amount of messages?")
+                        }
+                    }
+                    amount = 50
+                } else {
+                    msg.channel.send("That's not a vaild command. Try +info for help.")
+                }
                 break;
 
             }
