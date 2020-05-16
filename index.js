@@ -36,6 +36,7 @@ client.on("message", async msg => {
         switch(msg.content.substring(1)){
             case "ping":
                 msg.reply("Pong!")
+                break;
             case "wipe":
                 if(msg.content.length > 5){
                     amount = parseInt(msg.content.substring(5))
@@ -57,12 +58,15 @@ client.on("message", async msg => {
                         }
                     }
                     amount = 50
+                    break;
             case "info":
                 msg.channel.send(CommandList)
+                break;
             case "noice":
                 msg.channel.send('FUCKING NOICE');
                 msg.channel.send('<:Bratt:688138276422680666>');
-            
+                break;
+
             //Voice Channel Commands
             case "ohyea":
                 if(msg.member.voice.channel) {
@@ -76,6 +80,7 @@ client.on("message", async msg => {
                 } else {
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
+                break;
             case "yeet":
                 if(msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then( connection => {
@@ -88,6 +93,7 @@ client.on("message", async msg => {
                 } else {
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
+                break;
             case "hor":
                 if(msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then( connection => {
@@ -100,6 +106,7 @@ client.on("message", async msg => {
                 } else {
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
+                break;
             case "butt":
                 if(msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then( connection => {
@@ -112,6 +119,7 @@ client.on("message", async msg => {
                 } else {
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
+                break;
             case "rekt":
                 if(msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then( connection => {
@@ -124,10 +132,13 @@ client.on("message", async msg => {
                 } else {
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
+                break;
             case "leave":
                 msg.member.voice.channel.leave()
+                break;
             default:
                 msg.channel.send("Specify a command. Try +info for help.")
+                break;
 
             }
         /*
