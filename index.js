@@ -5,12 +5,12 @@ const client = new Discord.Client()
 var amount = 50
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  client.user.setPresence({ activity: { name: "Turbohacks getting destroyed", type: "WATCHING"}, status: "online" })
+  client.user.setPresence({ activity: { name: "Turbohacks get destroyed", type: "WATCHING"}, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
     .setColor("#82be42")
-    .setTitle("Commands:")
+    .setTitle("H&R Bot Commands:")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields(
         { 
@@ -46,61 +46,32 @@ client.on("message", async msg => {
 
             //Voice Channel Commands
             case "ohyea":
-                if(msg.member.voice.channel) {
-                    const connection = await msg.member.voice.channel.join().then( connection => {
-                        const dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'))              
-                        dispatcher.on('finish', () => {
-                            msg.member.voice.channel.leave()
-                        })
-                        dispatcher.on('error', console.error)
-                })
-                } else {
-                    msg.channel.send("You need to be in a voice channel to use audio commands.")
-                }
-                break;
             case "yeet":
-                if(msg.member.voice.channel) {
-                    const connection = await msg.member.voice.channel.join().then( connection => {
-                        const dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), {volume: .5})              
-                        dispatcher.on('finish', () => {
-                            msg.member.voice.channel.leave()
-                        })
-                        dispatcher.on('error', console.error)
-                })
-                } else {
-                    msg.channel.send("You need to be in a voice channel to use audio commands.")
-                }
-                break;
             case "hor":
-                if(msg.member.voice.channel) {
-                    const connection = await msg.member.voice.channel.join().then( connection => {
-                        const dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), {volume: .15})              
-                        dispatcher.on('finish', () => {
-                            msg.member.voice.channel.leave()
-                        })
-                        dispatcher.on('error', console.error)
-                })
-                } else {
-                    msg.channel.send("You need to be in a voice channel to use audio commands.")
-                }
-                break;
             case "butt":
-                if(msg.member.voice.channel) {
-                    const connection = await msg.member.voice.channel.join().then( connection => {
-                        const dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), {volume: 1.3})              
-                        dispatcher.on('finish', () => {
-                            msg.member.voice.channel.leave()
-                        })
-                        dispatcher.on('error', console.error)
-                })
-                } else {
-                    msg.channel.send("You need to be in a voice channel to use audio commands.")
-                }
-                break;
             case "rekt":
                 if(msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then( connection => {
-                        const dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), {volume: .4})              
+                        var dispatcher
+                        switch(msg.content.substring(1)){
+                            case "ohyea":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), {volume: 1})
+                                break;
+                            case "yeet":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), {volume: .5})
+                                break;
+                            case "hor":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), {volume: .15})
+                                break;
+                            case "butt":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), {volume: 1.3})
+                                break;
+                            case "rekt":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), {volume: .4})
+                                break;
+                            default:
+                                break;
+                        }              
                         dispatcher.on('finish', () => {
                             msg.member.voice.channel.leave()
                         })
@@ -126,6 +97,7 @@ client.on("message", async msg => {
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
                                 tempMessage.react('687914531820666906')
                                 tempMessage.delete({timeout : 5000})
+                                console.log(botmessages.size + " messages were deleted on server " + msg.guild.name + " in the channel " + msg.channel.name)
                             })
                         })
                     } else {
@@ -140,7 +112,6 @@ client.on("message", async msg => {
                     msg.channel.send("That's not a vaild command. Try +info for help.")
                 }
                 break;
-
             }
         /*
         if (msg.content.substring(1) === "ping") {
