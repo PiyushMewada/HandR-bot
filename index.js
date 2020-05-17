@@ -22,8 +22,8 @@ const CommandList = new Discord.MessageEmbed()
             "+megamoto: Displays a bunch of moto moto emojis\n"
     }, {
         name: "Voice Channel Commands:",
-        value: "+hor: MLG-AirHorn\n" +
-            "+ohyea: Vector's iconic line: \"Oh yeah\"\n" +
+        value: "+horn: MLG-AirHorn\n" +
+            "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+rekt: Crowd going wild\n" +
             "+yeet: \"**YEET**\"\n" +
             "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
@@ -76,9 +76,9 @@ client.on("message", async msg => {
 
 
                 //Voice Channel Commands
-            case "ohyea":
+            case "ohyeah":
             case "yeet":
-            case "hor":
+            case "horn":
             case "butt":
             case "rekt":
             case "donkey":
@@ -87,13 +87,13 @@ client.on("message", async msg => {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
                         switch (msg.content.substring(1)) {
-                            case "ohyea":
+                            case "ohyeah":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1 })
                                 break;
                             case "yeet":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), { volume: .5 })
                                 break;
-                            case "hor":
+                            case "horn":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), { volume: .15 })
                                 break;
                             case "butt":
@@ -186,7 +186,6 @@ client.on("message", async msg => {
             msg.channel.send('FUCKING NOICE');
             msg.channel.send('<:Bratt:688138276422680666>');
         }
-
         //Voice channel commands
         if(msg.content.substring(1) === "ohyea"){
             if(msg.member.voice.channel) {
@@ -256,7 +255,6 @@ client.on("message", async msg => {
         if(msg.content.substring(1) === "leave"){
             msg.member.voice.channel.leave()
         }
-
         //Disabled commands
         /*if(msg.content.substring(1) === "print30"){
             var i;
