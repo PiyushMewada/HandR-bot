@@ -19,7 +19,7 @@ const CommandList = new Discord.MessageEmbed()
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
-            "+sonicsays *text*: Gets Sonic to say the message" +
+            "+sonicsays *text*: Gets Sonic to say the message\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n"
     }, {
         name: "Voice Channel Commands:",
@@ -146,7 +146,7 @@ client.on("message", async msg => {
                     //Create the canvas and the sonicsays image
                     const canvas = Canvas.createCanvas(600, 340)
                     const ctx = canvas.getContext('2d')
-                    const background = await Canvas.loadImage('./sonicsays.jpg')
+                    const background = await Canvas.loadImage('./images/sonicsays.jpg')
 
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
