@@ -69,7 +69,10 @@ client.on("message", async msg => {
             case "megamoto":
                 msg.channel.send('<:chunky:689542818410266726> <:spunky:689543031967186944>')
                 break;
-
+            case "anikait":
+                const Camryattachment = new Discord.MessageAttachment('./images/Camry.jpg')
+                msg.channel.send(Camryattachment)
+                break;
                 //Voice Channel Commands
             case "ohyeah":
             case "yeet":
