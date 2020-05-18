@@ -129,7 +129,7 @@ client.on("message", async msg => {
                     }
                     if (amount >= 0 && amount <= 100) {
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$"))
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$"))
                             msg.channel.bulkDelete(botmessages)
 
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
