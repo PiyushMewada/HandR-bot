@@ -1,5 +1,4 @@
-![Banner](/assets/H&RBotLogo.png)
-Discord bot
+![Banner](/H&RBotLogo.png)
 
 # How to run
 Make sure you have node and npm installed. Clone the repostiory and run "npm install" to get all the dependencies and stuff.
