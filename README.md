@@ -19,18 +19,18 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 ---
 # Command List
 ## Text Commands:
-+headout: Displays the 'aight imma head out' gif.
-+megamoto: Sends a bunch of moto moto emojis.
-+ping: Replies with Pong! to test if bot is online.
-+server: Displays server information.
-+sonicsays *text*: Gets Sonic to say the message.
-+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
+- +headout: Displays the 'aight imma head out' gif.
+- +megamoto: Sends a bunch of moto moto emojis.
+- +ping: Replies with Pong! to test if bot is online.
+- +server: Displays server information.
+- +sonicsays *text*: Gets Sonic to say the message.
+- +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 
 ## "Voice Channel Commands:
-+donkey: Gordon Ramsay's 'You Fucking Donkey!
-+getover: Just gotta get over.
-+horn: MLG-AirHorn.
-+ohyeah: Vector's iconic line: "Oh yeah".
-+rekt: Crowd going wild.
-+yeet: Says "**YEET**".
-+leave: Makes bot leave the voice channel.
+- +donkey: Gordon Ramsay's 'You Fucking Donkey!
+- +getover: Just gotta get over.
+- +horn: MLG-AirHorn.
+- +ohyeah: Vector's iconic line: "Oh yeah".
+- +rekt: Crowd going wild.
+- +yeet: Says "**YEET**".
+- +leave: Makes bot leave the voice channel.
