@@ -14,13 +14,14 @@ const CommandList = new Discord.MessageEmbed()
     .setTitle("H&R Bot Commands:")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
-        name: "Text Commands:",
+        name: "Text Channel Commands:",
         value: "+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays *text*: Gets Sonic to say the message\n" +
-            "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n"
+            "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
+            "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
         name: "Voice Channel Commands:",
         value: "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
@@ -142,6 +143,7 @@ client.on("message", async msg => {
                         }
                     }
                     amount = 50
+                //Custom Sonic Image Command
                 } else if (msg.content.substring(1,10) === "sonicsays"){
                     //Create the canvas and the sonicsays image
                     const canvas = Canvas.createCanvas(600, 340)
@@ -173,10 +175,48 @@ client.on("message", async msg => {
                     }
 
                     //Create text
-	                ctx.fillText(editedMessage, 20, 80)
+	                ctx.fillText(editedMessage, 20, 80, 350)
                    
                     //Send image
                     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'sonicsays.png')
+                    msg.channel.send(attachment)
+                //Custom Victory Royale Image
+                } else if (msg.content.substring(1,3) === "#1"){
+                    //Create the canvas and the Victory Royale image
+                    const canvas = Canvas.createCanvas(850, 280)
+                    const ctx = canvas.getContext('2d')
+                    const background = await Canvas.loadImage('./images/Victory.png')
+
+                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+
+                    //Font and color selection
+                    ctx.font = '58px sans-serif'
+                    ctx.fillStyle = '#ffffff'
+                    //ctx.textAlign = "center"
+                    //Split up the message by the spaces to divide into new lines
+                    var wordsArr = msg.content.substring(4).split(" ")
+                    var messageArr = [""]
+                    var editedMessage = ""
+                    var j = 0
+                    for(var i = 0; i < wordsArr.length; i++){
+                        //If the message gets too long, then add it to a new line
+                        if(j < 2  && messageArr[j].length + wordsArr[i].length > 24){
+                            j++
+                            messageArr[j] = ""
+                        }
+                        messageArr[j] += wordsArr[i] + " "
+                    }
+
+                    for(i = 0; i < messageArr.length; i++){
+                        editedMessage += messageArr[i] + "\n"
+                    }
+
+                    //Create text
+                    ctx.rotate(-.02*Math.PI)
+                    ctx.fillText(editedMessage, 210, 120)
+                    ctx.strokeText(editedMessage, 210, 120)
+                    //Send image
+                    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'Victory.png')
                     msg.channel.send(attachment)
 
                 } else {
@@ -184,121 +224,6 @@ client.on("message", async msg => {
                 }
                 break;
         }
-        /*
-        if (msg.content.substring(1) === "ping") {
-            msg.reply("Pong!")
-        }
-        //Deletes bot commands and messages
-        if(msg.content.substring(1, 5) === "wipe"){
-            if(msg.content.length > 5){
-            amount = parseInt(msg.content.substring(5))
-            }
-            if(amount >= 0 && amount <= 100){
-               msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                    const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$"))
-                    msg.channel.bulkDelete(botmessages)
-                    msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
-                        tempMessage.react('687914531820666906')
-                        tempMessage.delete({timeout : 5000})
-                    })
-                })
-            } else {
-                if(amount > 100){
-                    msg.channel.send("That's too many messages.")
-                } else {
-                    msg.channel.send("How am I supposed to delete a negative amount of messages?")
-                }
-            }
-            amount = 50
-        }
-        if(msg.content.substring(1) === "info"){
-            msg.channel.send(CommandList)
-        }
-        if(msg.content.substring(1) === "noice"){
-            msg.channel.send('FUCKING NOICE');
-            msg.channel.send('<:Bratt:688138276422680666>');
-        }
-        //Voice channel commands
-        if(msg.content.substring(1) === "ohyea"){
-            if(msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join().then( connection => {
-                    const dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'))              
-                    dispatcher.on('finish', () => {
-                        msg.member.voice.channel.leave()
-                    })
-                    dispatcher.on('error', console.error)
-            })
-            } else {
-                msg.channel.send("You need to be in a voice channel to use audio commands.")
-            }
-        }
-        if(msg.content.substring(1) === "yeet"){
-            if(msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join().then( connection => {
-                    const dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), {volume: .5})              
-                    dispatcher.on('finish', () => {
-                        msg.member.voice.channel.leave()
-                    })
-                    dispatcher.on('error', console.error)
-            })
-            } else {
-                msg.channel.send("You need to be in a voice channel to use audio commands.")
-            }
-        }
-        if(msg.content.substring(1) === "hor"){
-            if(msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join().then( connection => {
-                    const dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), {volume: .15})              
-                    dispatcher.on('finish', () => {
-                        msg.member.voice.channel.leave()
-                    })
-                    dispatcher.on('error', console.error)
-            })
-            } else {
-                msg.channel.send("You need to be in a voice channel to use audio commands.")
-            }
-        }
-        if(msg.content.substring(1) === "butt"){
-            if(msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join().then( connection => {
-                    const dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), {volume: 1.3})              
-                    dispatcher.on('finish', () => {
-                        msg.member.voice.channel.leave()
-                    })
-                    dispatcher.on('error', console.error)
-            })
-            } else {
-                msg.channel.send("You need to be in a voice channel to use audio commands.")
-            }
-        }
-        if(msg.content.substring(1) === "rekt"){
-            if(msg.member.voice.channel) {
-                const connection = await msg.member.voice.channel.join().then( connection => {
-                    const dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), {volume: .4})              
-                    dispatcher.on('finish', () => {
-                        msg.member.voice.channel.leave()
-                    })
-                    dispatcher.on('error', console.error)
-            })
-            } else {
-                msg.channel.send("You need to be in a voice channel to use audio commands.")
-            }
-        }
-        if(msg.content.substring(1) === "leave"){
-            msg.member.voice.channel.leave()
-        }
-        //Disabled commands
-        /*if(msg.content.substring(1) === "print30"){
-            var i;
-            for(i = 0; i < 30; i ++){
-                setTimeout(() => {
-                    msg.channel.send("please spawn").then(tempMessage => {
-                        tempMessage.delete({timeout: 2000}).catch(console.log('oof'))
-                    })
-                }, 3000);               
-            }
-        }*/
-
     }
 })
 client.login(process.env.BOT_TOKEN)
