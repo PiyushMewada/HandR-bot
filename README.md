@@ -15,9 +15,8 @@ BOT_TOKEN = [INSERT_BOT_TOKEN];
 If you want the token, either text or email me. Replace the [INSERT_BOT_TOKEN] with the actual token, making sure to remove the brackets.
 
 Simply open a command prompt and run the command "npm run dev" to get the bot online.
-
-# Command List
 ---
+# Command List
 ## Text Commands:
 +headout: Displays the 'aight imma head out' gif.
 +megamoto: Sends a bunch of moto moto emojis.
