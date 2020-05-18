@@ -6,7 +6,7 @@ const client = new Discord.Client()
 var amount = 50
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "Turbohacks get destroyed", type: "WATCHING" }, status: "online" })
+    client.user.setPresence({ activity: { name: "the violin at TurboHacks's funeral", type: "PLAYING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
