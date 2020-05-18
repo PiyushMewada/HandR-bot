@@ -1,7 +1,7 @@
 ![Banner](/H&RBotLogo.png)
 
 # How to run
-Make sure you have node and npm installed. Clone the repostiory and run "npm install" to get all the dependencies and stuff.
+Make sure you have node and npm installed. Clone the repository and run "npm install" to get all the dependencies and stuff.
 
 Also make sure you have the necessary tools for Canvas. The requirements are listed here: [Canvas](https://github.com/Automattic/node-canvas#compiling)
 
