@@ -26,7 +26,7 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +sonicsays *text*: Gets Sonic to say the message.
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 
-## "Voice Channel Commands:
+## Voice Channel Commands:
 - +donkey: Gordon Ramsay's 'You Fucking Donkey!
 - +getover: Just gotta get over.
 - +horn: MLG-AirHorn.
