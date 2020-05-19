@@ -73,6 +73,13 @@ client.on("message", async msg => {
                 const Camryattachment = new Discord.MessageAttachment('./images/Camry.jpg')
                 msg.channel.send(Camryattachment)
                 break;
+            case "freemoney":
+            case "rickroll":
+            case "piyush":
+                const foolAttachment = new Discord.MessageAttachment('./images/fool.jpg')
+                msg.channel.send(foolAttachment)
+                break;
+                
                 //Voice Channel Commands
             case "ohyeah":
             case "yeet":
@@ -81,6 +88,7 @@ client.on("message", async msg => {
             case "rekt":
             case "donkey":
             case "getover":
+            case "haha":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
@@ -106,6 +114,8 @@ client.on("message", async msg => {
                             case "getover":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/getover.mp3'), { volume: 1.0 })
                                 break;
+                            case "haha":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/laughtrack.mp3'), { volume: 1.0})
                             default:
                                 break;
                         }
