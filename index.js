@@ -203,7 +203,7 @@ client.on("message", async msg => {
                     var j = 0
                     for(var i = 0; i < wordsArr.length; i++){
                         //If the message gets too long, then add it to a new line
-                        if(j < 2  && messageArr[j].length + wordsArr[i].length > 24){
+                        if(j < 2  && messageArr[j].length + wordsArr[i].length > 16){
                             j++
                             messageArr[j] = ""
                         }
