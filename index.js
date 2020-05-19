@@ -4,6 +4,7 @@ const Canvas = require("canvas")
 const fs = require('fs')
 const client = new Discord.Client()
 var amount = 50
+
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setPresence({ activity: { name: "violin at TurboHacks's funeral", type: "PLAYING" }, status: "online" })
@@ -12,6 +13,7 @@ client.on("ready", () => {
 const CommandList = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("H&R Bot Commands:")
+    .setURL("https://github.com/PiyushMewada/HandR-bot")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
         name: "Text Channel Commands:",
@@ -24,16 +26,19 @@ const CommandList = new Discord.MessageEmbed()
             "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
         name: "Voice Channel Commands:",
-        value: "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
+        value: "+clap: Ha, Gottem\n" +
+            "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
             "+getover: Just gotta get over\n" +
+            "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
+            "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
     })
 client.on("message", async msg => {
-    if (msg.content.toLowerCase() === "sda") {
+    if (msg.content.includes("sda")) {
         msg.channel.send("<:Waluigi:688139607228940324>")
     }
 
@@ -61,7 +66,10 @@ client.on("message", async msg => {
                 break;
             case "headout":
                 const attachment = new Discord.MessageAttachment('https://anshjainpublic.s3.us-east-2.amazonaws.com/headout.gif');
-                msg.channel.send(attachment);
+                await msg.channel.send(attachment).then( headout => {
+                    msg.delete({timeout: 5000}).catch()
+                    headout.delete({timeout: 5000}).catch()
+                })
                 break;
             case "ansh":
                 msg.channel.send('Justin is a dumbass.');
@@ -79,7 +87,7 @@ client.on("message", async msg => {
                 const foolAttachment = new Discord.MessageAttachment('./images/fool.jpg')
                 msg.channel.send(foolAttachment)
                 break;
-                
+
                 //Voice Channel Commands
             case "ohyeah":
             case "yeet":
@@ -89,6 +97,8 @@ client.on("message", async msg => {
             case "donkey":
             case "getover":
             case "haha":
+            case "clap":
+            case "roll":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
@@ -116,6 +126,14 @@ client.on("message", async msg => {
                                 break;
                             case "haha":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/laughtrack.mp3'), { volume: 1.0})
+                                break;
+                            case "clap":
+                                msg.channel.send("That was a good one" + "<:clap:712393807353610321> <:clap:712393807353610321>")
+                                dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
+                                break;
+                            case "roll":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .9 })
+                                break;
                             default:
                                 break;
                         }
@@ -145,7 +163,6 @@ client.on("message", async msg => {
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
                                 tempMessage.react('687914531820666906')
                                 tempMessage.delete({ timeout: 5000 }).catch()
-                                console.log(botmessages.size + " messages were deleted on server " + msg.guild.name + " in the channel " + msg.channel.name)
                             })
                         })
                     } else {

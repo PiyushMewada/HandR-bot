@@ -8,10 +8,10 @@ Also make sure you have the necessary tools for Canvas. The requirements are lis
 Add a file called .env in the top level folder with the following format: 
 
 ``` json
-BOT_TOKEN = [INSERT_BOT_TOKEN];
+BOT_TOKEN = "INSERT_BOT_TOKEN"
 ```
 
-If you want the token, either text or email me. Replace the [INSERT_BOT_TOKEN] with the actual token, making sure to remove the brackets.
+If you want the token, either text or email me. Replace the "INSERT_BOT_TOKEN" with the actual token, making sure to remove the quotes.
 
 Simply open a command prompt and run the command "npm run dev" to get the bot online.
 
@@ -26,8 +26,9 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 
 ## Voice Channel Commands:
-- +donkey: Gordon Ramsay's 'You Fucking Donkey!
+- +clap: Ha, Gottem
 - +getover: Just gotta get over.
+- +haha: Plays a Laughtrack.
 - +horn: MLG-AirHorn.
 - +ohyeah: Vector's iconic line: "Oh yeah".
 - +rekt: Crowd going wild.
