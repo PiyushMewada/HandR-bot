@@ -44,6 +44,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
+            "+sans: Plays first notes of Megalovania\n" +
             "+smooth: Smooth moves\n" +
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
@@ -156,6 +157,10 @@ client.on("message", async msg => {
                                 break;
                             case "loss":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
+                                break;
+                            case "sans":
+                            case "fear":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
                                 break;
                             default:
                                 break;
