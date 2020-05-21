@@ -139,7 +139,7 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .9 })
                                 break;
                             case "smooth":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .9 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .8 })
                                 break;
                             case "default":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
