@@ -20,6 +20,7 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 ## Text Commands:
 - +headout: Displays the 'aight imma head out' gif.
 - +megamoto: Sends a bunch of moto moto emojis.
+- +poll: Creates a poll. People can vote by reacting to the message.
 - +ping: Replies with Pong! to test if bot is online.
 - +server: Displays server information.
 - +sonicsays *text*: Gets Sonic to say the message.
@@ -36,6 +37,7 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +ohyeah: Vector's iconic line: "Oh yeah".
 - +roll: Try it out.
 - +rekt: Crowd going wild.
+- +sans: Plays the first couple notes of Megalovania
 - +smooth: Smooth Moves
 - +yeet: Says "**YEET**".
 - +leave: Makes bot leave the voice channel.

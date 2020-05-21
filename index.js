@@ -292,6 +292,7 @@ client.on("message", async msg => {
                     } else {
                         const Poll = new Discord.MessageEmbed()
                         .setColor("#ffffff")
+                        .setURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
                         .setTitle(pollParts[0].substring(6))
                         .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
@@ -333,7 +334,7 @@ client.on("message", async msg => {
                     }
                 } else {
                     //Not a vaild command
-                    msg.channel.send("That's not a vaild command. Try +info for help.")
+                    msg.channel.send("That's not a valid command. Try +info for help.")
                 }
                 break;
         }
