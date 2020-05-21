@@ -36,7 +36,7 @@ const CommandList = new Discord.MessageEmbed()
     }, {
         name: "Voice Channel Commands:",
         value: "+clap: Ha, Gottem\n" +
-            "+default: Default Dance from Fortnite\n" +
+            "+default: Default dance from Fortnite\n" +
             "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
@@ -44,7 +44,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
-            "+smooth: Smooth Moves\n" +
+            "+smooth: Smooth moves\n" +
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
     })
@@ -146,16 +146,16 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
                                 break;
                             case "roll":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .85 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .75 })
                                 break;
                             case "smooth":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .65 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .6 })
                                 break;
                             case "default":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
                                 break;
                             case "loss":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: 1 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
                                 break;
                             default:
                                 break;
@@ -288,9 +288,13 @@ client.on("message", async msg => {
                         .setTitle(pollParts[0].substring(6))
                         .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
+                        var optionText = ""
                         for(i = 1; i < pollParts.length; i++){
-                            Poll.addField("Option " + i, pollParts[i])
+                            optionText += i + ". " + pollParts[i] + "\n"
                         }
+
+                        Poll.addField("Options:", optionText)
+
                         msg.channel.send(Poll).then(pollMessage => {
                             pollMessage.react("1️⃣")
                             pollMessage.react("2️⃣")
