@@ -7,7 +7,7 @@ var amount = 50
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "Astronomia since Turbohacks is dead", type: "LISTENING" }, status: "online" })
+    client.user.setPresence({ activity: { name: "JoJo's Bizarre Adventure", type: "WATCHING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
@@ -27,6 +27,7 @@ const CommandList = new Discord.MessageEmbed()
     }, {
         name: "Voice Channel Commands:",
         value: "+clap: Ha, Gottem\n" +
+            "+default: Default Dance from Fortnite\n" +
             "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
             "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
@@ -34,6 +35,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
+            "+smooth: Smooth Moves\n" +
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
     })
@@ -99,6 +101,8 @@ client.on("message", async msg => {
             case "haha":
             case "clap":
             case "roll":
+            case "smooth":
+            case "default":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
@@ -133,6 +137,12 @@ client.on("message", async msg => {
                                 break;
                             case "roll":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .9 })
+                                break;
+                            case "smooth":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .9 })
+                                break;
+                            case "default":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
                                 break;
                             default:
                                 break;
@@ -250,6 +260,7 @@ client.on("message", async msg => {
                     msg.channel.send(attachment)
 
                 } else {
+                    //Not a vaild command
                     msg.channel.send("That's not a vaild command. Try +info for help.")
                 }
                 break;
