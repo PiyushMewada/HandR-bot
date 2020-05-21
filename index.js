@@ -74,7 +74,7 @@ client.on("message", async msg => {
                 })
                 break;
             case "ansh":
-                msg.channel.send('Justin is a dumbass.');
+                msg.channel.send('Justin is a dumbass.', {tts: true});
                 break;
             case "megamoto":
                 msg.channel.send('<:chunky:689542818410266726> <:spunky:689543031967186944>')
