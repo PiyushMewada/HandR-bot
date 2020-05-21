@@ -28,7 +28,6 @@ const CommandList = new Discord.MessageEmbed()
         name: "Voice Channel Commands:",
         value: "+clap: Ha, Gottem\n" +
             "+default: Default Dance from Fortnite\n" +
-            "+donkey: Gordon Ramsay's 'You Fucking Donkey!'\n" +
             "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
