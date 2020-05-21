@@ -114,6 +114,8 @@ client.on("message", async msg => {
             case "smooth":
             case "default":
             case "loss":
+            case "sans":
+            case "fear":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
