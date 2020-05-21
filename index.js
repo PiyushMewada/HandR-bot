@@ -7,7 +7,15 @@ var amount = 50
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "your requests", type: "LISTENING" }, status: "online" })
+    /*Possible Status:
+        -Playing with your heart
+        -Listening to your requests
+        -Watching TurboHacks get destroyed
+        -Watching you
+        -Watching your every move
+        -Listening to your conversations
+    */
+    client.user.setPresence({ activity: { name: "you", type: "WATCHING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
@@ -19,6 +27,7 @@ const CommandList = new Discord.MessageEmbed()
         name: "Text Channel Commands:",
         value: "+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
+            "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays *text*: Gets Sonic to say the message\n" +
@@ -137,10 +146,10 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
                                 break;
                             case "roll":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .9 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .85 })
                                 break;
                             case "smooth":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .7 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .65 })
                                 break;
                             case "default":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
@@ -164,6 +173,8 @@ client.on("message", async msg => {
                 msg.member.voice.channel.leave()
                 break;
             default:
+            //For commands that require more information afterwards:
+
                 //Wipe command to remove bot messages and commands
                 if (msg.content.substring(1, 5) === "wipe") {
                     if (msg.content.length > 5) {
@@ -263,6 +274,52 @@ client.on("message", async msg => {
                     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'Victory.png')
                     msg.channel.send(attachment)
 
+                } else if (msg.content.substring(1,5) === "poll"){
+                    //Create a Poll
+                    const pollParts = msg.content.split('*')
+                    if(pollParts.length < 3){
+                        //There is something missing
+                        msg.channel.send("There is something missing from the poll, make sure there are 2 possible options. Separate the title and each option with a \'*\'.")
+                    } else if (pollParts.length > 11){
+                        msg.channel.send("The max number of options is 10.")
+                    } else {
+                        const Poll = new Discord.MessageEmbed()
+                        .setColor("#ffffff")
+                        .setTitle(pollParts[0].substring(6))
+                        .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
+
+                        for(i = 1; i < pollParts.length; i++){
+                            Poll.addField("Option " + i, pollParts[i])
+                        }
+                        msg.channel.send(Poll).then(pollMessage => {
+                            pollMessage.react("1️⃣")
+                            pollMessage.react("2️⃣")
+                            if(pollParts.length > 3){
+                                pollMessage.react("3️⃣")
+                                if(pollParts.length > 4){
+                                    pollMessage.react("4️⃣")
+                                    if(pollParts.length > 5){
+                                        pollMessage.react("5️⃣")
+                                        if(pollParts.length > 6){
+                                            pollMessage.react("6️⃣")
+                                            if(pollParts.length > 7){
+                                                pollMessage.react("7️⃣")
+                                                if(pollParts.length > 8){
+                                                    pollMessage.react("8️⃣")
+                                                    if(pollParts.length > 9){
+                                                        pollMessage.react("9️⃣")
+                                                        if(pollParts.length > 10){
+                                                            pollMessage.react("🔟")
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    }
                 } else {
                     //Not a vaild command
                     msg.channel.send("That's not a vaild command. Try +info for help.")
