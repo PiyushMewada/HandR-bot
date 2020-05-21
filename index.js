@@ -32,6 +32,7 @@ const CommandList = new Discord.MessageEmbed()
             "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
+            "+loss: Losing sound effect\n" +
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
@@ -103,6 +104,7 @@ client.on("message", async msg => {
             case "roll":
             case "smooth":
             case "default":
+            case "loss":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
@@ -139,10 +141,13 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .9 })
                                 break;
                             case "smooth":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .9 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .7 })
                                 break;
                             case "default":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
+                                break;
+                            case "loss":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: 1 })
                                 break;
                             default:
                                 break;
