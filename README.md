@@ -24,13 +24,18 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +server: Displays server information.
 - +sonicsays *text*: Gets Sonic to say the message.
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
+- +#1 *text*: Creates a Victory Royale image with the text instead.
 
 ## Voice Channel Commands:
-- +clap: Ha, Gottem
+- +clap: Ha, Gottem.
+- +default: Default Dance from Fortnite.
 - +getover: Just gotta get over.
 - +haha: Plays a Laughtrack.
 - +horn: MLG-AirHorn.
+- +loss: Losinh sounds effect from 'The Price is Right'.
 - +ohyeah: Vector's iconic line: "Oh yeah".
+- +roll: Try it out.
 - +rekt: Crowd going wild.
+- +smooth: Smooth Moves
 - +yeet: Says "**YEET**".
 - +leave: Makes bot leave the voice channel.

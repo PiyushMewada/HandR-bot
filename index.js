@@ -7,7 +7,7 @@ var amount = 50
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "JoJo's Bizarre Adventure", type: "WATCHING" }, status: "online" })
+    client.user.setPresence({ activity: { name: "your requests", type: "LISTENING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
