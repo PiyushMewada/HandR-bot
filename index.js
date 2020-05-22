@@ -121,7 +121,7 @@ client.on("message", async msg => {
                         var dispatcher
                         switch (msg.content.substring(1)) {
                             case "ohyeah":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1.3 })
                                 break;
                             case "yeet":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), { volume: .5 })
@@ -133,7 +133,7 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), { volume: 1.4 })
                                 break;
                             case "rekt":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), { volume: .4 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), { volume: .3 })
                                 break;
                             case "donkey":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/donkey.mp3'), { volume: 1.0 })
@@ -292,7 +292,7 @@ client.on("message", async msg => {
                     } else {
                         const Poll = new Discord.MessageEmbed()
                         .setColor("#ffffff")
-                        .setURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+                        .setURL("https://tinyurl.com/pollImage")
                         .setTitle(pollParts[0].substring(6))
                         .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
