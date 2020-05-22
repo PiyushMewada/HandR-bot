@@ -14,8 +14,9 @@ client.on("ready", () => {
         -Watching you
         -Watching your every move
         -Listening to your conversations
+        -Playing Mind Games
     */
-    client.user.setPresence({ activity: { name: "you", type: "WATCHING" }, status: "online" })
+    client.user.setPresence({ activity: { name: "Mind Games", type: "PLAYING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
@@ -50,12 +51,12 @@ const CommandList = new Discord.MessageEmbed()
             "+leave: Makes bot leave the voice channel\n"
     })
 client.on("message", async msg => {
-    if (msg.content.includes("sda")) {
+    if (msg.content.toLowerCase().includes("sda")) {
         msg.channel.send("<:Waluigi:688139607228940324>")
     }
 
     //Thirsty emoji auto-send
-    if (msg.content.includes("thirsty") || msg.content.includes('Thirsty')) {
+    if (msg.content.toLowerCase().includes("thirsty")) {
         msg.channel.send('<:Thirst:689204786083659776>');
     }
 
@@ -115,7 +116,8 @@ client.on("message", async msg => {
             case "default":
             case "loss":
             case "sans":
-            case "fear":
+            case "dum":
+            case "mad":
                 if (msg.member.voice.channel) {
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
@@ -161,8 +163,13 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
                                 break;
                             case "sans":
-                            case "fear":
                                 dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
+                                break;
+                            case "dum":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .5 })
+                                break;
+                            case "mad":
+                                dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .5 })
                                 break;
                             default:
                                 break;
