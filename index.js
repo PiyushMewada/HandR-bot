@@ -38,10 +38,12 @@ const CommandList = new Discord.MessageEmbed()
         name: "Voice Channel Commands:",
         value: "+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
+            "+dum: 6ix9ine calling you dumb\n" +
             "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
             "+loss: Losing sound effect\n" +
+            "+mad: When you're mad\n" +
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
@@ -119,6 +121,7 @@ client.on("message", async msg => {
             case "dum":
             case "mad":
                 if (msg.member.voice.channel) {
+                    var currentChannel = msg.member.voice.channel
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
                         switch (msg.content.substring(1)) {
@@ -175,7 +178,7 @@ client.on("message", async msg => {
                                 break;
                         }
                         dispatcher.on('finish', () => {
-                            msg.member.voice.channel.leave()
+                            currentChannel.leave()
                         })
                         dispatcher.on('error', console.error)
                     })
