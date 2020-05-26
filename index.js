@@ -43,7 +43,7 @@ const CommandList = new Discord.MessageEmbed()
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
             "+loss: Losing sound effect\n" +
-            "+mad: When you're mad\n" +
+            "+mad: When you make people mad\n" +
             "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
