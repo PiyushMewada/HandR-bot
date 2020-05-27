@@ -34,6 +34,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays *text*: Gets Sonic to say the message\n" +
+            "+where we droppin: Tells you where to drop in Fortnite. You can also use +wwd\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
             "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
@@ -75,7 +76,6 @@ client.on("message", async msg => {
         switch (msg.content.substring(1)) {
             case "ping":
                 msg.reply("Pong!")
-                msg.channel.send("*Yare Yare Daze*.")
                 break;
             case "help":
             case "info":
@@ -120,11 +120,12 @@ client.on("message", async msg => {
             case "Where we dropping":    
             case "where we dropping?":
             case "Where we dropping?":
+            case "wwd":
                 var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
                                 "Henchmen Bases", "4 Corners"]
                 
                 var endings = ["Good Luck!", "This is going to be quick one...", "God Speed!", "May the Force be with you.", "Break a Leg!",
-                                "Use those Lucky Cheeks.", "May the odds be ever in your favor.", "Arrivederci.", "*Yare Yare Daze*.", "Carpe Omnia."]
+                                "Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Carpe Omnia."]
                 
                 msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " +  endings[Math.floor(Math.random() * endings.length)])
                 break;
