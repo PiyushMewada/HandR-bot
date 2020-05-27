@@ -71,6 +71,12 @@ client.on("message", async msg => {
         msg.channel.send("Arrivederci");
     }
     
+    //If message says Good Night send Arrivederci
+    if (msg.content === "?") {
+        const questionAttactment = new Discord.MessageAttachment("https://pbs.twimg.com/media/EYKhkWjXQAo6EUo?format=jpg&name=medium");
+        msg.channel.send(questionAttactment);
+    }
+
     //If message is a command with prefix '+'
     if (msg.content.startsWith("+")) {
         switch (msg.content.substring(1)) {
