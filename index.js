@@ -73,7 +73,7 @@ client.on("message", async msg => {
     
     //If message says Good Night send Arrivederci
     if (msg.content === "?") {
-        const questionAttactment = new Discord.MessageAttachment("https://pbs.twimg.com/media/EYKhkWjXQAo6EUo?format=jpg&name=medium");
+        const questionAttactment = new Discord.MessageAttachment("./images/questionmark.jpg");
         msg.channel.send(questionAttactment);
     }
 
