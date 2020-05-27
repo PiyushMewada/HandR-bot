@@ -15,8 +15,10 @@ client.on("ready", () => {
         -Watching your every move
         -Listening to your conversations
         -Playing Mind Games
+        -Watching the fall of Humanity
+        -Listening to today's sponsor: Audible
     */
-    client.user.setPresence({ activity: { name: "Mind Games", type: "PLAYING" }, status: "online" })
+    client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online" })
 })
 
 const CommandList = new Discord.MessageEmbed()
@@ -53,6 +55,7 @@ const CommandList = new Discord.MessageEmbed()
             "+leave: Makes bot leave the voice channel\n"
     })
 client.on("message", async msg => {
+    //Sad Waluigi emoji auto-send
     if (msg.content.toLowerCase().includes("sda")) {
         msg.channel.send("<:Waluigi:688139607228940324>")
     }
@@ -62,11 +65,17 @@ client.on("message", async msg => {
         msg.channel.send('<:Thirst:689204786083659776>');
     }
 
+    //If message says Good Night send Arrivederci
+    if (msg.content.toLowerCase().includes("good night")) {
+        msg.channel.send("Arrivederci");
+    }
+    
     //If message is a command with prefix '+'
     if (msg.content.startsWith("+")) {
         switch (msg.content.substring(1)) {
             case "ping":
                 msg.reply("Pong!")
+                msg.channel.send("*Yare Yare Daze*.")
                 break;
             case "help":
             case "info":
@@ -101,6 +110,23 @@ client.on("message", async msg => {
             case "piyush":
                 const foolAttachment = new Discord.MessageAttachment('./images/fool.jpg')
                 msg.channel.send(foolAttachment)
+                break;
+
+            case "where we droppin":
+            case "Where we droppin":
+            case "where we droppin?":
+            case "Where we droppin?":
+            case "where we dropping":
+            case "Where we dropping":    
+            case "where we dropping?":
+            case "Where we dropping?":
+                var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
+                                "Henchmen Bases", "4 Corners"]
+                
+                var endings = ["Good Luck!", "This is going to be quick one...", "God Speed!", "May the Force be with you.", "Break a Leg!",
+                                "Use those Lucky Cheeks.", "May the odds be ever in your favor.", "Arrivederci.", "*Yare Yare Daze*.", "Carpe Omnia."]
+                
+                msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " +  endings[Math.floor(Math.random() * endings.length)])
                 break;
 
                 //Voice Channel Commands
