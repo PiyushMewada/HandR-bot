@@ -24,6 +24,7 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +ping: Replies with Pong! to test if bot is online.
 - +server: Displays server information.
 - +sonicsays *text*: Gets Sonic to say the message.
+- +wwd: Tells you where to drop in Fortnite.
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 - +#1 *text*: Creates a Victory Royale image with the text instead.
 
@@ -33,7 +34,7 @@ Simply open a command prompt and run the command "npm run dev" to get the bot on
 - +getover: Just gotta get over.
 - +haha: Plays a Laughtrack.
 - +horn: MLG-AirHorn.
-- +loss: Losinh sounds effect from 'The Price is Right'.
+- +loss: Losing sounds effect from 'The Price is Right'.
 - +ohyeah: Vector's iconic line: "Oh yeah".
 - +roll: Try it out.
 - +rekt: Crowd going wild.
