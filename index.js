@@ -34,7 +34,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays *text*: Gets Sonic to say the message\n" +
-            "+wwd: Tells you where to drop in Fortnite.\n" +
+            "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
             "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
@@ -42,7 +42,6 @@ const CommandList = new Discord.MessageEmbed()
         value: "+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
             "+dum: 6ix9ine calling you dumb\n" +
-            "+getover: Just gotta get over\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
             "+loss: Losing sound effect\n" +
@@ -51,7 +50,6 @@ const CommandList = new Discord.MessageEmbed()
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
             "+sans: Plays first notes of Megalovania\n" +
-            "+smooth: Smooth moves\n" +
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
     })
@@ -71,7 +69,7 @@ client.on("message", async msg => {
         msg.channel.send("Arrivederci");
     }
     
-    //If message says Good Night send Arrivederci
+    //Confused command
     if (msg.content === "?") {
         const questionAttactment = new Discord.MessageAttachment("./images/questionmark.jpg");
         msg.channel.send(questionAttactment);
