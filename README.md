@@ -1,4 +1,4 @@
-![Banner](/H&RBotLogo.png)
+![Banner](/images/H&RBotLogo.png)
 
 # How to run
 Make sure you have node and npm installed. Clone the repository and run "npm install" to get all the dependencies and stuff.
