@@ -34,7 +34,7 @@ const CommandList = new Discord.MessageEmbed()
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays *text*: Gets Sonic to say the message\n" +
-            "+where we droppin: Tells you where to drop in Fortnite. You can also use +wwd\n" +
+            "+wwd: Tells you where to drop in Fortnite.\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
             "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
@@ -117,15 +117,6 @@ client.on("message", async msg => {
                 const foolAttachment = new Discord.MessageAttachment('./images/fool.jpg')
                 msg.channel.send(foolAttachment)
                 break;
-
-            case "where we droppin":
-            case "Where we droppin":
-            case "where we droppin?":
-            case "Where we droppin?":
-            case "where we dropping":
-            case "Where we dropping":    
-            case "where we dropping?":
-            case "Where we dropping?":
             case "wwd":
                 var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
                                 "Henchmen Bases", "4 Corners"]
