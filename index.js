@@ -21,6 +21,14 @@ client.on("ready", () => {
     client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online" })
 })
 
+const PresenceList = [{name: "today's sponsor: Audible", type: "LISTENING"},
+                    {name: "Mind Games", type: "PLAYING"},
+                    {name: "your conversations", type: "LISTENING"},
+                    {name: "you", type: "WATCHING"},
+                    {name: "your requests", type: "LISTENING"}]
+                    
+client.user.setPresence({activity: PresenceList[2], status: "online"})
+
 const CommandList = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("H&R Bot Commands:")
