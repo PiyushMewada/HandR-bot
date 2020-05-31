@@ -1,20 +1,6 @@
 ![Banner](/images/H&RBotLogo.png)
 
-# How to run
-Make sure you have node and npm installed. Clone the repository and run "npm install" to get all the dependencies and stuff.
-
-Also make sure you have the necessary tools for Canvas. The requirements are listed here: [Canvas](https://github.com/Automattic/node-canvas#compiling)
-
-Add a file called .env in the top level folder with the following format: 
-
-``` json
-BOT_TOKEN = "INSERT_BOT_TOKEN"
-```
-
-If you want the token, either text or email me. Replace the "INSERT_BOT_TOKEN" with the actual token, making sure to remove the quotes.
-
-Simply open a command prompt and run the command "npm run dev" to get the bot online.
-
+# [Click Here to add this bot to your server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot "Invite the Bot!")
 ---
 # Command List
 ## Text Commands:
