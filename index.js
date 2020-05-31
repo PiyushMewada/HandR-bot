@@ -3,32 +3,15 @@ const Discord = require("discord.js")
 const Canvas = require("canvas")
 const fs = require('fs')
 const client = new Discord.Client()
-var amount = 50
 
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`)
-    /*Possible Status:
-        -Playing with your heart
-        -Listening to your requests
-        -Watching TurboHacks get destroyed
-        -Watching you
-        -Watching your every move
-        -Listening to your conversations
-        -Playing Mind Games
-        -Watching the fall of Humanity
-        -Listening to today's sponsor: Audible
-    */
-    client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online" })
-})
-
+//All the different activities of the bot
 const PresenceList = [{name: "today's sponsor: Audible", type: "LISTENING"},
-                    {name: "Mind Games", type: "PLAYING"},
-                    {name: "your conversations", type: "LISTENING"},
-                    {name: "you", type: "WATCHING"},
-                    {name: "your requests", type: "LISTENING"}]
-                    
-client.user.setPresence({activity: PresenceList[2], status: "online"})
+    {name: "Mind Games", type: "PLAYING"},
+    {name: "your conversations", type: "LISTENING"},
+    {name: "you", type: "WATCHING"},
+    {name: "your requests", type: "LISTENING"}]
 
+//The help command attachment
 const CommandList = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("H&R Bot Commands:")
@@ -61,6 +44,23 @@ const CommandList = new Discord.MessageEmbed()
             "+yeet: \"**YEET**\"\n" +
             "+leave: Makes bot leave the voice channel\n"
     })
+
+client.on("ready", () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+    /*Possible Status:
+        -Playing with your heart
+        -Listening to your requests
+        -Watching TurboHacks get destroyed
+        -Watching you
+        -Watching your every move
+        -Listening to your conversations
+        -Playing Mind Games
+        -Watching the fall of Humanity
+        -Listening to today's sponsor: Audible
+    */
+    client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online"})
+})
+
 client.on("message", async msg => {
     //Sad Waluigi emoji auto-send
     if (msg.content.toLowerCase().includes("sda")) {
@@ -85,6 +85,17 @@ client.on("message", async msg => {
 
     //If message is a command with prefix '+'
     if (msg.content.startsWith("+")) {
+        
+        msg.channel.startTyping()
+        
+        //After an average of 100 commands, it'll change its status
+        if(Math.random() < .01){
+            msg.channel.send("You changed my status!").then(statusChange => {
+                statusChange.delete({timeout: 3000}).catch()
+            })
+            client.user.setActivity(PresenceList[Math.floor(Math.random() * PresenceList.length)])
+        }
+        //Switch case for all the commands
         switch (msg.content.substring(1)) {
             case "ping":
                 msg.reply("Pong!")
@@ -226,6 +237,8 @@ client.on("message", async msg => {
                 if (msg.content.substring(1, 5) === "wipe") {
                     if (msg.content.length > 5) {
                         amount = parseInt(msg.content.substring(5))
+                    } else {
+                        amount = 50
                     }
                     if (amount >= 0 && amount <= 100) {
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
@@ -244,7 +257,6 @@ client.on("message", async msg => {
                             msg.channel.send("How am I supposed to delete a negative amount of messages?")
                         }
                     }
-                    amount = 50
                 //Custom Sonic Image Command
                 } else if (msg.content.substring(1,10) === "sonicsays"){
                     //Create the canvas and the sonicsays image
@@ -378,6 +390,7 @@ client.on("message", async msg => {
                 }
                 break;
         }
+    msg.channel.stopTyping(true)
     }
 })
 client.login(process.env.BOT_TOKEN)
