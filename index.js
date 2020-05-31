@@ -5,6 +5,12 @@ const fs = require('fs')
 const client = new Discord.Client()
 
 //All the different activities of the bot
+/*Possible Status:
+        -Playing with your heart
+        -Watching TurboHacks get destroyed
+        -Watching your every move
+        -Watching the fall of Humanity
+    */
 const PresenceList = [{name: "today's sponsor: Audible", type: "LISTENING"},
     {name: "Mind Games", type: "PLAYING"},
     {name: "your conversations", type: "LISTENING"},
@@ -47,17 +53,6 @@ const CommandList = new Discord.MessageEmbed()
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    /*Possible Status:
-        -Playing with your heart
-        -Listening to your requests
-        -Watching TurboHacks get destroyed
-        -Watching you
-        -Watching your every move
-        -Listening to your conversations
-        -Playing Mind Games
-        -Watching the fall of Humanity
-        -Listening to today's sponsor: Audible
-    */
     client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online"})
 })
 
