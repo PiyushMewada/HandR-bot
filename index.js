@@ -11,7 +11,7 @@ const client = new Discord.Client()
         -Watching your every move
         -Watching the fall of Humanity
     */
-const PresenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTENING"}, status: "idle"},
+const presenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTENING"}, status: "idle"},
                     {activity: {name: "Mind Games", type: "PLAYING"}, status: "dnd"},
                     {activity: {name: "your conversations", type: "LISTENING"}, status: "online"},
                     {activity: {name: "you", type: "WATCHING"}, status: "online"},
@@ -19,30 +19,30 @@ const PresenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTE
                     {activity: { name: "Discord Deception", type: "PLAYING"}, status: "online"}]
 
 //The help command attachment
-const CommandList = new Discord.MessageEmbed()
+const commandList = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("H&R Bot Commands:")
     .setURL("https://github.com/PiyushMewada/HandR-bot")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
-        name: "```Text Channel Commands:```",
-        value: "```css\n" + 
+        name: "**Text Channel Commands:**",
+        value: "```fix\n" + 
             "+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
-            "+sonicsays *text*: Gets Sonic to say the message\n" +
+            "+sonicsays text: Gets Sonic to say the message\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
-            "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
+            "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
             "+#1 *text*: Creates a Victory Royale image with the text instead\n" +
             "```"
     }, {
-        name: "```Voice Channel Commands:```",
-        value: "```fix\n" + 
+        name: "**Voice Channel Commands:**",
+        value: "```css\n" + 
             "+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
-            "+dum: 6ix9ine calling you dumb\n" +
+            "+dum: Calls you dumb\n" +
             "+haha: Laughtrack\n" +
             "+horn: MLG-AirHorn\n" +
             "+loss: Losing sound effect\n" +
@@ -51,10 +51,17 @@ const CommandList = new Discord.MessageEmbed()
             "+roll: Try it out\n" +
             "+rekt: Crowd going wild\n" +
             "+sans: Plays first notes of Megalovania\n" +
-            "+yeet: \"**YEET**\"\n" +
+            "+yeet: \"YEET\"\n" +
             "+leave: Makes bot leave the voice channel\n" +
             "```"
     })
+
+const botInvite = new Discord.MessageEmbed()
+    .setColor("#82be42")
+    .setTitle("Invite the Bot to Your Server!")
+    .setURL("https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot")
+    .setThumbnail("https://i.imgur.com/I2IrB4s.png")
+    .setDescription("Click the title to add the bot")
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
@@ -93,7 +100,7 @@ client.on("message", async msg => {
             msg.channel.send("You changed my status!").then(statusChange => {
                 statusChange.delete({timeout: 3000}).catch()
             })
-            client.user.setPresence(PresenceList[Math.floor(Math.random() * PresenceList.length)])
+            client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
         }
         //Switch case for all the commands
         switch (msg.content.substring(1)) {
@@ -103,7 +110,7 @@ client.on("message", async msg => {
             // Future idea: Make 2 embeds and use reactions to switch between voice and text commands.
             case "help":
             case "info":
-                msg.channel.send(CommandList)
+                msg.channel.send(commandList)
                 break;
             case "server":
                 msg.channel.send(`Server name: ${msg.guild.name}\nTotal Members: ${msg.guild.memberCount}`);
@@ -145,7 +152,7 @@ client.on("message", async msg => {
                 msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " +  endings[Math.floor(Math.random() * endings.length)])
                 break;
             case "invite":
-                msg.channel.send("[Invite The Bot to Your Server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot)")
+                msg.channel.send(botInvite)
                 break;
 
                 //Voice Channel Commands
