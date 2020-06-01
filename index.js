@@ -84,8 +84,8 @@ client.on("message", async msg => {
         
         msg.channel.startTyping()
         
-        //After an average of 100 commands, it'll change its status
-        if(Math.random() < .01){
+        //After an average of 25 commands, it'll change its status
+        if(Math.random() < .04){
             msg.channel.send("You changed my status!").then(statusChange => {
                 statusChange.delete({timeout: 3000}).catch()
             })
