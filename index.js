@@ -25,8 +25,8 @@ const CommandList = new Discord.MessageEmbed()
     .setURL("https://github.com/PiyushMewada/HandR-bot")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
-        name: "`Text Channel Commands:`",
-        value: "```+headout: Displays the 'aight imma head out' gif\n" +
+        name: "```css\n Text Channel Commands:```",
+        value: "`+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
@@ -34,11 +34,10 @@ const CommandList = new Discord.MessageEmbed()
             "+sonicsays *text*: Gets Sonic to say the message\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
-            "+#1 *text*: Creates a Victory Royale image with the text instead\n```"
+            "+#1 *text*: Creates a Victory Royale image with the text instead\n"
     }, {
-        name: "`Voice Channel Commands:`",
-        value: "```css\n" + 
-            "+clap: Ha, Gottem\n" +
+        name: "```css\n Voice Channel Commands:```",
+        value: "```+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
             "+dum: 6ix9ine calling you dumb\n" +
             "+haha: Laughtrack\n" +
@@ -50,8 +49,7 @@ const CommandList = new Discord.MessageEmbed()
             "+rekt: Crowd going wild\n" +
             "+sans: Plays first notes of Megalovania\n" +
             "+yeet: \"**YEET**\"\n" +
-            "+leave: Makes bot leave the voice channel\n" +
-            "```"
+            "+leave: Makes bot leave the voice channel\n```"
     })
 
 client.on("ready", () => {
