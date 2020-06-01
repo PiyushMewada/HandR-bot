@@ -11,11 +11,12 @@ const client = new Discord.Client()
         -Watching your every move
         -Watching the fall of Humanity
     */
-const PresenceList = [{name: "today's sponsor: Audible", type: "LISTENING"},
-    {name: "Mind Games", type: "PLAYING"},
-    {name: "your conversations", type: "LISTENING"},
-    {name: "you", type: "WATCHING"},
-    {name: "your requests", type: "LISTENING"}]
+const PresenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTENING"}, status: "idle"},
+                    {activity: {name: "Mind Games", type: "PLAYING"}, status: "dnd"},
+                    {activity: {name: "your conversations", type: "LISTENING"}, status: "online"},
+                    {activity: {name: "you", type: "WATCHING"}, status: "online"},
+                    {activity: {name: "your requests", type: "LISTENING"}, status: "online"},
+                    { activity: { name: "Discord Deception", type: "PLAYING", url: "https://github.com/trevorliu13/Discord-Deception"}, status: "online"}]
 
 //The help command attachment
 const CommandList = new Discord.MessageEmbed()
@@ -53,7 +54,7 @@ const CommandList = new Discord.MessageEmbed()
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "today's sponsor: Audible", type: "LISTENING" }, status: "online"})
+    client.user.setPresence({ activity: { name: "Discord Deception", type: "PLAYING", url: "https://github.com/trevorliu13/Discord-Deception"}, status: "online"})
 })
 
 client.on("message", async msg => {
@@ -88,7 +89,7 @@ client.on("message", async msg => {
             msg.channel.send("You changed my status!").then(statusChange => {
                 statusChange.delete({timeout: 3000}).catch()
             })
-            client.user.setActivity(PresenceList[Math.floor(Math.random() * PresenceList.length)])
+            client.user.setPresence(PresenceList[Math.floor(Math.random() * PresenceList.length)])
         }
         //Switch case for all the commands
         switch (msg.content.substring(1)) {
