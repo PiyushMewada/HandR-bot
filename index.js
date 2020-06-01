@@ -25,8 +25,8 @@ const CommandList = new Discord.MessageEmbed()
     .setURL("https://github.com/PiyushMewada/HandR-bot")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
-        name: "```css \n Text Channel Commands:\n```",
-        value: "`+headout: Displays the 'aight imma head out' gif\n" +
+        name: "```ini \n [Text Channel Commands:]\n```",
+        value: "```+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
             "+ping: Replies with Pong! to test if bot is online\n" +
@@ -34,9 +34,9 @@ const CommandList = new Discord.MessageEmbed()
             "+sonicsays *text*: Gets Sonic to say the message\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
-            "+#1 *text*: Creates a Victory Royale image with the text instead\n`"
+            "+#1 *text*: Creates a Victory Royale image with the text instead\n```"
     }, {
-        name: "```css \n Voice Channel Commands:\n```",
+        name: "```apache \n %{Voice Channel Commands:}\n```",
         value: "```+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
             "+dum: 6ix9ine calling you dumb\n" +
