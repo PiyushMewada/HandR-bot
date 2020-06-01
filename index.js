@@ -16,15 +16,15 @@ const PresenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTE
                     {activity: {name: "your conversations", type: "LISTENING"}, status: "online"},
                     {activity: {name: "you", type: "WATCHING"}, status: "online"},
                     {activity: {name: "your requests", type: "LISTENING"}, status: "online"},
-                    { activity: { name: "Discord Deception", type: "PLAYING", url: "https://github.com/trevorliu13/Discord-Deception"}, status: "online"}]
+                    { activity: { name: "Discord Deception", type: "PLAYING"}, status: "online"}]
 
 //The help command attachment
-const CommandList = new Discord.MessageEmbed()
+const textCommandList = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("H&R Bot Commands:")
     .setURL("https://github.com/PiyushMewada/HandR-bot")
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
-    .addFields({
+    .addField({
         name: "Text Channel Commands:",
         value: "+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
@@ -35,26 +35,34 @@ const CommandList = new Discord.MessageEmbed()
             "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
             "+#1 *text*: Creates a Victory Royale image with the text instead\n"
-    }, {
-        name: "Voice Channel Commands:",
-        value: "+clap: Ha, Gottem\n" +
-            "+default: Default dance from Fortnite\n" +
-            "+dum: 6ix9ine calling you dumb\n" +
-            "+haha: Laughtrack\n" +
-            "+horn: MLG-AirHorn\n" +
-            "+loss: Losing sound effect\n" +
-            "+mad: When you make people mad\n" +
-            "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
-            "+roll: Try it out\n" +
-            "+rekt: Crowd going wild\n" +
-            "+sans: Plays first notes of Megalovania\n" +
-            "+yeet: \"**YEET**\"\n" +
-            "+leave: Makes bot leave the voice channel\n"
     })
+
+const voiceCommandList = new Discord.MessageEmbed()
+    .setColor("#82be42")
+    .setTitle("H&R Bot Commands:")
+    .setURL("https://github.com/PiyushMewada/HandR-bot")
+    .setThumbnail("https://i.imgur.com/I2IrB4s.png")
+    .addField({
+    name: "Voice Channel Commands:",
+    value: "+clap: Ha, Gottem\n" +
+        "+default: Default dance from Fortnite\n" +
+        "+dum: 6ix9ine calling you dumb\n" +
+        "+haha: Laughtrack\n" +
+        "+horn: MLG-AirHorn\n" +
+        "+loss: Losing sound effect\n" +
+        "+mad: When you make people mad\n" +
+        "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
+        "+roll: Try it out\n" +
+        "+rekt: Crowd going wild\n" +
+        "+sans: Plays first notes of Megalovania\n" +
+        "+yeet: \"**YEET**\"\n" +
+        "+leave: Makes bot leave the voice channel\n"
+})
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "Discord Deception", type: "PLAYING", url: "https://github.com/trevorliu13/Discord-Deception"}, status: "online"})
+    client.user.setPresence({ activity: { name: "Discord Deception", type: "PLAYING"}, status: "online"})
+    client.user.setPresence({status: "dnd", activity})
 })
 
 client.on("message", async msg => {
@@ -98,7 +106,20 @@ client.on("message", async msg => {
                 break;
             case "help":
             case "info":
-                msg.channel.send(CommandList)
+                msg.channel.send(textCommandList).then( commandList => {
+                    commandList.react("➡️")
+                    const filter = (reaction, user) => {
+                        return reaction.emoji.name === '👌' && user.id === message.author.id;
+                    };
+                    commandList.awaitReactions(filter, { max: 2, time: 60000, errors: ['time'] })
+                    .then(collected => {
+                        commandList.edit(voiceCommandList)
+                    })
+                    .catch(collected => {
+                        console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+                    });
+                })
+                
                 break;
             case "server":
                 msg.channel.send(`Server name: ${msg.guild.name}\nTotal Members: ${msg.guild.memberCount}`);
@@ -238,7 +259,7 @@ client.on("message", async msg => {
                     }
                     if (amount >= 0 && amount <= 100) {
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
                             msg.channel.bulkDelete(botmessages)
 
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
