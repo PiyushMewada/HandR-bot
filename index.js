@@ -26,7 +26,7 @@ const commandList = new Discord.MessageEmbed()
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .addFields({
         name: "**Text Channel Commands:**",
-        value: "```fix\n" + 
+        value: "```diff\n" + 
             "+headout: Displays the 'aight imma head out' gif\n" +
             "+megamoto: Sends a bunch of moto moto emojis\n" +
             "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
@@ -34,12 +34,12 @@ const commandList = new Discord.MessageEmbed()
             "+server: Displays server information\n" +
             "+sonicsays text: Gets Sonic to say the message\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
-            "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given\n" +
-            "+#1 *text*: Creates a Victory Royale image with the text instead\n" +
+            "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
+            "+#1: Creates a Victory Royale image\n" +
             "```"
     }, {
         name: "**Voice Channel Commands:**",
-        value: "```diff\n" + 
+        value: "```fix\n" + 
             "+clap: Ha, Gottem\n" +
             "+default: Default dance from Fortnite\n" +
             "+dum: Calls you dumb\n" +
