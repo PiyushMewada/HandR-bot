@@ -221,10 +221,10 @@ client.on("message", async msg => {
                                 dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
                                 break;
                             case "dum":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .3 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .2 })
                                 break;
                             case "mad":
-                                dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .3 })
+                                dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .2 })
                                 break;
                             default:
                                 break;
@@ -253,7 +253,7 @@ client.on("message", async msg => {
                     }
                     if (amount >= 0 && amount <= 100) {
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("`") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
                             msg.channel.bulkDelete(botmessages)
 
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
