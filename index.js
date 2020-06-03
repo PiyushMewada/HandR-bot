@@ -107,7 +107,7 @@ client.on("message", async msg => {
         //After an average of 25 commands, it'll change its status
         if(Math.random() < .04){
             msg.channel.send("You changed my status!").then(statusChange => {
-                statusChange.delete({timeout: 3000}).catch()
+                statusChange.delete({timeout: 4000}).catch()
             })
             client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
         }
@@ -163,7 +163,13 @@ client.on("message", async msg => {
             case "invite":
                 msg.channel.send(botInvite)
                 break;
-
+            case "status":
+                client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
+                msg.channel.send("Status Changed!").then(statusChange => {
+                    statusChange.delete({timeout: 1500}).catch()
+                })
+                break;
+                
                 //Voice Channel Commands
             case "ohyeah":
             case "yeet":
