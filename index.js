@@ -16,7 +16,8 @@ const presenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTE
                     {activity: {name: "your conversations", type: "LISTENING"}, status: "online"},
                     {activity: {name: "you", type: "WATCHING"}, status: "online"},
                     {activity: {name: "your requests", type: "LISTENING"}, status: "online"},
-                    {activity: { name: "Discord Deception", type: "PLAYING"}, status: "online"}]
+                    {activity: {name: "Discord Deception", type: "PLAYING"}, status: "online"},
+                    {activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.nintendo.com/games/detail/xenoblade-chronicles-definitive-edition-switch/"}, status: "online"}]
 
 //The help command attachment
 const commandList = new Discord.MessageEmbed()
@@ -65,7 +66,7 @@ const botInvite = new Discord.MessageEmbed()
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({ activity: { name: "Discord Deception", type: "PLAYING"}, status: "online"})
+    client.user.setPresence({activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.nintendo.com/games/detail/xenoblade-chronicles-definitive-edition-switch/"}, status: "online"})
 })
 
 client.on("message", async msg => {
@@ -91,15 +92,11 @@ client.on("message", async msg => {
     }
 
     if(msg.content.toLowerCase() === "wot" && msg.author.id == 488542158542995458){
-        msg.channel.send("Conner, that was not that confusing.")
+        msg.channel.send("Conner, that was not confusing in any way. What could you possibly not understand.")
     }
 
     if(msg.content.toLowerCase().includes("bruh") && msg.author.id == 488542158542995458){
         msg.channel.send("***B R U H***")
-    }
-
-    if(msg.content === "test" && msg.author.id == 241052712458911744){
-        msg.channel.send("*This* **do** ***be*** ***__a test tho.__***")
     }
 
     //If message is a command with prefix '+'
