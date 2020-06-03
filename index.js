@@ -90,6 +90,18 @@ client.on("message", async msg => {
         msg.channel.send(questionAttactment);
     }
 
+    if(msg.content.toLowerCase() === "wot" && msg.author.id == 488542158542995458){
+        msg.channel.send("Conner, that was not that confusing.")
+    }
+
+    if(msg.content.toLowerCase().includes("bruh") && msg.author.id == 488542158542995458){
+        msg.channel.send("***B R U H***")
+    }
+
+    if(msg.content === "test" && msg.author.id == 241052712458911744){
+        msg.channel.send("*This* **do** ***be*** ***__a test tho.__***")
+    }
+
     //If message is a command with prefix '+'
     if (msg.content.startsWith("+")) {
         
