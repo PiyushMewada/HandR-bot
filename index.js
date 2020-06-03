@@ -17,7 +17,7 @@ const presenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTE
                     {activity: {name: "you", type: "WATCHING"}, status: "online"},
                     {activity: {name: "your requests", type: "LISTENING"}, status: "online"},
                     {activity: {name: "Discord Deception", type: "PLAYING"}, status: "online"},
-                    {activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.nintendo.com/games/detail/xenoblade-chronicles-definitive-edition-switch/"}, status: "online"}]
+                    {activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"}]
 
 //The help command attachment
 const commandList = new Discord.MessageEmbed()
@@ -66,7 +66,7 @@ const botInvite = new Discord.MessageEmbed()
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.nintendo.com/games/detail/xenoblade-chronicles-definitive-edition-switch/"}, status: "online"})
+    client.user.setPresence({activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"})
 })
 
 client.on("message", async msg => {
