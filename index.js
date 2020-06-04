@@ -57,38 +57,68 @@ const commandList = new Discord.MessageEmbed()
             "```"
     })
 
-const hiddenCommands = {name: "**Hidden Commands:**",
-                        value: "```diff\n" +
-                            "+anikait: Sends an image of his car exploding\n" + 
-                            "+ansh: Calls Justin a dumbass\n" +
-                            "+help, +info: Sends command list\n" +
-                            "+help all: Sends hidden command list\n" +
-                            "+info all: Sends hidden command list and other features\n" +
-                            "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
-                            "```" +
-                            "```fix\n" +
-                            "+butt: Ansh getting boned" +
-                            "+donkey: Gordom Ramsay calling you a donkey\n" +
-                            "+getover: Trevor getting over\n" +
-                            "+smooth: Smooth Moves from Fortnite\n" +
-                            "```"
-                        }
-
-var hiddenCommndList = commandList
-hiddenCommndList.addField(hiddenCommands)
-
-const allCommands = {name: "**Other:**",
-                    value: "```bash\n" +
-                        "\"If a message includes 'bruh' reply with B R U H\"\n" + 
-                        "\"If a message includes 'good night' reply with 'Arrivederci' and react to their message\"\n" +
-                        "\"If a message includes 'sda' reply with sad waluigi\"\n" + 
-                        "\"If a message includes 'thirsty' reply with Justin drinking\"\n" + 
-                        "\"If a message is '?' reply with question mark image\"\n" + 
-                        "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
-                        "```" 
-                }
-var hiddenFeatureList = hiddenCommndList
-hiddenFeatureList.addField(allCommands)
+//The hidden help command attachment
+const hiddenCommandList = new Discord.MessageEmbed()
+    .setColor("#82be42")
+    .setTitle("H&R Bot Commands:")
+    .setURL("https://github.com/PiyushMewada/HandR-bot")
+    .setThumbnail("https://i.imgur.com/I2IrB4s.png")
+    .addFields({
+        name: "**Text Channel Commands:**",
+        value: "```diff\n" + 
+            "+headout: Displays the 'aight imma head out' gif\n" +
+            "+megamoto: Sends a bunch of moto moto emojis\n" +
+            "+poll: Creates a poll. Separate the title and each option with an '*'\n" +
+            "+ping: Replies with Pong! to test if bot is online\n" +
+            "+server: Displays server information\n" +
+            "+sonicsays text: Gets Sonic to say the message\n" +
+            "+wwd: Tells you where to drop in Fortnite\n" +
+            "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
+            "+#1: Creates a Victory Royale image\n" +
+            "```"
+    }, {
+        name: "**Voice Channel Commands:**",
+        value: "```fix\n" + 
+            "+clap: Ha, Gottem\n" +
+            "+default: Default dance from Fortnite\n" +
+            "+dum: Calls you dumb\n" +
+            "+haha: Laughtrack\n" +
+            "+horn: MLG-AirHorn\n" +
+            "+loss: Losing sound effect\n" +
+            "+mad: When you make people mad\n" +
+            "+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
+            "+roll: Try it out\n" +
+            "+rekt: Crowd going wild\n" +
+            "+sans: Plays first notes of Megalovania\n" +
+            "+yeet: \"YEET\"\n" +
+            "+leave: Makes bot leave the voice channel\n" +
+            "```"
+    },{
+        name: "**Hidden Commands:**",
+        value: "```diff\n" +
+            "+anikait: Sends an image of his car exploding\n" + 
+            "+ansh: Calls Justin a dumbass\n" +
+            "+help, +info: Sends command list\n" +
+            "+help all, +info all: Sends hidden command list\n" +
+            "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
+            "```" +
+            "```fix\n" +
+            "+butt: Ansh getting boned" +
+            "+donkey: Gordom Ramsay calling you a donkey\n" +
+            "+getover: Trevor getting over\n" +
+            "+smooth: Smooth Moves from Fortnite\n" +
+            "```"
+    }, {
+        name: "**Other:**",
+        value: "```bash\n" +
+            "\"If a message includes 'bruh' reply with B R U H\"\n" + 
+            "\"If a message includes 'good night' reply with 'Arrivederci' and react to their message\"\n" +
+            "\"If a message includes 'sda' reply with sad waluigi\"\n" + 
+            "\"If a message includes 'thirsty' reply with Justin drinking\"\n" + 
+            "\"If a message is '?' reply with question mark image\"\n" + 
+            "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
+            "```" 
+    })
 
 //Embed that has the invite link for the bot
 const botInvite = new Discord.MessageEmbed()
@@ -163,12 +193,9 @@ client.on("message", async msg => {
                 msg.channel.send(commandList)
                 break;
             case "help all":
-                //Sends hidden command list
-                msg.channel.send(hiddenCommndList)
-                break;
             case "info all":
-                //Sends hidden command list and features
-                msg.channel.send(hiddenFeatureList)
+                //Sends hidden command list
+                msg.channel.send(hiddenCommandList)
                 break;
             case "server":
                 //Gives server info (Taken from Tubrohacks)
