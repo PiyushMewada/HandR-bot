@@ -71,7 +71,8 @@ const hiddenCommands = {name: "**Hidden Commands:**",
                             "+donkey: Gordom Ramsay calling you a donkey\n" +
                             "+getover: Trevor getting over\n" +
                             "+smooth: Smooth Moves from Fortnite\n" +
-                            "```"}
+                            "```"
+                        }
 
 const allCommands = {name: "**Other:**",
                     value: "```bash\n" +
@@ -520,4 +521,5 @@ client.on("message", async msg => {
     msg.channel.stopTyping(true)
     }
 })
+
 client.login(process.env.BOT_TOKEN)
