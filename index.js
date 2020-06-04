@@ -106,10 +106,8 @@ client.on("message", async msg => {
         
         //After an average of 25 commands, it'll change its status
         if(Math.random() < .04){
-            msg.channel.send("You changed my status!").then(statusChange => {
-                statusChange.delete({timeout: 4000}).catch()
-            })
             client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
+            msg.channel.send("You changed my status!")
         }
         //Switch case for all the commands
         switch (msg.content.substring(1)) {
@@ -268,7 +266,7 @@ client.on("message", async msg => {
                     }
                     if (amount >= 0 && amount <= 100) {
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("`") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
                             msg.channel.bulkDelete(botmessages)
 
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
