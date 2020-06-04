@@ -57,6 +57,7 @@ const commandList = new Discord.MessageEmbed()
             "```"
     })
 
+//Embed that has the invite link for the bot
 const botInvite = new Discord.MessageEmbed()
     .setColor("#82be42")
     .setTitle("Invite the Bot to Your Server!")
@@ -64,12 +65,15 @@ const botInvite = new Discord.MessageEmbed()
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .setDescription("Click the title to add the bot")
 
+//When the bot goes online
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setPresence({activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"})
 })
 
+//Whenever a message is sent
 client.on("message", async msg => {
+
     //Sad Waluigi emoji auto-send
     if (msg.content.toLowerCase().includes("sda")) {
         msg.channel.send("<:Waluigi:688139607228940324>")
@@ -77,31 +81,35 @@ client.on("message", async msg => {
 
     //Thirsty emoji auto-send
     if (msg.content.toLowerCase().includes("thirsty")) {
-        msg.channel.send('<:Thirst:689204786083659776>');
+        msg.channel.send('<:Thirst:689204786083659776>')
     }
 
-    //If message says Good Night send Arrivederci
+    //If a message says bruh, reply with B R U H
+    if(msg.content.toLowerCase().includes("bruh")){
+        msg.channel.send("***B R U H***")
+    }
+
+    //If message says Good Night reply Arrivederci
     if (msg.content.toLowerCase().includes("good night")) {
-        msg.channel.send("Arrivederci");
+        msg.react("👋")
+        msg.channel.send("Arrivederci, " + msg.author.username)
     }
     
-    //Confused command
+    //Confused command, sends an image with question marks
     if (msg.content === "?") {
         const questionAttactment = new Discord.MessageAttachment("./images/questionmark.jpg");
-        msg.channel.send(questionAttactment);
+        msg.channel.send(questionAttactment)
     }
 
+    //Personal command for a friend. Whenever he says "wot", it replies
     if(msg.content.toLowerCase() === "wot" && msg.author.id == 488542158542995458){
         msg.channel.send("Conner, that was not confusing in any way. What could you possibly not understand.")
-    }
-
-    if(msg.content.toLowerCase().includes("bruh") && msg.author.id == 488542158542995458){
-        msg.channel.send("***B R U H***")
     }
 
     //If message is a command with prefix '+'
     if (msg.content.startsWith("+")) {
         
+        //Set bot status to typing so you know it is working
         msg.channel.startTyping()
         
         //After an average of 25 commands, it'll change its status
@@ -112,21 +120,20 @@ client.on("message", async msg => {
         //Switch case for all the commands
         switch (msg.content.substring(1)) {
             case "ping":
+                //Ping the bot so you know it's online
                 msg.reply("Pong!")
                 break;
             // Future idea: Make 2 embeds and use reactions to switch between voice and text commands.
             case "help":
             case "info":
+                //Send the info embeded message
                 msg.channel.send(commandList)
                 break;
             case "server":
+                //Gives server info (Taken from Tubrohacks)
                 msg.channel.send(`Server name: ${msg.guild.name}\nTotal Members: ${msg.guild.memberCount}`);
                 break;
-            case "noice":
-                msg.channel.send('FUCKING NOICE');
-                msg.channel.send('<:Bratt:688138276422680666>');
-                break;
-            case "headout":
+                //Sends a Spongebob gif and then deletes both the messages
                 const attachment = new Discord.MessageAttachment('https://media.giphy.com/media/S9nuoEQkwXUms2ZNaz/giphy.gif');
                 await msg.channel.send(attachment).then( headout => {
                     msg.delete({timeout: 5000}).catch()
@@ -134,39 +141,50 @@ client.on("message", async msg => {
                 })
                 break;
             case "ansh":
+                //Custom command taken from Turbohacks
                 msg.channel.send('Justin is a dumbass.', {tts: true});
                 break;
             case "megamoto":
+                //Sends emojis
                 msg.channel.send('<:chunky:689542818410266726> <:spunky:689543031967186944>')
                 break;
             case "anikait":
+                //Custom command for a friend, send an image
                 const Camryattachment = new Discord.MessageAttachment('./images/Camry.jpg')
                 msg.channel.send(Camryattachment)
                 break;
             case "freemoney":
             case "rickroll":
             case "piyush":
+                //Custom hidden commands for memes. Sends an image
                 const foolAttachment = new Discord.MessageAttachment('./images/fool.jpg')
                 msg.channel.send(foolAttachment)
                 break;
             case "wwd":
+                //Tells you where to drop in fortnite
+                //List of locations
                 var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
                                 "Henchmen Bases", "4 Corners"]
                 
+                //List of endings to sentence
                 var endings = ["Good Luck!", "This is going to be quick one...", "God Speed!", "May the Force be with you.", "Break a Leg!",
                                 "Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Carpe Omnia."]
                 
+                //Pick 2 random elements and use them to make a phrase
                 msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " +  endings[Math.floor(Math.random() * endings.length)])
                 break;
             case "invite":
+                //Sends invite link
                 msg.channel.send(botInvite)
                 break;
             case "status":
+                //So I change the status of the bot
                 if(msg.author.id == 241052712458911744){
                     client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
-                    msg.channel.send("Status Changed!").then(statusChange => {
-                        statusChange.delete({timeout: 1500}).catch()
-                    })
+                    msg.channel.send("Status Changed!")
+                } else {
+                    //Not a vaild command for people who aren't me
+                    msg.channel.send("That's not a valid command. Try +info for help.")
                 }
                 break;
                 
@@ -187,73 +205,93 @@ client.on("message", async msg => {
             case "sans":
             case "dum":
             case "mad":
+                //Join voice channel of memeber
                 if (msg.member.voice.channel) {
                     var currentChannel = msg.member.voice.channel
                     const connection = await msg.member.voice.channel.join().then(connection => {
                         var dispatcher
                         switch (msg.content.substring(1)) {
                             case "ohyeah":
+                                //Vector's Oh Yeah
                                 dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1.3 })
                                 break;
                             case "yeet":
+                                //YEET
                                 dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), { volume: .5 })
                                 break;
                             case "horn":
+                                //Airhorn
                                 dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), { volume: .15 })
                                 break;
                             case "butt":
+                                //Custom hidden command
                                 dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), { volume: 1.4 })
                                 break;
                             case "rekt":
+                                //Crowd
                                 dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), { volume: .3 })
                                 break;
                             case "donkey":
+                                //Hidden Gordon Ramsay
                                 dispatcher = connection.play(fs.createReadStream('./sounds/donkey.mp3'), { volume: 1.0 })
                                 break;
                             case "getover":
+                                //Hidden friend commmand
                                 dispatcher = connection.play(fs.createReadStream('./sounds/getover.mp3'), { volume: 1.0 })
                                 break;
                             case "haha":
+                                //Laughtrack
                                 dispatcher = connection.play(fs.createReadStream('./sounds/laughtrack.mp3'), { volume: 1.0})
                                 break;
                             case "clap":
+                                //Friend saying "ha gottem"
                                 msg.channel.send("That was a good one" + "<:clap:712393807353610321> <:clap:712393807353610321>")
                                 dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
                                 break;
                             case "roll":
+                                //Rickroll
                                 dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .75 })
                                 break;
                             case "smooth":
+                                //Smooth Moves from Fortnite
                                 dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .6 })
                                 break;
                             case "default":
+                                //Default Dance from Fortnite
                                 dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
                                 break;
                             case "loss":
+                                //Losing sound  effect from Price is Right
                                 dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
                                 break;
                             case "sans":
+                                //Sans theme
                                 dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
                                 break;
                             case "dum":
+                                //6ix9ine calling you dumb
                                 dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .2 })
                                 break;
                             case "mad":
+                                //6ix9ine talking about being mad
                                 dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .2 })
                                 break;
                             default:
                                 break;
                         }
+                        //Once the audio clip finishes leave the channel
                         dispatcher.on('finish', () => {
                             currentChannel.leave()
                         })
                         dispatcher.on('error', console.error)
                     })
                 } else {
+                    //If the user is not in a voice channel then send error
                     msg.channel.send("You need to be in a voice channel to use audio commands.")
                 }
                 break;
             case "leave":
+                //For emergencies, make the bot leave
                 msg.member.voice.channel.leave()
                 break;
             default:
@@ -262,34 +300,45 @@ client.on("message", async msg => {
                 //Wipe command to remove bot messages and commands
                 if (msg.content.substring(1, 5) === "wipe") {
                     if (msg.content.length > 5) {
+                        //If there is an amount specified set it equal to that
                         amount = parseInt(msg.content.substring(5))
                     } else {
+                        //Default amount it 50
                         amount = 50
                     }
                     if (amount >= 0 && amount <= 100) {
+                        //Get the last 'amount' messages
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
+                            //Then filter the messages you want to delete (Bot messages, and the commands)
                             const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+                            //Delete them all at once
                             msg.channel.bulkDelete(botmessages)
 
+                            //Send info message saying how many were deleted
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
+                                //React to it with Thanos, and then delete that message too
                                 tempMessage.react('687914531820666906')
                                 tempMessage.delete({ timeout: 5000 }).catch()
                             })
                         })
                     } else {
+                        //If the amount is too high or too low use these responses
                         if (amount > 100) {
+                            //Too many
                             msg.channel.send("That's too many messages.")
                         } else {
-                            msg.channel.send("How am I supposed to delete a negative amount of messages?")
+                            //Less than 0
+                            msg.channel.send("How am I supposed to search a negative amount of messages?")
                         }
                     }
-                //Custom Sonic Image Command
                 } else if (msg.content.substring(1,10) === "sonicsays"){
+                    //Custom Sonic Image Command
                     //Create the canvas and the sonicsays image
                     const canvas = Canvas.createCanvas(600, 340)
                     const ctx = canvas.getContext('2d')
                     const background = await Canvas.loadImage('./images/sonicsays.jpg')
 
+                    //Draw the image on the canvas
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
                     //Font and color selection
@@ -310,6 +359,7 @@ client.on("message", async msg => {
                         messageArr[j] += wordsArr[i] + " "
                     }
 
+                    //Create string with proper endlines
                     for(i = 0; i < messageArr.length; i++){
                         editedMessage += messageArr[i] + "\n"
                     }
@@ -320,19 +370,21 @@ client.on("message", async msg => {
                     //Send image
                     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'sonicsays.png')
                     msg.channel.send(attachment)
-                //Custom Victory Royale Image
                 } else if (msg.content.substring(1,3) === "#1"){
+                    //Custom Victory Royale Image
                     //Create the canvas and the Victory Royale image
                     const canvas = Canvas.createCanvas(850, 280)
                     const ctx = canvas.getContext('2d')
                     const background = await Canvas.loadImage('./images/Victory.png')
 
+                    //Draw image
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
                     //Font and color selection
                     ctx.font = '58px sans-serif'
                     ctx.fillStyle = '#ffffff'
-                    //ctx.textAlign = "center"
+                    /*ctx.textAlign = "center"*/
+
                     //Split up the message by the spaces to divide into new lines
                     var wordsArr = msg.content.substring(4).split(" ")
                     var messageArr = [""]
@@ -347,6 +399,7 @@ client.on("message", async msg => {
                         messageArr[j] += wordsArr[i] + " "
                     }
 
+                    //Create the string with proper endlines
                     for(i = 0; i < messageArr.length; i++){
                         editedMessage += messageArr[i] + "\n"
                     }
@@ -355,32 +408,41 @@ client.on("message", async msg => {
                     ctx.rotate(-.02*Math.PI)
                     ctx.fillText(editedMessage, 210, 120)
                     ctx.strokeText(editedMessage, 210, 120)
+                    
                     //Send image
                     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'Victory.png')
                     msg.channel.send(attachment)
 
                 } else if (msg.content.substring(1,5) === "poll"){
                     //Create a Poll
+                    //Split the message by the '*' divider
                     const pollParts = msg.content.split('*')
+
                     if(pollParts.length < 3){
-                        //There is something missing
+                        //If there is something missing send this response to tell them how to format it
                         msg.channel.send("There is something missing from the poll, make sure there are 2 possible options. Separate the title and each option with a \'*\'.")
                     } else if (pollParts.length > 11){
+                        //If they use too many options then reply with this
                         msg.channel.send("The max number of options is 10.")
                     } else {
+                        //Creating a poll embeded message
                         const Poll = new Discord.MessageEmbed()
                         .setColor("#ffffff")
                         .setURL("https://tinyurl.com/pollImage")
                         .setTitle(pollParts[0].substring(6))
                         .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
+                        //Create one string for all the options with new lines
                         var optionText = ""
                         for(i = 1; i < pollParts.length; i++){
                             optionText += i + ". " + pollParts[i] + "\n"
                         }
 
+                        //Set the options in the option field
                         Poll.addField("Options:", optionText)
 
+                        //The voting system is based on the reactions to the image
+                        //So react with the appropriate amount of options
                         msg.channel.send(Poll).then(pollMessage => {
                             pollMessage.react("1️⃣")
                             pollMessage.react("2️⃣")
@@ -411,11 +473,12 @@ client.on("message", async msg => {
                         })
                     }
                 } else {
-                    //Not a vaild command
+                    //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
                 }
                 break;
         }
+    //Stop the typing status after the bot is done
     msg.channel.stopTyping(true)
     }
 })
