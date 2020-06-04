@@ -162,10 +162,12 @@ client.on("message", async msg => {
                 msg.channel.send(botInvite)
                 break;
             case "status":
-                client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
-                msg.channel.send("Status Changed!").then(statusChange => {
-                    statusChange.delete({timeout: 1500}).catch()
-                })
+                if(msg.author.id == 241052712458911744){
+                    client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
+                    msg.channel.send("Status Changed!").then(statusChange => {
+                        statusChange.delete({timeout: 1500}).catch()
+                    })
+                }
                 break;
                 
                 //Voice Channel Commands
