@@ -67,12 +67,15 @@ const hiddenCommands = {name: "**Hidden Commands:**",
                             "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
                             "```" +
                             "```fix\n" +
-                            "+butt: Ansh saying, \"Fuck me in the butt\"\n" +
+                            "+butt: Ansh getting boned" +
                             "+donkey: Gordom Ramsay calling you a donkey\n" +
                             "+getover: Trevor getting over\n" +
                             "+smooth: Smooth Moves from Fortnite\n" +
                             "```"
                         }
+
+var hiddenCommndList = commandList
+hiddenCommndList.addField({hiddenCommands})
 
 const allCommands = {name: "**Other:**",
                     value: "```bash\n" +
@@ -84,6 +87,8 @@ const allCommands = {name: "**Other:**",
                         "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
                         "```" 
                 }
+const hiddenAllCommndList = hiddenCommndList
+hiddenAllCommndList.addField({allCommands})
 
 //Embed that has the invite link for the bot
 const botInvite = new Discord.MessageEmbed()
@@ -159,13 +164,11 @@ client.on("message", async msg => {
                 break;
             case "help all":
                 //Sends hidden command list
-                const hiddenCommndList = commandList.addField(hiddenCommands)
                 msg.channel.send(hiddenCommndList)
                 break;
             case "info all":
                 //Sends hidden command list and features
-                const hiddenallCommndList = commandList.addFields(hiddenCommands, allCommands)
-                msg.channel.send(hiddenallCommndList)
+                msg.channel.send(hiddenAllCommndList)
                 break;
             case "server":
                 //Gives server info (Taken from Tubrohacks)
