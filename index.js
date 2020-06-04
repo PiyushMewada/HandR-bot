@@ -57,6 +57,33 @@ const commandList = new Discord.MessageEmbed()
             "```"
     })
 
+const hiddenCommands = {name: "**Hidden Commands:**",
+                        value: "```diff\n" +
+                            "+anikait: Sends an image of his car exploding\n" + 
+                            "+ansh: Calls Justin a dumbass\n" +
+                            "+help, +info: Sends command list\n" +
+                            "+help all: Sends hidden command list\n" +
+                            "+info all: Sends hidden command list and other features\n" +
+                            "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
+                            "```" +
+                            "```fix\n" +
+                            "+butt: Ansh saying, \"Fuck me in the butt\"\n" +
+                            "+donkey: Gordom Ramsay calling you a donkey\n" +
+                            "+getover: Trevor getting over\n" +
+                            "+smooth: Smooth Moves from Fortnite\n" +
+                            "```"}
+
+const allCommands = {name: "**Other:**",
+                    value: "```bash\n" +
+                        "\"If a message includes 'bruh' reply with B R U H\"\n" + 
+                        "\"If a message includes 'good night' reply with 'Arrivederci' and react to their message\"\n" +
+                        "\"If a message includes 'sda' reply with sad waluigi\"\n" + 
+                        "\"If a message includes 'thirsty' reply with Justin drinking\"\n" + 
+                        "\"If a message is '?' reply with question mark image\"\n" + 
+                        "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
+                        "```" 
+                }
+
 //Embed that has the invite link for the bot
 const botInvite = new Discord.MessageEmbed()
     .setColor("#82be42")
@@ -129,10 +156,21 @@ client.on("message", async msg => {
                 //Send the info embeded message
                 msg.channel.send(commandList)
                 break;
+            case "help all":
+                //Sends hidden command list
+                const hiddenCommndList = commandList.addField(hiddenCommands)
+                msg.channel.send(hiddenCommndList)
+                break;
+            case "info all":
+                //Sends hidden command list and features
+                const hiddenCommndList = commandList.addFields(hiddenCommands, allCommands)
+                msg.channel.send(hiddenCommndList)
+                break;
             case "server":
                 //Gives server info (Taken from Tubrohacks)
                 msg.channel.send(`Server name: ${msg.guild.name}\nTotal Members: ${msg.guild.memberCount}`);
                 break;
+            case "headout":
                 //Sends a Spongebob gif and then deletes both the messages
                 const attachment = new Discord.MessageAttachment('https://media.giphy.com/media/S9nuoEQkwXUms2ZNaz/giphy.gif');
                 await msg.channel.send(attachment).then( headout => {
