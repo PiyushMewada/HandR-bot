@@ -75,7 +75,7 @@ const hiddenCommands = {name: "**Hidden Commands:**",
                         }
 
 var hiddenCommndList = commandList
-hiddenCommndList.addField({hiddenCommands})
+hiddenCommndList.addField(hiddenCommands)
 
 const allCommands = {name: "**Other:**",
                     value: "```bash\n" +
@@ -87,8 +87,8 @@ const allCommands = {name: "**Other:**",
                         "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
                         "```" 
                 }
-const hiddenAllCommndList = hiddenCommndList
-hiddenAllCommndList.addField({allCommands})
+var hiddenFeatureList = hiddenCommndList
+hiddenFeatureList.addField(allCommands)
 
 //Embed that has the invite link for the bot
 const botInvite = new Discord.MessageEmbed()
@@ -168,7 +168,7 @@ client.on("message", async msg => {
                 break;
             case "info all":
                 //Sends hidden command list and features
-                msg.channel.send(hiddenAllCommndList)
+                msg.channel.send(hiddenFeatureList)
                 break;
             case "server":
                 //Gives server info (Taken from Tubrohacks)
