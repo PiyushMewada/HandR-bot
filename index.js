@@ -164,8 +164,8 @@ client.on("message", async msg => {
                 break;
             case "info all":
                 //Sends hidden command list and features
-                const hiddenCommndList = commandList.addFields(hiddenCommands, allCommands)
-                msg.channel.send(hiddenCommndList)
+                const hiddenallCommndList = commandList.addFields(hiddenCommands, allCommands)
+                msg.channel.send(hiddenallCommndList)
                 break;
             case "server":
                 //Gives server info (Taken from Tubrohacks)
@@ -516,6 +516,7 @@ client.on("message", async msg => {
                     msg.channel.send("That's not a valid command. Try +info for help.")
                 }
                 break;
+
         }
     //Stop the typing status after the bot is done
     msg.channel.stopTyping(true)
