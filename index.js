@@ -146,6 +146,7 @@ client.on("message", async msg => {
     if (msg.content.toLowerCase().includes("thirsty")) {
         msg.react("<:Thirst:689204786083659776>")
         msg.react("<:Thirst:689204786083659776>")
+        msg.react("<:Thirst:689204786083659776>")
     }
 
     //If a message says bruh, reply with B R U H
