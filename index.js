@@ -112,7 +112,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
         name: "**Other:**",
         value: "```bash\n" +
             "\"If a message includes 'bruh' reply with B R U H\n" + 
-            "If a message includes 'good night' reply with 'Arrivederci' and react to their message\n" +
+            "If a message includes 'good night' reply with a farewell and react to their message\n" +
             "If a message includes 'sda' reply with sad waluigi\n" + 
             "If a message includes 'thirsty' reply with Justin drinking\n" + 
             "If a message is '?' reply with question mark image\n" + 
@@ -156,7 +156,7 @@ client.on("message", async msg => {
     //If message says Good Night reply Arrivederci
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
         const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "🏃"],["You can never leave", "😈"],
-                            ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], ["Minecraft", "Minecraft Mobs"]]
+                            ["Later", "🌊"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], ["Farewell", "🌊"], ["Minecraft", "Minecraft Mobs"]]
         
         //Pick a random phrase and emoji
         goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
@@ -253,6 +253,7 @@ client.on("message", async msg => {
                 msg.channel.send(foolAttachment)
                 break;
             case "wwd":
+            case "Wwd":
                 //Tells you where to drop in fortnite
                 //List of locations
                 var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
