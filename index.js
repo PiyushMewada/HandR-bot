@@ -103,7 +103,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
             "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
             "```" +
             "```fix\n" +
-            "+butt: Ansh getting boned" +
+            "+butt: Ansh getting boned\n" +
             "+donkey: Gordom Ramsay calling you a donkey\n" +
             "+getover: Trevor getting over\n" +
             "+smooth: Smooth Moves from Fortnite\n" +
@@ -111,12 +111,12 @@ const hiddenCommandList = new Discord.MessageEmbed()
     }, {
         name: "**Other:**",
         value: "```bash\n" +
-            "\"If a message includes 'bruh' reply with B R U H\"\n" + 
-            "\"If a message includes 'good night' reply with 'Arrivederci' and react to their message\"\n" +
-            "\"If a message includes 'sda' reply with sad waluigi\"\n" + 
-            "\"If a message includes 'thirsty' reply with Justin drinking\"\n" + 
-            "\"If a message is '?' reply with question mark image\"\n" + 
-            "\"If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
+            "\"If a message includes 'bruh' reply with B R U H\n" + 
+            "If a message includes 'good night' reply with 'Arrivederci' and react to their message\n" +
+            "If a message includes 'sda' reply with sad waluigi\n" + 
+            "If a message includes 'thirsty' reply with Justin drinking\n" + 
+            "If a message is '?' reply with question mark image\n" + 
+            "If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
             "```" 
     })
 
