@@ -154,11 +154,11 @@ client.on("message", async msg => {
 
     //If message says Good Night reply Arrivederci
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
-        const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"]["Finally", "🙌"]]
+        const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"]["Finally", "1"]]
         goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
         msg.channel.send(goodbye[1])
-        if(goodbye[1] == "🙌"){
-            msg.react("🙌")
+        if(goodbye[1] == "1"){
+            //msg.react("🙌")
             msg.react("🥳")
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
         } else {
