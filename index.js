@@ -145,8 +145,7 @@ client.on("message", async msg => {
     //Thirsty emoji auto-send
     if (msg.content.toLowerCase().includes("thirsty")) {
         msg.react("689204786083659776")
-        msg.react("689204786083659776")
-        msg.react("689204786083659776")
+
     }
 
     //If a message says bruh, reply with B R U H
@@ -158,8 +157,8 @@ client.on("message", async msg => {
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
         const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],
                             ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], 
-                            ["Minecraft", "302439627992858624", "302439512544509952", "🏹", "425369771026939914"], "302439778081832961"]
-                                                //zombie             skeleton                      creeper              enderman
+                            ["Minecraft", "302439627992858624", "302439512544509952", "🏹", "425369771026939914", "302439778081832961"]]
+//                                                zombie             skeleton                      creeper              enderman
         //Pick a random phrase and emoji
         goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
         if(goodbye[0] == "Finally"){
