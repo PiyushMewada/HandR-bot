@@ -116,7 +116,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
             "If a message includes 'sda' reply with sad waluigi\n" + 
             "If a message includes 'thirsty' reply with Justin drinking\n" + 
             "If a message is '?' reply with question mark image\n" + 
-            "If a message is 'wot' and the author is Conner, tell him to stop being confused.\"\n" +  
+            "If a message is 'wot' and the author is 1choklitboi, tell him to stop being confused.\"\n" +  
             "```" 
     })
 
