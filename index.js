@@ -156,9 +156,8 @@ client.on("message", async msg => {
     //If message says Good Night reply Arrivederci
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
         const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],
-                            ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], 
-                            ["Minecraft", "302439627992858624", "302439512544509952", "🏹", "425369771026939914", "302439778081832961"]]
-//                                                zombie             skeleton                      creeper              enderman
+                            ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], ["Minecraft", "Minecraft Mobs"]]
+        
         //Pick a random phrase and emoji
         goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
         if(goodbye[0] == "Finally"){
@@ -167,9 +166,11 @@ client.on("message", async msg => {
             msg.react("🥳")
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
         } else if(goodbye[0] == "Minecraft"){
-            for(i = 1; i < goodbye.length; i++){
-                msg.react(goodbye[i])
-            }
+            msg.react("👋")
+            msg.react("302439627992858624")
+            msg.react("302439512544509952")
+            msg.react("425369771026939914")
+            msg.react("302439778081832961")
             msg.channel.send("You can not sleep now, " + msg.author.username + " there are monsters nearby...")            
         } else {
             //For all others send this response and reaction
