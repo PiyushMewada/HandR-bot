@@ -139,12 +139,12 @@ client.on("message", async msg => {
 
     //Sad Waluigi emoji auto-send
     if (msg.content.toLowerCase().includes("sda")) {
-        msg.channel.send("<:Waluigi:688139607228940324>")
+        msg.channel.send("<:Waluigi:718312850141216798>")
     }
 
     //Thirsty emoji auto-send
     if (msg.content.toLowerCase().includes("thirsty")) {
-        msg.react("689204786083659776")
+        msg.react("718313560186290207")
 
     }
 
@@ -155,7 +155,7 @@ client.on("message", async msg => {
 
     //If message says Good Night reply Arrivederci
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
-        const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],
+        const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "🏃"],["You can never leave", "😈"],
                             ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], ["Minecraft", "Minecraft Mobs"]]
         
         //Pick a random phrase and emoji
@@ -166,11 +166,10 @@ client.on("message", async msg => {
             msg.react("🥳")
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
         } else if(goodbye[0] == "Minecraft"){
-            msg.react("👋")
             msg.react("718311214404599809")
             msg.react("718311214312325182")
             msg.react("718311214375239681")
-            msg.react("718311214647607306")
+            msg.react("718311864517525586")
             msg.channel.send("You can not sleep now, " + msg.author.username + " there are monsters nearby...")            
         } else {
             //For all others send this response and reaction
@@ -239,7 +238,7 @@ client.on("message", async msg => {
                 break;
             case "megamoto":
                 //Sends emojis
-                msg.channel.send('<:chunky:689542818410266726> <:spunky:689543031967186944>')
+                msg.channel.send('<:chunky:718313891372990524> <:spunky:718313891766992898>')
                 break;
             case "anikait":
                 //Custom command for a friend, send an image
@@ -338,7 +337,7 @@ client.on("message", async msg => {
                                 break;
                             case "clap":
                                 //Friend saying "ha gottem"
-                                msg.channel.send("That was a good one" + "<:clap:712393807353610321> <:clap:712393807353610321>")
+                                msg.channel.send("That was a good one" + "👏👏")
                                 dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
                                 break;
                             case "roll":
@@ -410,7 +409,7 @@ client.on("message", async msg => {
                             //Send info message saying how many were deleted
                             msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
                                 //React to it with Thanos, and then delete that message too
-                                tempMessage.react('687914531820666906')
+                                tempMessage.react('718312854973055027')
                                 tempMessage.delete({ timeout: 5000 }).catch()
                             })
                         })
