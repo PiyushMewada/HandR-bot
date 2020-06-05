@@ -144,7 +144,8 @@ client.on("message", async msg => {
 
     //Thirsty emoji auto-send
     if (msg.content.toLowerCase().includes("thirsty")) {
-        msg.channel.send('<:Thirst:689204786083659776>')
+        msg.react("<:Thirst:689204786083659776>")
+        msg.react("<:Thirst:689204786083659776>")
     }
 
     //If a message says bruh, reply with B R U H
@@ -155,14 +156,23 @@ client.on("message", async msg => {
     //If message says Good Night reply Arrivederci
     if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
         const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],
-                            ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"]]
-        goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
+                            ["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"],["Finally", "🙌"], 
+                            ["Minecraft", "<:mc_zombie:302439627992858624>", "<:mc_skeleton:302439512544509952>", "🏹", "<:creeper:425369771026939914>"], "<:enderman:302439778081832961>"]
         
+        //Pick a random phrase and emoji
+        goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
         if(goodbye[0] == "Finally"){
+            //If it is the finally emoji send this response
             msg.react("🙌")
             msg.react("🥳")
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
+        } else if(goodbye[0] == "Minecraft"){
+            for(i = 1; i < goodbye.length; i++){
+                msg.react(goodbye[i])
+            }
+            msg.channel.send("You can not sleep now, " + msg.author.username + " there are monsters nearby...")            
         } else {
+            //For all others send this response and reaction
             msg.react(goodbye[1])
             msg.channel.send(goodbye[0] + ", " + msg.author.username)
         }
