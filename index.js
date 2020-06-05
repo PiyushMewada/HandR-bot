@@ -153,7 +153,7 @@ client.on("message", async msg => {
     }
 
     //If message says Good Night reply Arrivederci
-    if (msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn" || !msg.author.bot) {
+    if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
         const goodnights = [["Arrivederci", "👋"],["Good Night", "😴"],["See You Later", "👋"],["You can never leave", "😈"],["Later", "👋"],["Bye", "👋"],["Sleep tight", "🛏️"]["Finally", "🙌 and 🥳"]]
         goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
         if(goodbye[0] === "Finally"){
