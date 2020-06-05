@@ -153,9 +153,15 @@ client.on("message", async msg => {
     }
 
     //If message says Good Night reply Arrivederci
-    if (msg.content.toLowerCase().includes("good night")) {
+    if (msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") {
         msg.react("👋")
-        msg.channel.send("Arrivederci, " + msg.author.username)
+        const goodnights = ["Arrivederci", "Good Night", "See You Later", "You can never leave", "Later", "Bye", "Finally"]
+        goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
+        if(goodbye === "Finally"){
+            msg.channel.send("Finally, " + msg.author.username + " is leaving. Took you long enough. Now we can have some fun.")
+        } else {
+            msg.channel.send(goodbye + ", " + msg.author.username)
+        }
     }
     
     //Confused command, sends an image with question marks
@@ -193,7 +199,10 @@ client.on("message", async msg => {
                 msg.channel.send(commandList)
                 break;
             case "help all":
+            case "helpall":
+            case "infoall":
             case "info all":
+            case "ia":
                 //Sends hidden command list
                 msg.channel.send(hiddenCommandList)
                 break;
@@ -379,7 +388,7 @@ client.on("message", async msg => {
                         //Get the last 'amount' messages
                         msg.channel.messages.fetch({ limit: amount }).then(messages => {
                             //Then filter the messages you want to delete (Bot messages, and the commands)
-                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+                            const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
                             //Delete them all at once
                             msg.channel.bulkDelete(botmessages)
 
