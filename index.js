@@ -167,10 +167,10 @@ client.on("message", async msg => {
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
         } else if(goodbye[0] == "Minecraft"){
             msg.react("👋")
-            msg.react("302439627992858624")
-            msg.react("302439512544509952")
-            msg.react("425369771026939914")
-            msg.react("302439778081832961")
+            msg.react("718311214404599809")
+            msg.react("718311214312325182")
+            msg.react("718311214375239681")
+            msg.react("718311214647607306")
             msg.channel.send("You can not sleep now, " + msg.author.username + " there are monsters nearby...")            
         } else {
             //For all others send this response and reaction
