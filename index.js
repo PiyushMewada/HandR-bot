@@ -565,9 +565,10 @@ client.on("message", async msg => {
                             }
                         })
                     }
-                } else if(msg.content.substring(1,8) === "tourney") {
+                } else if(msg.content.substring(1,8) === "tourney" || !msg.author.bot) {
                     //Create a tournmanet bracket
                     const tourneyParticipants = msg.content.split('*')
+                    msg.channel.send(tourneyParticipants[0])
                     if(tourneyParticipants[0].endsWith("r")){
                         tourneyParticipants.shift()
 
