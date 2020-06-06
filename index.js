@@ -569,13 +569,14 @@ client.on("message", async msg => {
                     //Create a tournmanet bracket
                     var tourneyParticipants = msg.content.split('*')
                     if(msg.content.substring(8,9) === "r"){
+                        //If the tournament is seeded randomly then randomize the participants array
                         tourneyParticipants.shift()
     
                         //Shuffling the array with Fisher-Yates Algorithm
                         var iterator = tourneyParticipants.length, temp, selection
                         // While there remain elements to shuffle
                         while (iterator) {
-                            // Pick a remaining element…
+                            // Pick a remaining element
                             selection = Math.floor(Math.random() * iterator--)
     
                             // And swap it with the current element.
@@ -583,10 +584,10 @@ client.on("message", async msg => {
                             tourneyParticipants[iterator] = tourneyParticipants[selection]
                             tourneyParticipants[selection] = temp
                         }
-                        msg.channel.send(tourneyParticipants.toString())
                     } else if (msg.content.substring(8,9) === "s") {
+                        //If they want to seed the participants then this will put them in the right spot
                         tourneyParticipants.shift()
-                        if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32){ 
+                        if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32 || tourneyParticipants == 64){ 
                             slice = 1
                             while (slice < tourneyParticipants.length/2) {
                                 temp = tourneyParticipants.slice()
@@ -597,7 +598,6 @@ client.on("message", async msg => {
                                 }
                                 slice *= 2
                             }
-                            msg.channel.send(tourneyParticipants.toString())
                         } else {
                             //Function for seeded tournaments otherwise: https://stackoverflow.com/questions/5770990/sorting-tournament-seeds/45572051#45572051
                             //Will wait til I understand it to implement
@@ -606,8 +606,8 @@ client.on("message", async msg => {
                         
                     } else {
                         tourneyParticipants.shift()
-                        msg.channel.send(tourneyParticipants.toString())
                     }
+                    msg.channel.send(tourneyParticipants.toString())
                 } else {
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
