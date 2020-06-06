@@ -565,6 +565,51 @@ client.on("message", async msg => {
                             }
                         })
                     }
+                } else if(msg.content.substring(1,8) === "tourney") {
+                    //Create a tournmanet bracket
+                    const tourneyParticipants = msg.content.split('*')
+                    if(tourneyParticipants[0].endsWith("r")){
+                        tourneyParticipants.shift()
+
+                        //Shuffling the array with Fisher-Yates Algorithm
+                        var iterator = tourneyParticipants.length, temp, selection
+                        // While there remain elements to shuffle
+                        while (iterator) {
+
+                            // Pick a remaining element…
+                            selection = Math.floor(Math.random() * iterator--)
+
+                            // And swap it with the current element.
+                            temp = tourneyParticipants[iterator]
+                            tourneyParticipants[iterator] = tourneyParticipants[selection]
+                            tourneyParticipants[selection] = temp
+                            msg.channel.send(tourneyParticipants)
+                        }
+                    } else if (tourneyParticipants[0].endsWith("s")) {
+                        tourneyParticipants.shift()
+                        if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32){ 
+                            slice = 1
+                            while (slice < tourneyParticipants.length/2) {
+                                temp = tourneyParticipants
+                                tourneyParticipants = []
+                                while (temp.length > 0) {
+                                    tourneyParticipants += temp.splice(0, slice)
+                                    tourneyParticipants += temp.splice(-slice, slice)
+                                }
+                                slice *= 2
+                            }
+                            msg.channel.send(tourneyParticipants)
+                        } else {
+                            //Function for seeded tournaments otherwise: https://stackoverflow.com/questions/5770990/sorting-tournament-seeds/45572051#45572051
+                            //Will wait til I understand it to implement
+                            msg.channel.send("Currently seeded tournaments only work with 4, 8, 16, or 32 participants.")
+                        }
+                        
+                    } else {
+                        msg.channel.send(tourneyParticipants)
+                        tourneyParticipants.shift()
+                    }
+
                 } else {
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
