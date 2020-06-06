@@ -565,18 +565,16 @@ client.on("message", async msg => {
                             }
                         })
                     }
-                } else if(msg.content.substring(1,8) === "tourney" || !msg.author.bot) {
+                } else if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
                     //Create a tournmanet bracket
                     const tourneyParticipants = msg.content.split('*')
-                    msg.channel.send(tourneyParticipants[0])
-                    if(tourneyParticipants[0].endsWith("r")){
+                    if(msg.content.substring(8,9) === "r"){
                         tourneyParticipants.shift()
 
                         //Shuffling the array with Fisher-Yates Algorithm
                         var iterator = tourneyParticipants.length, temp, selection
                         // While there remain elements to shuffle
                         while (iterator) {
-
                             // Pick a remaining element…
                             selection = Math.floor(Math.random() * iterator--)
 
@@ -586,7 +584,7 @@ client.on("message", async msg => {
                             tourneyParticipants[selection] = temp
                             msg.channel.send(tourneyParticipants.toString())
                         }
-                    } else if (tourneyParticipants[0].endsWith("s")) {
+                    } else if (msg.content.substring(8,9) === "s") {
                         tourneyParticipants.shift()
                         if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32){ 
                             slice = 1
