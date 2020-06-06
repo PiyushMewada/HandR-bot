@@ -583,7 +583,7 @@ client.on("message", async msg => {
                             temp = tourneyParticipants[iterator]
                             tourneyParticipants[iterator] = tourneyParticipants[selection]
                             tourneyParticipants[selection] = temp
-                            msg.channel.send(tourneyParticipants)
+                            msg.channel.send(tourneyParticipants.toString())
                         }
                     } else if (tourneyParticipants[0].endsWith("s")) {
                         tourneyParticipants.shift()
@@ -598,7 +598,7 @@ client.on("message", async msg => {
                                 }
                                 slice *= 2
                             }
-                            msg.channel.send(tourneyParticipants)
+                            msg.channel.send(tourneyParticipants.toString())
                         } else {
                             //Function for seeded tournaments otherwise: https://stackoverflow.com/questions/5770990/sorting-tournament-seeds/45572051#45572051
                             //Will wait til I understand it to implement
@@ -606,8 +606,8 @@ client.on("message", async msg => {
                         }
                         
                     } else {
-                        msg.channel.send(tourneyParticipants)
                         tourneyParticipants.shift()
+                        msg.channel.send(tourneyParticipants.toString())
                     }
 
                 } else {
