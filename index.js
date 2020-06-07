@@ -651,7 +651,7 @@ client.on("message", async msg => {
                                 message.channel.send("Congrats, " + winners[second])
                                 winners.splice(first, 1)
                             }
-                            break;
+                            //break;
                         })
                         collector.stop()
                         first++
