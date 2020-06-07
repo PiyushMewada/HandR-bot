@@ -111,12 +111,12 @@ const hiddenCommandList = new Discord.MessageEmbed()
     }, {
         name: "**Other:**",
         value: "```bash\n" +
-            "\"If a message includes 'bruh' reply with B R U H\n" + 
-            "If a message includes 'good night' reply with a farewell and react to their message\n" +
-            "If a message includes 'sda' reply with sad waluigi\n" + 
-            "If a message includes 'thirsty' reply with Justin drinking\n" + 
-            "If a message is '?' reply with question mark image\n" + 
-            "If a message is 'wot' and the author is 1choklitboi, tell him to stop being confused.\"\n" +  
+            "\"-If a message includes 'bruh' reply with B R U H\n" + 
+            "-If a message includes 'good night' reply with a farewell and react to their message\n" +
+            "-If a message includes 'sda' reply with sad waluigi\n" + 
+            "-If a message includes 'thirsty' reply with Justin drinking\n" + 
+            "-If a message is '?' reply with question mark image\n" + 
+            "-If a message is 'wot' and the author is 1choklitboi, tell him to stop being confused.\"\n" +  
             "```" 
     })
 
@@ -170,7 +170,7 @@ client.on("message", async msg => {
             msg.react("718311214312325182")
             msg.react("718311214375239681")
             msg.react("718311864517525586")
-            msg.channel.send("You can not sleep now, " + msg.author.username + " there are monsters nearby...")            
+            msg.channel.send("You can not sleep now, " + msg.author.username + ", there are monsters nearby...")            
         } else {
             //For all others send this response and reaction
             msg.react(goodbye[1])
@@ -607,7 +607,62 @@ client.on("message", async msg => {
                     } else {
                         tourneyParticipants.shift()
                     }
-                    msg.channel.send(tourneyParticipants.toString())
+                    msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")
+                    msg.channel.send("After someone wins, send, \"+1win\" or \"+2win\" to advance them.")
+                    var winners = tourneyParticipants.slice()
+
+                    //Fill the tournament with byes
+                    var i = 1
+                    if(winners.length > 32){
+                        while(winners.length != 64){
+                            winners.splice(i, 0, -1)
+                            i += 2
+                        }
+                    } else if (winners.length > 16){
+                        while(winners.length != 32){
+                            winners.splice(i, 0, -1)
+                            i += 2
+                        }
+                    } else if (winners.length > 8) {
+                        while(winners.length != 16){
+                            winners.splice(i, 0, -1)
+                            i += 2
+                        }
+                    } else if (winners.length > 4) {
+                        while(winners.length != 8){
+                            winners.splice(i, 0, -1)
+                            i += 2
+                        }
+                    }
+                    var first = 0
+                    var second = 1
+                    while(winners.length > 2){
+                        if(second == -1){
+                            msg.channel.send(winners[first] + " gets a bye!")
+                        } else {
+                        msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
+                        
+                        const collector = new Discord.MessageCollector(msg.channel, m => m.content == "+1won" || m.content == "+1Won" || m.content == "2won" || m.content == "+2Won", { time: 600000 })
+                        collector.on('collect', message => {
+                            if (message.content == "+1won" || message.content == "+1Won") {
+                                message.channel.send("Congrats, " + winners[first])
+                                winners.splice(second, 1)
+                            } else if (message.content == "2won" || message.content == "+2Won") {
+                                message.channel.send("Congrats, " + winners[second])
+                                winners.splice(first, 1)
+                            }
+                            break;
+                        })
+                        collector.stop()
+                        first++
+                        second++
+                        if(first > winners.length){
+                            first = 0
+                            second = 1
+                        }
+                    }
+                }
+
                 } else {
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
