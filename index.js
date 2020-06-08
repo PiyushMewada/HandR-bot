@@ -131,7 +131,7 @@ const botInvite = new Discord.MessageEmbed()
 //When the bot goes online
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setPresence({activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"})
+    client.user.setPresence({activity: {name: "your requests", type: "LISTENING"}, status: "online"})
 })
 
 //Whenever a message is sent
@@ -274,7 +274,7 @@ client.on("message", async msg => {
                 //So I change the status of the bot
                 if(msg.author.id == 241052712458911744){
                     client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
-                    msg.channel.send("Status Changed!")
+                    msg.channel.send("Status Changed to " + client.user.presence + "!")
                 } else {
                     //Not a vaild command for people who aren't me
                     msg.channel.send("That's not a valid command. Try +info for help.")
@@ -565,7 +565,7 @@ client.on("message", async msg => {
                             }
                         })
                     }
-                } else if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
+                } else /*if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
                     //Create a tournmanet bracket
                     var tourneyParticipants = msg.content.split('*')
                     if(msg.content.substring(8,9) === "r"){
@@ -640,30 +640,30 @@ client.on("message", async msg => {
                         if(second == -1){
                             msg.channel.send(winners[first] + " gets a bye!")
                         } else {
-                        msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
+                            msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
                         
-                        const collector = new Discord.MessageCollector(msg.channel, m => m.content == "+1won" || m.content == "+1Won" || m.content == "2won" || m.content == "+2Won", { time: 600000 })
-                        collector.on('collect', message => {
-                            if (message.content == "+1won" || message.content == "+1Won") {
-                                message.channel.send("Congrats, " + winners[first])
-                                winners.splice(second, 1)
-                            } else if (message.content == "2won" || message.content == "+2Won") {
-                                message.channel.send("Congrats, " + winners[second])
-                                winners.splice(first, 1)
+                            const collector = new Discord.MessageCollector(msg.channel, m => m.content == "+1won" || m.content == "+1Won" || m.content == "2won" || m.content == "+2Won", { time: 600000 })
+                            collector.on('collect', message => {
+                                if (message.content == "+1won" || message.content == "+1Won") {
+                                    message.channel.send("Congrats, " + winners[first])
+                                    winners.splice(second, 1)
+                                    collector.stop()
+                                } else if (message.content == "2won" || message.content == "+2Won") {
+                                    message.channel.send("Congrats, " + winners[second])
+                                    winners.splice(first, 1)
+                                    collector.stop()
+                                }
+                            })
+                            first++
+                            second++
+                            if(first > winners.length){
+                                first = 0
+                                second = 1
                             }
-                            //break;
-                        })
-                        collector.stop()
-                        first++
-                        second++
-                        if(first > winners.length){
-                            first = 0
-                            second = 1
                         }
                     }
-                }
 
-                } else {
+                } else */{
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
                 }
