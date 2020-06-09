@@ -34,6 +34,9 @@ const commandList = new Discord.MessageEmbed()
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays text: Gets Sonic to say the message\n" +
+            "+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" + 
+            "+tourneyr: Same as +tourney, but randomizes the participants\n" + 
+            "+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
             "+#1: Creates a Victory Royale image\n" +
@@ -72,6 +75,9 @@ const hiddenCommandList = new Discord.MessageEmbed()
             "+ping: Replies with Pong! to test if bot is online\n" +
             "+server: Displays server information\n" +
             "+sonicsays text: Gets Sonic to say the message\n" +
+            "+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" + 
+            "+tourneyr: Same as +tourney, but randomizes the participants\n" + 
+            "+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
             "+wwd: Tells you where to drop in Fortnite\n" +
             "+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
             "+#1: Creates a Victory Royale image\n" +
@@ -99,7 +105,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
             "+anikait: Sends an image of his car exploding\n" + 
             "+ansh: Calls Justin a dumbass\n" +
             "+help, +info: Sends command list\n" +
-            "+help all, +info all: Sends hidden command list\n" +
+            "+help all, +info all, +ia: Sends hidden command list\n" +
             "+freemoney, +piyush, +rickroll: Calls you a fool\n" +
             "```" +
             "```fix\n" +
