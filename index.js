@@ -583,7 +583,7 @@ client.on("message", async msg => {
                         //Create a tournmanet bracket
                         var tourneyParticipants = msg.content.split(' * ')
                         tourneyParticipants.shift()
-                        if(tourneyParticipants.length <= 128 || tourneyParticipants >= 4){
+                        if(tourneyParticipants.length <= 128 && tourneyParticipants >= 4){
                             if(msg.content.substring(8,9) === "r"){
                                 //If the tournament is seeded randomly then randomize the participants array
                                 //Shuffling the array with Fisher-Yates Algorithm

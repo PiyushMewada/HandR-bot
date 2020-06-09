@@ -10,6 +10,7 @@
 - +ping: Replies with Pong! to test if bot is online.
 - +server: Displays server information.
 - +sonicsays *text*: Gets Sonic to say the message.
+- +tourney: Creates a tournament bracket. Can also do a randomized tournament or a seeded one.
 - +wwd: Tells you where to drop in Fortnite.
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 - +#1 *text*: Creates a Victory Royale image with the text instead.
