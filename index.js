@@ -294,6 +294,9 @@ client.on("message", async msg => {
                     msg.channel.send("That's not a valid command. Try +info for help.")
                 }
                 break;
+            case "stopTyping":
+                msg.channel.stopTyping(true)
+                break;
                 
                 //Voice Channel Commands
             case "ohyeah":
