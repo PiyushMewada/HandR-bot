@@ -9,7 +9,6 @@ const client = new Discord.Client()
         -Playing with your heart
         -Watching TurboHacks get destroyed
         -Watching your every move
-        -Watching the fall of Humanity
     */
 const presenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTENING"}, status: "idle"},
                     {activity: {name: "Mind Games", type: "PLAYING"}, status: "dnd"},
@@ -17,7 +16,8 @@ const presenceList = [{activity: {name: "today's sponsor: Audible", type: "LISTE
                     {activity: {name: "you", type: "WATCHING"}, status: "online"},
                     {activity: {name: "your requests", type: "LISTENING"}, status: "online"},
                     {activity: {name: "Discord Deception", type: "PLAYING"}, status: "online"},
-                    {activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"}]
+                    {activity: {name: "Xenoblade Chronicles: Definitive Edition", type: "STREAMING", url: "https://www.twitch.tv/dunkstream"}, status: "online"}.
+                    {activity: {name: "the rise of machines and the fall of humanity", type: "WATCHING"}, status: "online"}]
 
 //The help command attachment
 const commandList = new Discord.MessageEmbed()
