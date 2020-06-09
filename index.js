@@ -312,95 +312,90 @@ client.on("message", async msg => {
             case "sans":
             case "dum":
             case "mad":
-                //Join voice channel of memeber
-                if (msg.member.voice.channel) {
-                    var currentChannel
-                    if(!msg.member.voice.channelID){
-                        currentChannel = msg.guild.channels.cache.find(ch => (ch.type=='voice' && ch.rawPosition == 0))
-                    } else {
-                        currentChannel = msg.member.voice.channel
-                    }
-                        const connection = await currentChannel.join().then(connection => {
-                        var dispatcher
-                        switch (msg.content.substring(1)) {
-                            case "ohyeah":
-                                //Vector's Oh Yeah
-                                dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1.3 })
-                                break;
-                            case "yeet":
-                                //YEET
-                                dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), { volume: .5 })
-                                break;
-                            case "horn":
-                                //Airhorn
-                                dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), { volume: .15 })
-                                break;
-                            case "butt":
-                                //Custom hidden command
-                                dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), { volume: 1.4 })
-                                break;
-                            case "rekt":
-                                //Crowd
-                                dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), { volume: .3 })
-                                break;
-                            case "donkey":
-                                //Hidden Gordon Ramsay
-                                dispatcher = connection.play(fs.createReadStream('./sounds/donkey.mp3'), { volume: 1.0 })
-                                break;
-                            case "getover":
-                                //Hidden friend commmand
-                                dispatcher = connection.play(fs.createReadStream('./sounds/getover.mp3'), { volume: 1.0 })
-                                break;
-                            case "haha":
-                                //Laughtrack
-                                dispatcher = connection.play(fs.createReadStream('./sounds/laughtrack.mp3'), { volume: 1.0})
-                                break;
-                            case "clap":
-                                //Friend saying "ha gottem"
-                                msg.channel.send("That was a good one" + "👏👏")
-                                dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
-                                break;
-                            case "roll":
-                                //Rickroll
-                                dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .75 })
-                                break;
-                            case "smooth":
-                                //Smooth Moves from Fortnite
-                                dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .6 })
-                                break;
-                            case "default":
-                                //Default Dance from Fortnite
-                                dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
-                                break;
-                            case "loss":
-                                //Losing sound  effect from Price is Right
-                                dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
-                                break;
-                            case "sans":
-                                //Sans theme
-                                dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
-                                break;
-                            case "dum":
-                                //6ix9ine calling you dumb
-                                dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .2 })
-                                break;
-                            case "mad":
-                                //6ix9ine talking about being mad
-                                dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .2 })
-                                break;
-                            default:
-                                break;
-                        }
-                        //Once the audio clip finishes leave the channel
-                        dispatcher.on('finish', () => {
-                            currentChannel.leave()
-                        })
-                        dispatcher.on('error', console.error)
-                    })
+                //Join voice channel of memeber or the first voice channel available
+                var currentChannel
+                if(!msg.member.voice.channel){
+                    currentChannel = msg.guild.channels.cache.find(ch => (ch.type=='voice' && ch.rawPosition == 0))
                 } else {
-                    //If the user is not in a voice channel then send error
-                    msg.channel.send("You need to be in a voice channel to use audio commands.")
+                    currentChannel = msg.member.voice.channel
                 }
+                    const connection = await currentChannel.join().then(connection => {
+                    var dispatcher
+                    switch (msg.content.substring(1)) {
+                        case "ohyeah":
+                            //Vector's Oh Yeah
+                            dispatcher = connection.play(fs.createReadStream('./sounds/ohyeah.mp3'), { volume: 1.3 })
+                            break;
+                        case "yeet":
+                            //YEET
+                            dispatcher = connection.play(fs.createReadStream('./sounds/yeet.mp3'), { volume: .5 })
+                            break;
+                        case "horn":
+                            //Airhorn
+                            dispatcher = connection.play(fs.createReadStream('./sounds/horn.mp3'), { volume: .15 })
+                            break;
+                        case "butt":
+                            //Custom hidden command
+                            dispatcher = connection.play(fs.createReadStream('./sounds/inthebutt.mp3'), { volume: 1.4 })
+                            break;
+                        case "rekt":
+                            //Crowd
+                            dispatcher = connection.play(fs.createReadStream('./sounds/career.mp3'), { volume: .3 })
+                            break;
+                        case "donkey":
+                            //Hidden Gordon Ramsay
+                            dispatcher = connection.play(fs.createReadStream('./sounds/donkey.mp3'), { volume: 1.0 })
+                            break;
+                        case "getover":
+                            //Hidden friend commmand
+                            dispatcher = connection.play(fs.createReadStream('./sounds/getover.mp3'), { volume: 1.0 })
+                            break;
+                        case "haha":
+                            //Laughtrack
+                            dispatcher = connection.play(fs.createReadStream('./sounds/laughtrack.mp3'), { volume: 1.0})
+                            break;
+                        case "clap":
+                            //Friend saying "ha gottem"
+                            msg.channel.send("That was a good one" + "👏👏")
+                            dispatcher = connection.play(fs.createReadStream('./sounds/claps.mp3'), { volume: .80})
+                            break;
+                        case "roll":
+                            //Rickroll
+                            dispatcher = connection.play(fs.createReadStream('./sounds/roll.mp3'), { volume: .75 })
+                            break;
+                        case "smooth":
+                            //Smooth Moves from Fortnite
+                            dispatcher = connection.play(fs.createReadStream('./sounds/smooth.mp3'), { volume: .6 })
+                            break;
+                        case "default":
+                            //Default Dance from Fortnite
+                            dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), { volume: 1 })
+                            break;
+                        case "loss":
+                            //Losing sound  effect from Price is Right
+                            dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), { volume: .7 })
+                            break;
+                        case "sans":
+                            //Sans theme
+                            dispatcher = connection.play(fs.createReadStream('./sounds/megalovania.mp3'), { volume: .9 })
+                            break;
+                        case "dum":
+                            //6ix9ine calling you dumb
+                            dispatcher = connection.play(fs.createReadStream('./sounds/dumb.mp3'), { volume: .2 })
+                            break;
+                        case "mad":
+                            //6ix9ine talking about being mad
+                            dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), { volume: .2 })
+                            break;
+                        default:
+                            break;
+                    }
+                    //Once the audio clip finishes leave the channel
+                    dispatcher.on('finish', () => {
+                        currentChannel.leave()
+                    })
+                    dispatcher.on('error', console.error)
+                })
                 break;
             case "leave":
                 //For emergencies, make the bot leave
