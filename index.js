@@ -726,12 +726,16 @@ client.on("message", async msg => {
                         msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     } 
                 } else if(msg.content.substring(1) == "forceTourneyEnd") {
-                    //Stop the tournament and reset all the variables
-                    msg.channel.send("Tournament ended.")
-                    winners = []
-                    first = 0
-                    second = 1
-                    tourneyOngoing = false;
+                    if(tourneyOngoing){
+                        //Stop the tournament and reset all the variables
+                        msg.channel.send("Tournament ended.")
+                        winners = []
+                        first = 0
+                        second = 1
+                        tourneyOngoing = false;
+                    } else {
+                        msg.channel.send("There isn't a tournament happening right now.")
+                    }
                 } else {
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
