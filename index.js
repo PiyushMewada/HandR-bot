@@ -286,8 +286,9 @@ client.on("message", async msg => {
             case "status":
                 //So I change the status of the bot
                 if(msg.author.id == 241052712458911744){
-                    client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
-                    msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
+                    client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)]).then(() => {
+                        msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
+                    })
                 } else {
                     //Not a vaild command for people who aren't me
                     msg.channel.send("That's not a valid command. Try +info for help.")
