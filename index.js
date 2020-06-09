@@ -287,7 +287,7 @@ client.on("message", async msg => {
                 //So I change the status of the bot
                 if(msg.author.id == 241052712458911744){
                     client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
-                    msg.channel.send("Status Changed to " + client.user.presence + "!")
+                    msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
                 } else {
                     //Not a vaild command for people who aren't me
                     msg.channel.send("That's not a valid command. Try +info for help.")
@@ -583,7 +583,7 @@ client.on("message", async msg => {
                         //Create a tournmanet bracket
                         var tourneyParticipants = msg.content.split(' * ')
                         tourneyParticipants.shift()
-                        if(tourneyParticipants.length <= 128 && tourneyParticipants >= 4){
+                        if(tourneyParticipants.length <= 128 && tourneyParticipants.length >= 4){
                             if(msg.content.substring(8,9) === "r"){
                                 //If the tournament is seeded randomly then randomize the participants array
                                 //Shuffling the array with Fisher-Yates Algorithm
@@ -664,11 +664,12 @@ client.on("message", async msg => {
                                 msg.channel.send("That's too many participants. The max is 128.")
                             } else {
                                 msg.channel.send("You need a minimum of 4 participants for a tournament. If you have less than that, then I'm sure you can make the bracket in your head." + 
-                                "Make sure you are formatting the command correctly. Put ' * ' in between each participant.")
+                                " Make sure you are formatting the command correctly. Put ' * ' in between each participant.")
                             }
                         }
                     } else {
-                        msg.channel.send("There is already a tournament ocurring. Please wait for the current one to end before starting another. Or type +forceTourneyEnd to stop the ongoing tourney.")
+                        msg.channel.send("There is already a tournament ocurring. Please wait for the current one to end before starting another. " +
+                        "Or type +forceTourneyEnd to stop the ongoing tourney.")
                     }
                 } else if(msg.content.substring(1) == "1won"){
                     if(tourneyOngoing){
