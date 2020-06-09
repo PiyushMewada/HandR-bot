@@ -313,8 +313,13 @@ client.on("message", async msg => {
             case "mad":
                 //Join voice channel of memeber
                 if (msg.member.voice.channel) {
-                    var currentChannel = msg.member.voice.channel
-                    const connection = await msg.member.voice.channel.join().then(connection => {
+                    var currentChannel
+                    if(msg.member.voice){
+                        currentChannel = msg.member.voice.channel
+                    } else {
+                        currentChannel = msg.guild.channels.cache.find(ch => (ch.type=='voice' && ch.rawPosition == 0))
+                    }
+                        const connection = await currentChannel.join().then(connection => {
                         var dispatcher
                         switch (msg.content.substring(1)) {
                             case "ohyeah":
