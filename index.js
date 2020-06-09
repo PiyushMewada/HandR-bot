@@ -128,6 +128,13 @@ const botInvite = new Discord.MessageEmbed()
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .setDescription("Click the title to add the bot")
 
+//Variables for the Tournament
+var winners = []
+var first = 0
+var second = 1
+var tourneyOngoing = false;
+
+
 //When the bot goes online
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
@@ -565,105 +572,160 @@ client.on("message", async msg => {
                             }
                         })
                     }
-                } else /*if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
-                    //Create a tournmanet bracket
-                    var tourneyParticipants = msg.content.split('*')
-                    if(msg.content.substring(8,9) === "r"){
-                        //If the tournament is seeded randomly then randomize the participants array
+                } else if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
+                    if(!tourneyOngoing) {
+                        //Create a tournmanet bracket
+                        var tourneyParticipants = msg.content.split(' * ')
                         tourneyParticipants.shift()
-    
-                        //Shuffling the array with Fisher-Yates Algorithm
-                        var iterator = tourneyParticipants.length, temp, selection
-                        // While there remain elements to shuffle
-                        while (iterator) {
-                            // Pick a remaining element
-                            selection = Math.floor(Math.random() * iterator--)
-    
-                            // And swap it with the current element.
-                            temp = tourneyParticipants[iterator]
-                            tourneyParticipants[iterator] = tourneyParticipants[selection]
-                            tourneyParticipants[selection] = temp
-                        }
-                    } else if (msg.content.substring(8,9) === "s") {
-                        //If they want to seed the participants then this will put them in the right spot
-                        tourneyParticipants.shift()
-                        if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32 || tourneyParticipants == 64){ 
-                            slice = 1
-                            while (slice < tourneyParticipants.length/2) {
-                                temp = tourneyParticipants.slice()
-                                tourneyParticipants = []
-                                while (temp.length > 0) {
-                                    tourneyParticipants = tourneyParticipants.concat(temp.splice(0, slice))
-                                    tourneyParticipants = tourneyParticipants.concat(temp.splice(-slice, slice))
+                        if(tourneyParticipants.length <= 128 || tourneyParticipants >= 4){
+                            if(msg.content.substring(8,9) === "r"){
+                                //If the tournament is seeded randomly then randomize the participants array
+                                //Shuffling the array with Fisher-Yates Algorithm
+                                var iterator = tourneyParticipants.length, temp, selection
+                                // While there remain elements to shuffle
+                                while (iterator) {
+                                    // Pick a remaining element
+                                    selection = Math.floor(Math.random() * iterator--)
+            
+                                    // And swap it with the current element.
+                                    temp = tourneyParticipants[iterator]
+                                    tourneyParticipants[iterator] = tourneyParticipants[selection]
+                                    tourneyParticipants[selection] = temp
                                 }
-                                slice *= 2
+                            } else if (msg.content.substring(8,9) === "s") {
+                                //If they want to seed the participants then this will put them in the right spot
+                                if(tourneyParticipants.length == 4 || tourneyParticipants.length == 8 || tourneyParticipants.length == 16 || tourneyParticipants.length == 32 || tourneyParticipants == 64){ 
+                                    slice = 1
+                                    while (slice < tourneyParticipants.length/2) {
+                                        temp = tourneyParticipants.slice()
+                                        tourneyParticipants = []
+                                        while (temp.length > 0) {
+                                            tourneyParticipants = tourneyParticipants.concat(temp.splice(0, slice))
+                                            tourneyParticipants = tourneyParticipants.concat(temp.splice(-slice, slice))
+                                        }
+                                        slice *= 2
+                                    }
+                                } else {
+                                    //Function for seeded tournaments otherwise: https://stackoverflow.com/questions/5770990/sorting-tournament-seeds/45572051#45572051
+                                    //Will wait til I understand it to implement
+                                    msg.channel.send("Currently seeded tournaments only work with 4, 8, 16, 32, or 64 participants.")
+                                }
+                                
                             }
-                        } else {
-                            //Function for seeded tournaments otherwise: https://stackoverflow.com/questions/5770990/sorting-tournament-seeds/45572051#45572051
-                            //Will wait til I understand it to implement
-                            msg.channel.send("Currently seeded tournaments only work with 4, 8, 16, 32, or 64 participants.")
-                        }
-                        
-                    } else {
-                        tourneyParticipants.shift()
-                    }
-                    msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")
-                    msg.channel.send("After someone wins, send, \"+1win\" or \"+2win\" to advance them.")
-                    var winners = tourneyParticipants.slice()
-
-                    //Fill the tournament with byes
-                    var i = 1
-                    if(winners.length > 32){
-                        while(winners.length != 64){
-                            winners.splice(i, 0, -1)
-                            i += 2
-                        }
-                    } else if (winners.length > 16){
-                        while(winners.length != 32){
-                            winners.splice(i, 0, -1)
-                            i += 2
-                        }
-                    } else if (winners.length > 8) {
-                        while(winners.length != 16){
-                            winners.splice(i, 0, -1)
-                            i += 2
-                        }
-                    } else if (winners.length > 4) {
-                        while(winners.length != 8){
-                            winners.splice(i, 0, -1)
-                            i += 2
-                        }
-                    }
-                    var first = 0
-                    var second = 1
-                    while(winners.length > 2){
-                        if(second == -1){
-                            msg.channel.send(winners[first] + " gets a bye!")
-                        } else {
-                            msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
-                        
-                            const collector = new Discord.MessageCollector(msg.channel, m => m.content == "+1won" || m.content == "+1Won" || m.content == "2won" || m.content == "+2Won", { time: 600000 })
-                            collector.on('collect', message => {
-                                if (message.content == "+1won" || message.content == "+1Won") {
-                                    message.channel.send("Congrats, " + winners[first])
-                                    winners.splice(second, 1)
-                                    collector.stop()
-                                } else if (message.content == "2won" || message.content == "+2Won") {
-                                    message.channel.send("Congrats, " + winners[second])
-                                    winners.splice(first, 1)
-                                    collector.stop()
+                            tourneyOngoing = true;
+                            msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")
+                            msg.channel.send("After someone wins, send, \"+1won\" or \"+2won\" to advance them.")
+                            winners = tourneyParticipants.slice()
+            
+                            //Fill the tournament with byes
+                            var i = 1
+                            if(winners.length > 64){
+                                while(winners.length != 128){
+                                    winners.splice(i, 0, -1)
+                                    i += 2
                                 }
-                            })
+                            } else if(winners.length > 32){
+                                while(winners.length != 64){
+                                    winners.splice(i, 0, -1)
+                                    i += 2
+                                }
+                            } else if (winners.length > 16){
+                                while(winners.length != 32){
+                                    winners.splice(i, 0, -1)
+                                    i += 2
+                                }
+                            } else if (winners.length > 8) {
+                                while(winners.length != 16){
+                                    winners.splice(i, 0, -1)
+                                    i += 2
+                                }
+                            } else if (winners.length > 4) {
+                                while(winners.length != 8){
+                                    winners.splice(i, 0, -1)
+                                    i += 2
+                                }
+                            }
+                            while(winners[second] == -1){
+                                msg.channel.send(winners[first] + " gets a bye!")
+                                winners.splice(second, 1)
+                                first++
+                                second++
+                            }
+                            console.log(winners.toString())
+                            msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
+                        } else {
+                            if(tourneyParticipants.length > 128){
+                                msg.channel.send("That's too many participants. The max is 128.")
+                            } else {
+                                msg.channel.send("You need a minimum of 4 participants for a tournament. If you have less than that, then I'm sure you can make the bracket in your head." + 
+                                "Make sure you are formatting the command correctly. Put ' * ' in between each participant.")
+                            }
+                        }
+                    } else {
+                        msg.channel.send("There is already a tournament ocurring. Please wait for the current one to end before starting another. Or type +forceTourneyEnd to stop the ongoing tourney.")
+                    }
+                } else if(msg.content.substring(1) == "1won"){
+                    if(tourneyOngoing){
+                        if(winners.length > 2){
+                            console.log("This is winners rn: " + winners.toString())
+                            msg.channel.send("Congrats, " + winners[first] + " on beating " + winners[second] + ".")
+                            winners.splice(second, 1)
                             first++
                             second++
-                            if(first > winners.length){
+                            if(first >= winners.length){
                                 first = 0
                                 second = 1
                             }
+                            if(winners.length > 2){
+                                msg.channel.send("Next round will be: " + winners[first] + " versus " + winners[second] + ". I know who I'm betting on.")
+                            } else {
+                                msg.channel.send("Time for the finals! This will be a legendary duel between " + winners[first] + " and " + winners[second] + "!")
+                            }
+                        } else {
+                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + winners[first].toUpperCase() + "! That was fun, let's do it again sometime!")
+                            winners = []
+                            first = 0
+                            second = 1
+                            tourneyOngoing = false;
                         }
+                    } else {
+                        msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     }
-
-                } else */{
+                } else if(msg.content.substring(1) == "2won"){
+                    if(tourneyOngoing){
+                        if(winners.length > 2){
+                            console.log("This is winners rn: " + winners.toString())
+                            msg.channel.send("Well done, " + winners[second] + ". It's sad to see " + winners[first] + " be defeated.")
+                            winners.splice(first, 1)
+                            first++
+                            second++
+                            if(first >= winners.length){
+                                first = 0
+                                second = 1
+                            }
+                            if(winners.length > 2){
+                                msg.channel.send("Next up are: " + winners[first] + " and " + winners[second] + ". Best of Luck!")
+                            } else {
+                                msg.channel.send("Time for the finals! " + winners[first] + " will battle " + winners[second] + " in a legendary duel!")
+                            }
+                        } else {
+                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + winners[second].toUpperCase() + "! It was a hard fought battle with many twists.")
+                            winners = []
+                            first = 0
+                            second = 1
+                            tourneyOngoing = false;
+                        }
+                    } else {
+                        msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
+                    } 
+                } else if(msg.content.substring(1) == "forceTourneyEnd") {
+                    //Stop the tournament and reset all the variables
+                    msg.channel.send("Tournament ended.")
+                    winners = []
+                    first = 0
+                    second = 1
+                    tourneyOngoing = false;
+                } else {
                     //If the user types an invalid command reply with this
                     msg.channel.send("That's not a valid command. Try +info for help.")
                 }
