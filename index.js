@@ -101,6 +101,7 @@ const commandList = new Discord.MessageEmbed()
 			"+horn: MLG-AirHorn\n" +
 			"+loss: Losing sound effect\n" +
 			"+mad: When you make people mad\n" +
+			"+oof: Roblox oof sound\n" +
 			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
 			"+roll: Try it out\n" +
 			"+rekt: Crowd going wild\n" +
@@ -143,6 +144,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+loss: Losing sound effect\n" +
 			"+mad: When you make people mad\n" +
 			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
+			"+oof: Roblox oof sound\n" +
 			"+roll: Try it out\n" +
 			"+rekt: Crowd going wild\n" +
 			"+sans: Plays first notes of Megalovania\n" +
@@ -400,6 +402,7 @@ client.on("message", async msg => {
 			case "sans":
 			case "dum":
 			case "mad":
+			case "oof":
 				//Join voice channel of memeber or the first voice channel available
 				var currentChannel
 				if (!msg.member.voice.channel) {
@@ -506,6 +509,12 @@ client.on("message", async msg => {
 							//6ix9ine talking about being mad
 							dispatcher = connection.play(fs.createReadStream('./sounds/mad.mp3'), {
 								volume: .2
+							})
+							break;
+						case "oof":
+							//Roblox oof sound
+							dispatcher = connection.play(fs.createReadStream('./sounds/oof.mp3'), {
+								volume: .8
 							})
 							break;
 						default:
@@ -855,7 +864,7 @@ client.on("message", async msg => {
 							//Send voice command and then delete it
 							msg.channel.send("+horn").then(message => {
 								message.delete({
-									timeout: 1
+									timeout: 1	
 								}).catch()
 							})
 
