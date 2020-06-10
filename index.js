@@ -1,5 +1,3 @@
-
-
 require("dotenv").config()
 const Discord = require("discord.js")
 const Canvas = require("canvas")
@@ -1001,4 +999,3 @@ client.on("message", async msg => {
 })
 
 client.login(process.env.BOT_TOKEN)
-
