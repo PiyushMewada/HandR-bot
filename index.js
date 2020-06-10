@@ -134,9 +134,10 @@ const botInvite = new Discord.MessageEmbed()
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .setDescription("Click the title to add the bot")
 
-
+//Tournament Dictionary
 var tournamentDict = []
 
+//Function to get the index of the server from the tournament dictionary
 function getServerIndex(dict, guildID){
     for(i = 0; i < dict.length; i++){
       if(dict[i].info.ID == guildID){
@@ -184,11 +185,12 @@ client.on("message", async msg => {
             msg.react("🥳")
             msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
         } else if(goodbye[0] == "Minecraft"){
+            //Minecraft Mobs: Zombie, Skeleton, Creeper, Enderman. in order
             msg.react("718311214404599809")
             msg.react("718311214312325182")
             msg.react("718311214375239681")
             msg.react("718311864517525586")
-            msg.channel.send("You can not sleep now, " + msg.author.username + ", there are monsters nearby...")            
+            msg.channel.send("You may not rest now, " + msg.author.username + ", there are monsters nearby...")            
         } else {
             //For all others send this response and reaction
             msg.react(goodbye[1])
@@ -289,7 +291,7 @@ client.on("message", async msg => {
                 msg.channel.send(botInvite)
                 break;
             case "status":
-                //So I change the status of the bot
+                //So I can manually change the status of the bot
                 if(msg.author.id == 241052712458911744){
                     client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)]).then(() => {
                         msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
@@ -324,7 +326,7 @@ client.on("message", async msg => {
                 //Join voice channel of memeber or the first voice channel available
                 var currentChannel
                 if(!msg.member.voice.channel){
-                    currentChannel = msg.guild.channels.cache.find(ch => (ch.type=='voice' && ch.rawPosition == 0))
+                    currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
                 } else {
                     currentChannel = msg.member.voice.channel
                 }
@@ -709,6 +711,9 @@ client.on("message", async msg => {
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
                             " on beating " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ".")
                             
+                            //Send voice command and then delete it
+                            msg.channel.send("+horn").then(message => {message.delete({timeout: 50}).catch()})
+
                             //Remove loser and iterate the variables
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second, 1)
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
@@ -738,6 +743,9 @@ client.on("message", async msg => {
                             msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + 
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First].toUpperCase() +
                             "! That was fun, let's do it again sometime!")
+
+                            //Send voice command and then delete it
+                            msg.channel.send("+ohyeah").then(message => {message.delete({timeout: 50}).catch()})
                             
                             //Delete Tournament
                             tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
@@ -755,16 +763,19 @@ client.on("message", async msg => {
                             //console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
                             
                             //Congratulate winner and remove loser
-                            msg.channel.send("Well done, " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
+                             msg.channel.send("Well done, " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
                              ". It's sad to see " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + " be defeated.")
                              
+                             //Send voice command and the delete it instantly
+                             msg.channel.send("+ohyeah").then(message => {message.delete({timeout: 50}).catch()})
+
                              //Remove Loser and iterate vars
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First, 1)
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
                             
-                             //If the iterators overflow then reset them
-                             if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
+                            //If the iterators overflow then reset them
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First = 0
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second = 1
                             }
@@ -789,6 +800,9 @@ client.on("message", async msg => {
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second].toUpperCase() +
                              "! It was a hard fought battle with many twists.")
                              
+                             //Send voice command and then delete it
+                             msg.channel.send("+horn").then(message => {message.delete({timeout: 50}).catch()})
+
                              //Delete tournament
                              tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                             }
