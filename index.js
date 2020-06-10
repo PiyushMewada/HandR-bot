@@ -589,6 +589,7 @@ client.on("message", async msg => {
                         })
                     }
                 } else if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
+                    //If there isn't a tournament happening then make one
                     if(!tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
                         //Create a tournmanet bracket
                         var tourneyParticipants = msg.content.split(' * ')
@@ -628,8 +629,10 @@ client.on("message", async msg => {
                                 }
                                 
                             }
+                            //Send starting message
                             msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")       
-                            //Fill the tournament with byes
+                            
+                            //Fill the tournament with byes so that there are a power of 2 number of participants
                             var i = 1
                             if(tourneyParticipants.length > 64){
                                 while(tourneyParticipants.length != 128){
@@ -658,97 +661,139 @@ client.on("message", async msg => {
                                 }
                             }
                 
+                            //Create a tournament in the dictionary
                             tournamentDict.push({info: {"ID" : msg.guild.id, "winners" : tourneyParticipants.slice(), "First": 0, "Second" : 1}})
                             msg.channel.send("After someone wins, send, \"+1won\" or \"+2won\" to advance them.")
                 
+                            //For every 'bye' advance the other person forward
                             while(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] == -1){
                                 msg.channel.send(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
                                 " gets a bye!")
                                 
+                                //Delete the bye and iterate the vars
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second, 1)
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
                             }
-                            console.log(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            //console.log(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            
+                            //Send message for first real tournament round
                             msg.channel.send("Ok, now it is time for: " + 
                                               tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
-                                              " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ". Good Luck!")
+                                              " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
+                                               ". Good Luck!")
                         } else {
+                            //If they tried to enter an invalid amount of people
                             if(tourneyParticipants.length > 128){
                                 msg.channel.send("That's too many participants. The max is 128.")
                             } else {
                                 msg.channel.send("You need a minimum of 4 participants for a tournament. If you have less than that, then I'm sure you can make the bracket in your head." + 
-                                " Make sure you are formatting the command correctly. Put ' * ' in between each participant.")
+                                " Make sure you are formatting the command correctly. Put ' * ' in between each participant (with the spaces).")
                             }
                         }
                     } else {
+                        //If there is already a tournament happening in the server
                         msg.channel.send("There is already a tournament ocurring. Please wait for the current one to end before starting another. " +
                         "Or type +forceTourneyEnd to stop the ongoing tourney.")
                     }
                 } else if(msg.content.substring(1) == "1won"){
+                    //If the first person won the tournament round advance them and remove the second person
                     if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]){
+
+                        //Checks to see if it was the final round
                         if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
-                            console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            //console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            
+                            //Congratulate the winner and remove the loser
                             msg.channel.send("Congrats, " +
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
                             " on beating " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ".")
+                            
+                            //Remove loser and iterate the variables
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second, 1)
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
+                            
+                            //If the iterators are overflowing then reset them
                             if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
                               tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First = 0
                               tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second = 1
                             }
-                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+
+                            //Check to see if the next round is the finals or just another round
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){      
+                                //Output the next round message with the new players
                                 msg.channel.send("Next round will be: " + 
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
                                 " versus " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + 
                                 ". I know who I'm betting on.")
                             } else {
+                                //Send finals message
                                 msg.channel.send("Time for the finals! This will be a legendary duel between " + 
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
                                 " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + "!")
                             }
                         } else {
+                            //Send the ending message and delete the tournament from the dictionary
                             msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + 
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First].toUpperCase() +
                             "! That was fun, let's do it again sometime!")
+                            
+                            //Delete Tournament
                             tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                         }
                     } else {
+                        //If they to use the command without a tournament happening
                         msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     }
                 } else if(msg.content.substring(1) == "2won"){
+                    //If the seoncd person won the tournament round advance them and remove the first person
                     if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]){
+
+                        //Checks to see if it's the final round
                         if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
-                            console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            //console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            
+                            //Congratulate winner and remove loser
                             msg.channel.send("Well done, " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
                              ". It's sad to see " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + " be defeated.")
+                             
+                             //Remove Loser and iterate vars
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First, 1)
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
-                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
+                            
+                             //If the iterators overflow then reset them
+                             if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First = 0
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second = 1
                             }
+
+                            //Checks to see if the next round is the finals
                             if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+                                //Send next round message with new players
                                 msg.channel.send("Next up are: " + 
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
                                  " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
                                   ". Best of Luck!")
                             } else {
+                                //Send finals message
                                 msg.channel.send("Time for the finals! " +
                                 tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
                                 " will battle " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
                                  " in a legendary duel!")
                             }
                         } else {
+                            //Send the ending message with winner and delete tournament
                             msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + 
                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second].toUpperCase() +
                              "! It was a hard fought battle with many twists.")
+                             
+                             //Delete tournament
                              tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                             }
                     } else {
+                        //If they to use the command without a tournament happening
                         msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     } 
                 } else if(msg.content.substring(1) == "forceTourneyEnd") {
@@ -757,6 +802,7 @@ client.on("message", async msg => {
                         msg.channel.send("Tournament ended.")
                         tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                     } else {
+                        //If they to use the command without a tournament happening
                         msg.channel.send("There isn't a tournament happening right now.")
                     }
                 } else {
