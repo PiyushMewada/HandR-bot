@@ -101,7 +101,7 @@ const commandList = new Discord.MessageEmbed()
 			"+horn: MLG-AirHorn\n" +
 			"+loss: Losing sound effect\n" +
 			"+mad: When you make people mad\n" +
-			"+oof: Roblox oof sound\n" +
+			"+oof: OOF sound\n" +
 			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
 			"+roll: Try it out\n" +
 			"+rekt: Crowd going wild\n" +
@@ -144,7 +144,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+loss: Losing sound effect\n" +
 			"+mad: When you make people mad\n" +
 			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
-			"+oof: Roblox oof sound\n" +
+			"+oof: OOF sound\n" +
 			"+roll: Try it out\n" +
 			"+rekt: Crowd going wild\n" +
 			"+sans: Plays first notes of Megalovania\n" +
@@ -513,8 +513,9 @@ client.on("message", async msg => {
 							break;
 						case "oof":
 							//Roblox oof sound
-							dispatcher = connection.play(fs.createReadStream('./sounds/oof.mp3'), {
-								volume: .8
+							const oofSounds = ['./sounds/oof.mp3', './sounds/oof2.mp3']
+							dispatcher = connection.play(fs.createReadStream(oofSounds[Math.floor(Math.random() * oofSounds.length)]), {
+								volume: .7
 							})
 							break;
 						default:
