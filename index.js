@@ -134,12 +134,17 @@ const botInvite = new Discord.MessageEmbed()
     .setThumbnail("https://i.imgur.com/I2IrB4s.png")
     .setDescription("Click the title to add the bot")
 
-//Variables for the Tournament
-var winners = []
-var first = 0
-var second = 1
-var tourneyOngoing = false;
 
+var tournamentDict = []
+
+function getServerIndex(dict, guildID){
+    for(i = 0; i < dict.length; i++){
+      if(dict[i].info.ID == guildID){
+        return i
+      }
+    }
+    return false;
+  }
 
 //When the bot goes online
 client.on("ready", () => {
@@ -295,9 +300,10 @@ client.on("message", async msg => {
                 }
                 break;
             case "stopTyping":
+                //Force the bot to stop typing
                 msg.channel.stopTyping(true)
                 break;
-                
+
                 //Voice Channel Commands
             case "ohyeah":
             case "yeet":
@@ -583,7 +589,7 @@ client.on("message", async msg => {
                         })
                     }
                 } else if(msg.content.substring(1,8) === "tourney" && !msg.author.bot) {
-                    if(!tourneyOngoing) {
+                    if(!tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
                         //Create a tournmanet bracket
                         var tourneyParticipants = msg.content.split(' * ')
                         tourneyParticipants.shift()
@@ -596,7 +602,7 @@ client.on("message", async msg => {
                                 while (iterator) {
                                     // Pick a remaining element
                                     selection = Math.floor(Math.random() * iterator--)
-            
+                
                                     // And swap it with the current element.
                                     temp = tourneyParticipants[iterator]
                                     tourneyParticipants[iterator] = tourneyParticipants[selection]
@@ -622,47 +628,51 @@ client.on("message", async msg => {
                                 }
                                 
                             }
-                            tourneyOngoing = true;
-                            msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")
-                            msg.channel.send("After someone wins, send, \"+1won\" or \"+2won\" to advance them.")
-                            winners = tourneyParticipants.slice()
-            
+                            msg.channel.send("Tournament is starting with " + tourneyParticipants.length + " players!")       
                             //Fill the tournament with byes
                             var i = 1
-                            if(winners.length > 64){
-                                while(winners.length != 128){
-                                    winners.splice(i, 0, -1)
+                            if(tourneyParticipants.length > 64){
+                                while(tourneyParticipants.length != 128){
+                                    tourneyParticipants.splice(i, 0, -1)
                                     i += 2
                                 }
-                            } else if(winners.length > 32){
-                                while(winners.length != 64){
-                                    winners.splice(i, 0, -1)
+                            } else if(tourneyParticipants.length > 32){
+                                while(tourneyParticipants.length != 64){
+                                    tourneyParticipants.splice(i, 0, -1)
                                     i += 2
                                 }
-                            } else if (winners.length > 16){
-                                while(winners.length != 32){
-                                    winners.splice(i, 0, -1)
+                            } else if (tourneyParticipants.length > 16){
+                                while(tourneyParticipants.length != 32){
+                                    tourneyParticipants.splice(i, 0, -1)
                                     i += 2
                                 }
-                            } else if (winners.length > 8) {
-                                while(winners.length != 16){
-                                    winners.splice(i, 0, -1)
+                            } else if (tourneyParticipants.length > 8) {
+                                while(tourneyParticipants.length != 16){
+                                    tourneyParticipants.splice(i, 0, -1)
                                     i += 2
                                 }
-                            } else if (winners.length > 4) {
-                                while(winners.length != 8){
-                                    winners.splice(i, 0, -1)
+                            } else if (tourneyParticipants.length > 4) {
+                                while(tourneyParticipants.length != 8){
+                                    tourneyParticipants.splice(i, 0, -1)
                                     i += 2
                                 }
                             }
-                            while(winners[second] == -1){
-                                msg.channel.send(winners[first] + " gets a bye!")
-                                winners.splice(second, 1)
-                                first++
-                                second++
+                
+                            tournamentDict.push({info: {"ID" : msg.guild.id, "winners" : tourneyParticipants.slice(), "First": 0, "Second" : 1}})
+                            msg.channel.send("After someone wins, send, \"+1won\" or \"+2won\" to advance them.")
+                
+                            while(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] == -1){
+                                msg.channel.send(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
+                                " gets a bye!")
+                                
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second, 1)
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
                             }
-                            console.log(winners.toString())
-                            msg.channel.send("Ok, now it is time for: " + winners[first] + " and " + winners[second] + ". Good Luck!")
+                            console.log(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            msg.channel.send("Ok, now it is time for: " + 
+                                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
+                                              " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ". Good Luck!")
                         } else {
                             if(tourneyParticipants.length > 128){
                                 msg.channel.send("That's too many participants. The max is 128.")
@@ -676,67 +686,76 @@ client.on("message", async msg => {
                         "Or type +forceTourneyEnd to stop the ongoing tourney.")
                     }
                 } else if(msg.content.substring(1) == "1won"){
-                    if(tourneyOngoing){
-                        if(winners.length > 2){
-                            console.log("This is winners rn: " + winners.toString())
-                            msg.channel.send("Congrats, " + winners[first] + " on beating " + winners[second] + ".")
-                            winners.splice(second, 1)
-                            first++
-                            second++
-                            if(first >= winners.length){
-                                first = 0
-                                second = 1
+                    if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]){
+                        if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+                            console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            msg.channel.send("Congrats, " +
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
+                            " on beating " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ".")
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second, 1)
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
+                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First = 0
+                              tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second = 1
                             }
-                            if(winners.length > 2){
-                                msg.channel.send("Next round will be: " + winners[first] + " versus " + winners[second] + ". I know who I'm betting on.")
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+                                msg.channel.send("Next round will be: " + 
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
+                                " versus " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + 
+                                ". I know who I'm betting on.")
                             } else {
-                                msg.channel.send("Time for the finals! This will be a legendary duel between " + winners[first] + " and " + winners[second] + "!")
+                                msg.channel.send("Time for the finals! This will be a legendary duel between " + 
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
+                                " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + "!")
                             }
                         } else {
-                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + winners[first].toUpperCase() + "! That was fun, let's do it again sometime!")
-                            winners = []
-                            first = 0
-                            second = 1
-                            tourneyOngoing = false;
+                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + 
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First].toUpperCase() +
+                            "! That was fun, let's do it again sometime!")
+                            tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                         }
                     } else {
                         msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     }
                 } else if(msg.content.substring(1) == "2won"){
-                    if(tourneyOngoing){
-                        if(winners.length > 2){
-                            console.log("This is winners rn: " + winners.toString())
-                            msg.channel.send("Well done, " + winners[second] + ". It's sad to see " + winners[first] + " be defeated.")
-                            winners.splice(first, 1)
-                            first++
-                            second++
-                            if(first >= winners.length){
-                                first = 0
-                                second = 1
+                    if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]){
+                        if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+                            console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
+                            msg.channel.send("Well done, " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
+                             ". It's sad to see " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + " be defeated.")
+                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.splice(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First, 1)
+                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
+                             tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First >= tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length){
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First = 0
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second = 1
                             }
-                            if(winners.length > 2){
-                                msg.channel.send("Next up are: " + winners[first] + " and " + winners[second] + ". Best of Luck!")
+                            if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2){
+                                msg.channel.send("Next up are: " + 
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
+                                 " and " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
+                                  ". Best of Luck!")
                             } else {
-                                msg.channel.send("Time for the finals! " + winners[first] + " will battle " + winners[second] + " in a legendary duel!")
+                                msg.channel.send("Time for the finals! " +
+                                tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + 
+                                " will battle " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
+                                 " in a legendary duel!")
                             }
                         } else {
-                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + winners[second].toUpperCase() + "! It was a hard fought battle with many twists.")
-                            winners = []
-                            first = 0
-                            second = 1
-                            tourneyOngoing = false;
-                        }
+                            msg.channel.send("YOUR TOURNAMENT CHAMPION IS " + 
+                            tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second].toUpperCase() +
+                             "! It was a hard fought battle with many twists.")
+                             tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
+                            }
                     } else {
                         msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
                     } 
                 } else if(msg.content.substring(1) == "forceTourneyEnd") {
-                    if(tourneyOngoing){
+                    if(tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]){
                         //Stop the tournament and reset all the variables
                         msg.channel.send("Tournament ended.")
-                        winners = []
-                        first = 0
-                        second = 1
-                        tourneyOngoing = false;
+                        tournamentDict.splice(getServerIndex(tournamentDict, msg.guild.id), 1)
                     } else {
                         msg.channel.send("There isn't a tournament happening right now.")
                     }
