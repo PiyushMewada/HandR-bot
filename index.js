@@ -855,7 +855,7 @@ client.on("message", async msg => {
 							//Send voice command and then delete it
 							msg.channel.send("+horn").then(message => {
 								message.delete({
-									timeout: 50
+									timeout: 1
 								}).catch()
 							})
 
@@ -922,7 +922,7 @@ client.on("message", async msg => {
 							//Send voice command and the delete it instantly
 							msg.channel.send("+ohyeah").then(message => {
 								message.delete({
-									timeout: 50
+									timeout: 1
 								}).catch()
 							})
 
@@ -997,5 +997,4 @@ client.on("message", async msg => {
 		msg.channel.stopTyping(true)
 	}
 })
-
 client.login(process.env.BOT_TOKEN)
