@@ -214,10 +214,6 @@ client.on("ready", () => {
 //Whenever a message is sent
 client.on("message", async msg => {
 
-	if(msg.content == "sdiofweoijsdfj"){
-		msg.channel.send("Wow congrats, Pallavi. You did a good job. I knew you could do it.")
-	}
-
 	//Sad Waluigi emoji auto-send
 	if (msg.content.toLowerCase().includes("sda")) {
 		msg.channel.send("<:Waluigi:718312850141216798>")
