@@ -513,7 +513,7 @@ client.on("message", async msg => {
 							break;
 						case "oof":
 							//Roblox oof sound
-							const oofSounds = ['./sounds/oof.mp3', './sounds/oof2.mp3']
+							const oofSounds = ['./sounds/oofR.mp3', './sounds/oofMC.mp3']
 							dispatcher = connection.play(fs.createReadStream(oofSounds[Math.floor(Math.random() * oofSounds.length)]), {
 								volume: .7
 							})
@@ -551,7 +551,7 @@ client.on("message", async msg => {
 							limit: amount
 						}).then(messages => {
 							//Then filter the messages you want to delete (Bot messages, and the commands)
-							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
 							//Delete them all at once
 							msg.channel.bulkDelete(botmessages)
 
