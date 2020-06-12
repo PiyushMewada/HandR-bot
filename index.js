@@ -867,15 +867,15 @@ client.on("message", async msg => {
 					//If the first person won the tournament round advance them and remove the second person
 					if (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
 						roundWinner = msg.content.split("-")
-						if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] || 
-						roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
+						if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] || 
+						roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 				
 							//Checks to see if it was the final round
 							if (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.length > 2) {
 								//console.log("This is winners rn: " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners.toString())
 				
 								//Congratulate the winner and remove the loser
-								if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First]) {
+								if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First]) {
 									msg.channel.send("Congrats, " +
 										tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] +
 										" on beating " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] + ".")
@@ -892,7 +892,7 @@ client.on("message", async msg => {
 									tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First++
 									tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second++
 									
-								} else if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
+								} else if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 									msg.channel.send("Well done, " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] +
 									". It's sad to see " + tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] + " be defeated.")
 				
@@ -942,7 +942,7 @@ client.on("message", async msg => {
 							}
 							else {
 								//Send the ending message and delete the tournament from the dictionary
-								if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First]){
+								if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First]){
 									msg.channel.send("YOUR TOURNAMENT CHAMPION IS " +
 										tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First].toUpperCase() +
 										"! That was fun, let's do it again sometime!")
@@ -953,7 +953,7 @@ client.on("message", async msg => {
 											timeout: 50
 										}).catch()
 									})
-								} else if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
+								} else if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 									msg.channel.send("YOUR TOURNAMENT CHAMPION IS " +
 									tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second].toUpperCase() +
 									"! It was a hard fought battle with many twists.")
