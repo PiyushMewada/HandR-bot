@@ -826,7 +826,7 @@ client.on("message", async msg => {
 									"Second": 1
 								}
 							})
-							msg.channel.send("After someone wins send, \"*name*-won\" to advance them.")
+							msg.channel.send("After someone wins send, \"+*name* won\" to advance them.")
 				
 							//For every 'bye' advance the other person forward
 							while (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] == -1) {
@@ -863,10 +863,10 @@ client.on("message", async msg => {
 							"Or type +forceTourneyEnd to stop the ongoing tourney.")
 					}
 				}
-				else if (msg.content.endsWith("-won")) {
+				else if (msg.content.endsWith("won")) {
 					//If the first person won the tournament round advance them and remove the second person
 					if (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
-						roundWinner = msg.content.split("-")
+						roundWinner = msg.content.split(" ")
 						if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] || 
 						roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 				
@@ -882,9 +882,7 @@ client.on("message", async msg => {
 				
 									//Send voice command and then delete it
 									msg.channel.send("+horn").then(message => {
-										message.delete({
-											timeout: 1	
-										}).catch()
+										message.delete().catch()
 									})
 				
 									//Remove loser and iterate the variables
@@ -898,9 +896,7 @@ client.on("message", async msg => {
 				
 									//Send voice command and the delete it instantly
 									msg.channel.send("+ohyeah").then(message => {
-										message.delete({
-											timeout: 1
-										}).catch()
+										message.delete().catch()
 									})
 				
 									//Remove Loser and iterate vars
@@ -949,9 +945,7 @@ client.on("message", async msg => {
 				
 									//Send voice command and then delete it
 									msg.channel.send("+ohyeah").then(message => {
-										message.delete({
-											timeout: 50
-										}).catch()
+										message.delete().catch()
 									})
 								} else if(roundWinner[0].substring(1) == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 									msg.channel.send("YOUR TOURNAMENT CHAMPION IS " +
@@ -960,9 +954,7 @@ client.on("message", async msg => {
 				
 								//Send voice command and then delete it
 								msg.channel.send("+horn").then(message => {
-									message.delete({
-										timeout: 50
-									}).catch()
+									message.delete().catch()
 								})
 								}
 				
@@ -973,10 +965,10 @@ client.on("message", async msg => {
 							msg.channel.send("That is not one of the people in this round.")
 						}
 					}
-					else {
+					/* else {
 						//If they to use the command without a tournament happening
 						msg.channel.send("There isn't currently a tournament happening. Use +tourney to start one.")
-					}
+					} */
 				} 
 				else if (msg.content.substring(1) == "forceTourneyEnd") {
 					if (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
