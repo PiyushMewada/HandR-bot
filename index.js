@@ -565,7 +565,7 @@ client.on("message", async msg => {
 							limit: amount
 						}).then(messages => {
 							//Then filter the messages you want to delete (Bot messages, and the commands)
-							const botmessages = messages.filter(msg => msg.author.bot || msg.content.endsWith("-won") || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
 							//Delete them all at once
 							msg.channel.bulkDelete(botmessages)
 
