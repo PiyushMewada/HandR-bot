@@ -54,16 +54,30 @@ const presenceList = [{
 	},
 	{
 		activity: {
-			name: "Xenoblade Chronicles: Definitive Edition",
-			type: "STREAMING",
-			url: "https://www.twitch.tv/dunkstream"
+			name: "the rise of machines and the fall of humanity",
+			type: "WATCHING"
 		},
 		status: "online"
 	},
 	{
 		activity: {
-			name: "the rise of machines and the fall of humanity",
-			type: "WATCHING"
+			name: "with a blindfold on",
+			type: "PLAYING"
+		},
+		status: "online"
+	},
+	{
+		activity: {
+			name: "with tilt controls",
+			type: "PLAYING"
+		},
+		status: "online"
+	},
+	{
+		activity: {
+			name: "Bowser's Big Bean Burrito | Trying to get the world record.",
+			type: "STREAMING",
+			url: "https://www.twitch.tv/dunkstream"
 		},
 		status: "online"
 	}
@@ -551,7 +565,7 @@ client.on("message", async msg => {
 							limit: amount
 						}).then(messages => {
 							//Then filter the messages you want to delete (Bot messages, and the commands)
-							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
+							const botmessages = messages.filter(msg => msg.author.bot || msg.content.endsWith("-won") || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
 							//Delete them all at once
 							msg.channel.bulkDelete(botmessages)
 
@@ -812,7 +826,7 @@ client.on("message", async msg => {
 									"Second": 1
 								}
 							})
-							msg.channel.send("After someone wins send, \"*name* won+\" to advance them.")
+							msg.channel.send("After someone wins send, \"*name*-won\" to advance them.")
 				
 							//For every 'bye' advance the other person forward
 							while (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second] == -1) {
@@ -849,10 +863,10 @@ client.on("message", async msg => {
 							"Or type +forceTourneyEnd to stop the ongoing tourney.")
 					}
 				}
-				else if (msg.content.endsWith(" won+")) {
+				else if (msg.content.endsWith("-won")) {
 					//If the first person won the tournament round advance them and remove the second person
 					if (tournamentDict[getServerIndex(tournamentDict, msg.guild.id)]) {
-						roundWinner = msg.content.split(" ")
+						roundWinner = msg.content.split("-")
 						if(roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.First] || 
 						roundWinner[0] == tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.winners[tournamentDict[getServerIndex(tournamentDict, msg.guild.id)].info.Second]) {
 				
