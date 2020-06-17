@@ -366,8 +366,8 @@ client.on("message", async msg => {
 			case "Wwd":
 				//Tells you where to drop in fortnite
 				//List of locations
-				var locations = ["The Agency", "The Shark", "The Rig", "The Grotto", "The Yacht", "Pleasant Park", "Holly Hedges", "Misty Meadows",
-					"Henchmen Bases", "4 Corners"
+				var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Catty Corner", "Pleasant Park", "Holly Hedges", "Misty Meadows",
+					"Lazy Lake", "4 Corners"
 				]
 
 				//List of endings to sentence
@@ -504,7 +504,7 @@ client.on("message", async msg => {
 						case "loss":
 							//Losing sound  effect from Price is Right
 							dispatcher = connection.play(fs.createReadStream('./sounds/loss.mp3'), {
-								volume: .7
+								volume: .5
 							})
 							break;
 						case "sans":
