@@ -529,7 +529,7 @@ client.on("message", async msg => {
 							//Roblox oof sound
 							const oofSounds = ['./sounds/oofR.mp3', './sounds/oofMC.mp3']
 							dispatcher = connection.play(fs.createReadStream(oofSounds[Math.floor(Math.random() * oofSounds.length)]), {
-								volume: .7
+								volume: .8
 							})
 							break;
 						default:
