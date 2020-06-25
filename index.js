@@ -418,11 +418,8 @@ client.on("message", async msg => {
 			case "mad":
 			case "oof":
 				//Join voice channel of memeber or the first voice channel available
-				var currentChannel
-				if (!msg.member.voice.channel) {
-					currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
-				}
-				else {
+				var currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
+				if (msg.member.voice.channel) {
 					currentChannel = msg.member.voice.channel
 				}
 				const connection = await currentChannel.join().then(connection => {
