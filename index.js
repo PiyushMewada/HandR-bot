@@ -366,13 +366,13 @@ client.on("message", async msg => {
 			case "Wwd":
 				//Tells you where to drop in fortnite
 				//List of locations
-				var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Catty Corner", "Pleasant Park", "Holly Hedges", "Misty Meadows",
-					"Lazy Lake", "4 Boats"
+				var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Holly Hedges", "Misty Meadows",
+					"Lazy Lake", "The Pontoon", "that one powerline and the warehouse"
 				]
 
 				//List of endings to sentence
-				var endings = ["Good Luck!", "This is going to be quick one...", "God Speed!", "May the Force be with you.", "Break a Leg!",
-					"Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Carpe Omnia."
+				var endings = ["This is going to be quick one...", "God Speed!", "May the Force be with you.",
+					"Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
 				]
 
 				//Pick 2 random elements and use them to make a phrase
@@ -495,7 +495,7 @@ client.on("message", async msg => {
 						case "default":
 							//Default Dance from Fortnite
 							dispatcher = connection.play(fs.createReadStream('./sounds/default.mp3'), {
-								volume: 1
+								volume: .9
 							})
 							break;
 						case "loss":
