@@ -108,6 +108,7 @@ const commandList = new Discord.MessageEmbed()
 	}, {
 		name: "**Voice Channel Commands:**",
 		value: "```fix\n" +
+			"+math: Plays Advanced Math\n" +
 			"+clap: Ha, Gottem\n" +
 			"+default: Default dance from Fortnite\n" +
 			"+dum: Calls you dumb\n" +
