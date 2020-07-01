@@ -368,7 +368,7 @@ client.on("message", async msg => {
 				//Tells you where to drop in fortnite
 				//List of locations
 				var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Holly Hedges", "Misty Meadows",
-					"Lazy Lake", "The Pontoon", "that one powerline and the warehouse"
+					"Lazy Lake", "The Pawntoon", "that one powerline and the warehouse"
 				]
 
 				//List of endings to sentence
