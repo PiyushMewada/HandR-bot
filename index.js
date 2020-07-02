@@ -534,7 +534,7 @@ client.on("message", async msg => {
 						case "math":
 							//Advanced Math Music from Fortnite
 							dispatcher = connection.play(fs.createReadStream('./sounds/advancedmath.mp3'), {
-								volume: .6
+								volume: .4
 							})
 							break;
 						default:
