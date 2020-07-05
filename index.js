@@ -573,7 +573,7 @@ client.on("message", async msg => {
 							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
 							//Delete them all at once
 							msg.channel.bulkDelete(botmessages, true)
-							
+
 							//Send info message saying how many were deleted
 							msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
 								//React to it with Thanos, and then delete that message too
