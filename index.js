@@ -419,6 +419,7 @@ client.on("message", async msg => {
 			case "mad":
 			case "oof":
 			case "math":
+			case "ligma":
 				//Join voice channel of memeber or the first voice channel available
 				var currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
 				if (msg.member.voice.channel) {
@@ -535,6 +536,12 @@ client.on("message", async msg => {
 							//Advanced Math Music from Fortnite
 							dispatcher = connection.play(fs.createReadStream('./sounds/advancedmath.mp3'), {
 								volume: .4
+							})
+							break;
+						case "ligma":
+							//Steve Jobs died of Ligma
+							dispatcher = connection.play(fs.createReadStream('./sounds/ligma.mp3'), {
+								volume: 1
 							})
 							break;
 						default:
