@@ -102,7 +102,7 @@ const commandList = new Discord.MessageEmbed()
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
 			"+wwd: Tells you where to drop in Fortnite\n" +
-			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
+			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
 			"+#1: Creates a Victory Royale image with custom text\n" +
 			"```"
 	}, {
@@ -145,7 +145,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
 			"+wwd: Tells you where to drop in Fortnite\n" +
-			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands. Default is 50 if no n is given\n" +
+			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
 			"+#1: Creates a Victory Royale image with custom text\n" +
 			"```"
 	}, {
@@ -572,16 +572,16 @@ client.on("message", async msg => {
 							//Then filter the messages you want to delete (Bot messages, and the commands)
 							const botmessages = messages.filter(msg => msg.author.bot || msg.content.startsWith("#") || msg.content.startsWith("_") || msg.content.startsWith("m.") || msg.content.startsWith("u!") || msg.content.startsWith("rpg ") || msg.content.startsWith("?") || msg.content.startsWith("~") || msg.content.startsWith("+") || msg.content.startsWith("p!") || msg.content.startsWith("!") || msg.content.startsWith("-") || msg.content.startsWith("$") || msg.content.startsWith("="))
 							//Delete them all at once
-							msg.channel.bulkDelete(botmessages).catch(msg.channel.send("Unale to delete messages that are older than 2 weeks. Try decreaseing the search number.")).finally(
-								//Send info message saying how many were deleted
-								msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
-									//React to it with Thanos, and then delete that message too
-									tempMessage.react('718312854973055027')
-									tempMessage.delete({
-										timeout: 5000
-									}).catch()
-								})
-							)
+							msg.channel.bulkDelete(botmessages, true)
+							
+							//Send info message saying how many were deleted
+							msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
+								//React to it with Thanos, and then delete that message too
+								tempMessage.react('718312854973055027')
+								tempMessage.delete({
+									timeout: 5000
+								}).catch()
+							})
 						})
 					}
 					else {
