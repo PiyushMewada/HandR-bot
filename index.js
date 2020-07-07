@@ -274,11 +274,12 @@ client.on("message", async msg => {
 	if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
 		var date = new Date()
 		var time = date.getHours()
-		msg.channel.send(time.toString())
-		if(time > 8 && time < 21){
+		//msg.channel.send(time.toString())
+		if(time > 13 && time < 2){
 			if(Math.random() > .5){
 				msg.react("🤔")
-				//msg.react("")
+				msg.react("🍉")
+				msg.react("730171384864571574")
 				msg.channel.send("Isn't it a bit early to be sleeping already?")
 			} 
 			else {
