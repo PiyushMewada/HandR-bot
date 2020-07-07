@@ -5,11 +5,11 @@ const fs = require('fs')
 const client = new Discord.Client()
 
 //All the different activities of the bot
-/*Possible Status:
+/*	Possible Status:
         -Playing with your heart
         -Watching TurboHacks get destroyed
         -Watching your every move
-    */
+*/
 const presenceList = [{
 		activity: {
 			name: "today's sponsor: Audible",
@@ -82,6 +82,31 @@ const presenceList = [{
 		status: "online"
 	}
 ]
+
+//The good night reactions for the gn command
+const goodnights = [
+	["Arrivederci", "👋"],
+	["Good Night", "😴"],
+	["See You Later", "🏃"],
+	["You can never leave", "😈"],
+	["Later", "🌊"],
+	["Bye", "👋"],
+	["Sleep tight", "🛏️"],
+	["Finally", "🙌"],
+	["Farewell", "🌊"],
+	["Minecraft", "Minecraft Mobs"]
+]
+
+//List of locations for wwd command
+var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Holly Hedges", "Misty Meadows",
+"Lazy Lake", "The Pawntoon", "that one powerline and the warehouse"
+]
+//List of endings to sentence
+var endings = ["This is going to be quick one...", "God Speed!", "May the Force be with you.",
+"Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
+]
+
+
 
 //The help command attachment
 const commandList = new Discord.MessageEmbed()
@@ -245,41 +270,41 @@ client.on("message", async msg => {
 		msg.channel.send("***B R U H***")
 	}
 
-	//If message says Good Night reply Arrivederci
+	//If message says Good Night reply with a goodbye message
 	if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
-		const goodnights = [
-			["Arrivederci", "👋"],
-			["Good Night", "😴"],
-			["See You Later", "🏃"],
-			["You can never leave", "😈"],
-			["Later", "🌊"],
-			["Bye", "👋"],
-			["Sleep tight", "🛏️"],
-			["Finally", "🙌"],
-			["Farewell", "🌊"],
-			["Minecraft", "Minecraft Mobs"]
-		]
+		var date = new Date()
+		var time = date.getHours()
 
-		//Pick a random phrase and emoji
-		goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
-		if (goodbye[0] == "Finally") {
-			//If it is the finally emoji send this response
-			msg.react("🙌")
-			msg.react("🥳")
-			msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
-		}
-		else if (goodbye[0] == "Minecraft") {
-			//Minecraft Mobs: Zombie, Skeleton, Creeper, Enderman. in order
-			msg.react("718311214404599809")
-			msg.react("718311214312325182")
-			msg.react("718311214375239681")
-			msg.react("718311864517525586")
-			msg.channel.send("You may not rest now, " + msg.author.username + ", there are monsters nearby...")
-		}
+		if(time > 8 && time < 21){
+			if(Math.random() > .5){
+				msg.channel.send("Isn't it a bit early to be sleeping already?")
+			} 
+			else {
+				msg.channel.send("You can only sleep at night.")
+			}
+		} 
 		else {
-			//For all others send this response and reaction
-			msg.react(goodbye[1])
-			msg.channel.send(goodbye[0] + ", " + msg.author.username)
+			//Pick a random phrase and emoji
+			goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
+			if (goodbye[0] == "Finally") {
+				//If it is the finally emoji send this response
+				msg.react("🙌")
+				msg.react("🥳")
+				msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
+			}
+			else if (goodbye[0] == "Minecraft") {
+				//Minecraft Mobs: Zombie, Skeleton, Creeper, Enderman. in order
+				msg.react("718311214404599809")
+				msg.react("718311214312325182")
+				msg.react("718311214375239681")
+				msg.react("718311864517525586")
+				msg.channel.send("You may not rest now, " + msg.author.username + ", there are monsters nearby...")
+			}
+			else {
+				//For all others send this response and reaction
+				msg.react(goodbye[1])
+				msg.channel.send(goodbye[0] + ", " + msg.author.username)
+			}
 		}
 	}
 
@@ -366,16 +391,6 @@ client.on("message", async msg => {
 			case "wwd":
 			case "Wwd":
 				//Tells you where to drop in fortnite
-				//List of locations
-				var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Holly Hedges", "Misty Meadows",
-					"Lazy Lake", "The Pawntoon", "that one powerline and the warehouse"
-				]
-
-				//List of endings to sentence
-				var endings = ["This is going to be quick one...", "God Speed!", "May the Force be with you.",
-					"Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
-				]
-
 				//Pick 2 random elements and use them to make a phrase
 				msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " + endings[Math.floor(Math.random() * endings.length)])
 				break;
