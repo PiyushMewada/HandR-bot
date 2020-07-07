@@ -279,7 +279,7 @@ client.on("message", async msg => {
 			if(Math.random() > .5){
 				msg.react("🤔")
 				msg.react("🍉")
-				msg.react("730171384864571574")
+				msg.react("730171341843464243")
 				msg.channel.send("Isn't it a bit early to be sleeping already?")
 			} 
 			else {
