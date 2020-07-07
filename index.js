@@ -541,7 +541,7 @@ client.on("message", async msg => {
 						case "ligma":
 							//Steve Jobs died of Ligma
 							dispatcher = connection.play(fs.createReadStream('./sounds/ligma.mp3'), {
-								volume: 1
+								volume: .7
 							})
 							break;
 						default:
