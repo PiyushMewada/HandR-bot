@@ -275,7 +275,7 @@ client.on("message", async msg => {
 		var date = new Date()
 		var time = date.getHours()
 		//msg.channel.send(time.toString())
-		if(time > 13 && time < 2){
+		if(time > 13 || time < 2){
 			if(Math.random() > .5){
 				msg.react("🤔")
 				msg.react("🍉")
