@@ -98,12 +98,12 @@ const goodnights = [
 ]
 
 //List of locations for wwd command
-var locations = ["The Authority", "The Fortilla", "Rickety Rig", "Holly Hedges", "Misty Meadows",
-"Lazy Lake", "The Pawntoon", "that one powerline and the warehouse"
+var locations = ["The Authority", "Rickety Rig", "Holly Hedges", "Misty Meadows", "Lazy Lake",
+"The Pawntoon", "that one powerline and the warehouse"
 ]
 //List of endings to sentence
-var endings = ["This is going to be quick one...", "God Speed!", "May the Force be with you.",
-"Use those Lucky Cheeks.", "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
+var endings = ["This is going to be quick one...", "May the Force be with you.", "Use those Lucky Cheeks.",
+"*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
 ]
 
 
