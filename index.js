@@ -117,6 +117,7 @@ const commandList = new Discord.MessageEmbed()
 		name: "**Text Channel Commands:**",
 		value: "```diff\n" +
 			"+headout: Displays the 'aight imma head out' gif\n" +
+			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
 			"+poll: Creates a poll. Separate the title and each option with an '*'\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
