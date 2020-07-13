@@ -88,7 +88,6 @@ const goodnights = [
 	["Arrivederci", "👋"],
 	["Good Night", "😴"],
 	["See You Later", "🏃"],
-	["You can never leave", "😈"],
 	["Later", "🌊"],
 	["Bye", "👋"],
 	["Sleep tight", "🛏️"],
