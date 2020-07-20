@@ -91,9 +91,9 @@ const goodnights = [
 	["Later", "🌊"],
 	["Bye", "👋"],
 	["Sleep tight", "🛏️"],
-	["Finally", "🙌"],
 	["Farewell", "🌊"],
-	["Minecraft", "Minecraft Mobs"]
+	/*["Finally", "🙌"],
+	["Minecraft", "Minecraft Mobs"]*/
 ]
 
 //List of locations for wwd command
