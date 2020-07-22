@@ -256,7 +256,7 @@ client.on("ready", () => {
 client.on("message", async msg => {
 
 	//If someone says chickin nogget then send a picture of a nugget
-	if(msg.content.toLowerCase == "chickin nogget"){
+	if(msg.content.toLowerCase() == "chickin nogget"){
 		const noggetAttachment = new Discord.MessageAttachment('./images/nugget.jpg')
 		msg.channel.send(noggetAttachment)
 	}
