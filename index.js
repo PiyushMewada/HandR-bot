@@ -255,6 +255,11 @@ client.on("ready", () => {
 //Whenever a message is sent
 client.on("message", async msg => {
 
+	if(msg.content.toLowerCase == "chickin nogget"){
+		const noggetAttachment = new Discord.MessageAttachment('https://kenpierpont.com/wp-content/uploads/2017/06/nugget-720x900.jpg')
+		msg.channel.send(noggetAttachment)
+	}
+
 	//Sad Waluigi emoji auto-send
 	if (msg.content.toLowerCase().includes("sda")) {
 		msg.channel.send("<:Waluigi:718312850141216798>")
