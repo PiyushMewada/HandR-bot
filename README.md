@@ -2,8 +2,10 @@
 
 ### [Add this bot to your own server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot "Invite the Bot!")
 ### [Vote to earn a reward](https://top.gg/bot/707642874766032916/vote "VOTE NOW!")
+
 <br />
 <br />
+
 # Command List
 ## Text Commands:
 - +headout: Displays the 'aight imma head out' gif.
