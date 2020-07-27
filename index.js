@@ -142,8 +142,8 @@ const commandList = new Discord.MessageEmbed()
 			"+horn: MLG-AirHorn\n" +
 			"+loss: Losing sound effect\n" +
 			"+mad: When you make people mad\n" +
-			"+oof: OOF sound\n" +
 			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
+			"+oof: OOF sound\n" +
 			"+roll: Try it out\n" +
 			"+rekt: Crowd going wild\n" +
 			"+sans: Plays first notes of Megalovania\n" +
