@@ -225,7 +225,14 @@ const botInvite = new Discord.MessageEmbed()
 	.setTitle("Invite the Bot to Your Server!")
 	.setURL("https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot")
 	.setThumbnail("https://i.imgur.com/I2IrB4s.png")
-	.setDescription("Click the title to add the bot")
+	.setDescription("Click the title to add the bot!")
+
+const voteLink = new Discord.MessageEmbed()
+	.setColor("#82be42")
+	.setTitle("Vote to get a reward!")
+	.setURL("https://top.gg/bot/707642874766032916/vote")
+	.setThumbnail("https://i.imgur.com/I2IrB4s.png")
+	.setDescription("Click the title to vote for the bot!")
 
 //Tournament Dictionary
 var tournamentDict = []
@@ -449,6 +456,9 @@ client.on("message", async msg => {
 			case "invite":
 				//Sends invite link
 				msg.channel.send(botInvite)
+				break;
+			case "vote":
+				msg.channel.send(voteLink)
 				break;
 			case "status":
 				//So I can manually change the status of the bot
