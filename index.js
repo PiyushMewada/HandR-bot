@@ -230,6 +230,14 @@ const botInvite = new Discord.MessageEmbed()
 //Tournament Dictionary
 var tournamentDict = []
 
+//Joke Dictionary
+var jokeList = []
+fs.readFile('images/Jokes.txt', (err, fileContents) => { 
+  if (err) throw err; 
+
+  jokeList = fileContents.toString().split(',')
+}) 
+
 //Function to get the index of the server from the tournament dictionary
 function getServerIndex(dict, guildID) {
 	for (i = 0; i < dict.length; i++) {
@@ -329,6 +337,41 @@ client.on("message", async msg => {
 	if (msg.content.toLowerCase() === "wot" && msg.author.id == 488542158542995458) {
 		msg.channel.send("Conner, that was not confusing in any way. What could you possibly not understand.")
 	}
+
+	//When someone votes for the bot at https://top.gg/bot/707642874766032916
+	//I get a notification in this channel
+	if(msg.channel.id == 735923945722740747){
+		//For the embeded message read the content
+		msg.embeds.forEach((embed) => {
+		  	embed.fields.forEach((field) => {
+				//Get the User's ID so that the bot can message them
+				const voterIDIndex = field.value.indexOf("(id:")
+				const voterID = field.value.substring(voterIDIndex + 4, voterIDIndex + 22)
+				var FoundItException = {};
+				//Search the cache for that user and once they are found throw and exception to stop searching
+				try {
+					client.users.cache.some((userPerson) => {
+						if(userPerson.id == voterID){
+							//Send the voter a dm with a randomly selected joke from the file
+							userPerson.createDM().then((dmChannel) => {
+								joke = jokeList[Math.floor(Math.random() * jokeList.length)]
+								dmChannel.send("Thanks for voting! Here's your reward:")
+								dmChannel.send(joke)
+								dmChannel.send("Make sure to vote again in 12 hours to hear another funny joke!")
+							})
+							//Throw exception once the voter is found
+							throw FoundItException
+						}
+					})
+				} catch (e) {
+					if(e != FoundItException){
+						console.log(e)
+					}
+				}
+			})
+		})
+	}
+
 
 	//If message is a command with prefix '+'
 	if (msg.content.startsWith("+")) {
