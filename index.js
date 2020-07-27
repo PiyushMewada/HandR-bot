@@ -355,30 +355,17 @@ client.on("message", async msg => {
 			//Get the User's ID so that the bot can message them
 			const voterIDIndex = embed.description.indexOf("(id:")
 			const voterID = embed.description.substring(voterIDIndex + 4, voterIDIndex + 22)
-			var FoundItException = {};
-			//Search the cache for that user and once they are found throw and exception to stop searching
-			try {
-				client.users.cache.some((userPerson) => {
-					if(userPerson.id == voterID){
-						//Send the voter a dm with a randomly selected joke from the file
-						userPerson.createDM().then((dmChannel) => {
-							joke = jokeList[Math.floor(Math.random() * jokeList.length)]
-							dmChannel.send("Thanks for voting! Here's your reward:")
-							dmChannel.send(joke)
-							dmChannel.send("Make sure to vote again in 12 hours to hear another funny joke!")
-						})
-						//Throw exception once the voter is found
-						throw FoundItException
-					}
-				})
-			} catch (e) {
-				if(e != FoundItException){
-					console.log(e)
-				}
-			}
+			
+			//Search the cache for that user
+			const voter = client.users.cache.find((v) => v.id == voterID)
+			//Send the user a joke as a DM
+			voter.createDM().then((dmChannel) => { 
+				dmChannel.send("Thanks for voting! Here's your reward:")
+				dmChannel.send(jokeList[Math.floor(Math.random() * jokeList.length)])
+				dmChannel.send("Make sure to vote again in 12 hours to hear another funny joke!")
+     		 })
 		})
 	}
-
 
 	//If message is a command with prefix '+'
 	if (msg.content.startsWith("+")) {
