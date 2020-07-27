@@ -6,9 +6,6 @@
 <br />
 
 # Command List
-<details>
-<summary>Click to view all commands</summary>
-
 ## Text Commands:
 <details>
 <summary>Click to view Text Commands</summary>
