@@ -1,7 +1,7 @@
 ![Banner](/images/H&RBotLogo.png)
 
 ### [Add this bot to your own server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot "Invite the Bot!")
-
+<img style="float: right;" src="/images/H&RBotLogo.png">
 ### [Vote to earn a reward](https://top.gg/bot/707642874766032916/vote "VOTE NOW!")
 ---
 # Command List
