@@ -6,11 +6,12 @@
 <br />
 
 # Command List
-<!-- ⛔️ MD-MAGIC-EXAMPLE:START (TOC:collapse=true&collapseText=Click to expand) -->
-<details>
-<summary>Click to view</summary>
+
 
 ## Text Commands:
+<details>
+<summary>Click to Text Commands</summary>
+
 - +headout: Displays the 'aight imma head out' gif.
 - +invite: Gets an invite link for the bot.
 - +megamoto: Sends a bunch of moto moto emojis.
@@ -24,7 +25,12 @@
 - +wipe *n*: Searches the last *n* (max 100) messages and deletes bot messages and commands. Default is 50 if no *n* is given.
 - +#1 *text*: Creates a Victory Royale image with the text instead.
 
+</details>
+
 ## Voice Channel Commands:
+<details>
+<summary>Click to Voice Commands</summary>
+
 - +clap: Ha, Gottem.
 - +default: Default Dance from Fortnite.
 - +dum: Calls you dumb.
@@ -39,10 +45,12 @@
 - +smooth: Smooth Moves
 - +yeet: Says "**YEET**".
 - +leave: Makes bot leave the voice channel.
+</details>
 
 ## Other Fun Features:
+<details>
+<summary>Click to Other Features</summary>
+
 - If you say Good Night (or gn) it will respond.
 - If you send '?' it will respond with an image.
-
 </details>
-<!-- ⛔️ MD-MAGIC-EXAMPLE:END -->
