@@ -5,8 +5,7 @@
 
 <br />
 
-# Command List
-## Text Commands:
+# Text Commands:
 <details>
 <summary>Click to view Text Commands</summary>
 
@@ -25,7 +24,7 @@
 
 </details>
 
-## Voice Channel Commands:
+# Voice Channel Commands:
 <details>
 <summary>Click to view Voice Commands</summary>
 
@@ -45,7 +44,7 @@
 - +leave: Makes bot leave the voice channel.
 </details>
 
-## Other Fun Features:
+# Other Fun Features:
 <details>
 <summary>Click to view Other Features</summary>
 
