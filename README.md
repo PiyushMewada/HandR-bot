@@ -6,11 +6,12 @@
 <br />
 
 # Command List
-
+<details>
+<summary>Click to view all commands</summary>
 
 ## Text Commands:
 <details>
-<summary>Click to Text Commands</summary>
+<summary>Click to view Text Commands</summary>
 
 - +headout: Displays the 'aight imma head out' gif.
 - +invite: Gets an invite link for the bot.
@@ -29,7 +30,7 @@
 
 ## Voice Channel Commands:
 <details>
-<summary>Click to Voice Commands</summary>
+<summary>Click to view Voice Commands</summary>
 
 - +clap: Ha, Gottem.
 - +default: Default Dance from Fortnite.
@@ -49,7 +50,7 @@
 
 ## Other Fun Features:
 <details>
-<summary>Click to Other Features</summary>
+<summary>Click to view Other Features</summary>
 
 - If you say Good Night (or gn) it will respond.
 - If you send '?' it will respond with an image.
