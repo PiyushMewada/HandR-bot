@@ -1,6 +1,6 @@
 <img align="right" width="200" height="183" src="/images/H&RBotLogo.png">
-### [Add this bot to your own server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot "Invite the Bot!")
-### [Vote to earn a reward](https://top.gg/bot/707642874766032916/vote "VOTE NOW!")
+[Add this bot to your own server!](https://discord.com/api/oauth2/authorize?client_id=707642874766032916&permissions=8&scope=bot "Invite the Bot!")
+[Vote to earn a reward](https://top.gg/bot/707642874766032916/vote "VOTE NOW!")
 ---
 # Command List
 ## Text Commands:
