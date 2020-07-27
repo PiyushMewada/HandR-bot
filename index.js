@@ -126,6 +126,7 @@ const commandList = new Discord.MessageEmbed()
 			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" +
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
+			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
 			"+wwd: Tells you where to drop in Fortnite\n" +
 			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
 			"+#1: Creates a Victory Royale image with custom text\n" +
@@ -170,6 +171,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" +
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
+			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
 			"+wwd: Tells you where to drop in Fortnite\n" +
 			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
 			"+#1: Creates a Victory Royale image with custom text\n" +
