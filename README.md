@@ -4,7 +4,6 @@
 ### [Vote to earn a reward](https://top.gg/bot/707642874766032916/vote "VOTE NOW!")
 
 <br />
-<br />
 
 # Command List
 ## Text Commands:
