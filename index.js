@@ -301,7 +301,6 @@ client.on("message", async msg => {
 		//msg.channel.send(time.toString())
 		if(time > 13 || time < 2){
 			if(Math.random() > .5){
-				msg.react("🤔")
 				msg.react("🍉")
 				msg.react("730171341843464243")
 				msg.channel.send("Isn't it a bit early to be sleeping already?")
