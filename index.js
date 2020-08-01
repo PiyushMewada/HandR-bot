@@ -119,7 +119,7 @@ const commandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\"\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll Title \"option\" \"option2\"\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -164,7 +164,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\"\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll Title \"option\" \"option2\"\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -759,7 +759,7 @@ client.on("message", async msg => {
 
 					if (pollParts.length < 5) {
 						//If there is something missing send this response to tell them how to format it
-						msg.channel.send("There is something missing from the poll, make sure there are at least 2 options and put each option in quotes. Ex: +poll \"option\" \"option2\".")
+						msg.channel.send("There is something missing from the poll, you need at least 2 options. Ex: +poll Title \"option\" \"option2\".")
 					}
 					else if (pollParts.length > 21) {
 						//If they use too many options then reply with this
@@ -769,9 +769,7 @@ client.on("message", async msg => {
 						//Creating a poll embeded message
 						const Poll = new Discord.MessageEmbed()
 							.setColor("#ffffff")
-							.setURL("https://tinyurl.com/pollImage")
-							.setAuthor(" ","https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
-							.setTitle(pollParts[0].substring(6))
+							.setAuthor(pollParts[0].substring(6),"https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
 						//Create one string for all the options with new lines
 						var optionText = ""
