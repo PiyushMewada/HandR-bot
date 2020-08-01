@@ -768,7 +768,7 @@ client.on("message", async msg => {
 					else {
 						//Creating a poll embeded message
 						const Poll = new Discord.MessageEmbed()
-							.setColor("#ffffff")
+							.setColor("#70c4c2")
 							.setAuthor(pollParts[0].substring(6),"https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
 						//Create one string for all the options with new lines
@@ -779,8 +779,8 @@ client.on("message", async msg => {
 							otherCounter++
 						}
 
-						//Set the options in the option field
-						Poll.addField("Options:", optionText)
+						//Set the options in the description
+						Poll.setDescription(optionText)
 
 						//The voting system is based on the reactions to the image
 						//So react with the appropriate amount of options
