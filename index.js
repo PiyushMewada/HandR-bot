@@ -2,7 +2,6 @@ require("dotenv").config()
 const Discord = require("discord.js")
 const Canvas = require("canvas")
 const fs = require('fs')
-const { CLIENT_RENEG_WINDOW } = require("tls")
 const client = new Discord.Client()
 
 //All the different activities of the bot
@@ -469,11 +468,7 @@ client.on("message", async msg => {
 						serverList += server.name + "\n"
 					}))
 					msg.channel.send("Bot is in " + client.guilds.cache.size.toString() + " servers.")
-					msg.channel.send(serverList).catch(
-						client.guilds.cache.forEach((server) => {
-							msg.channel.send(server.name)
-						})
-					)
+					msg.channel.send(serverList)
 				}
 				else {
 					//Not a vaild command for people who aren't me
