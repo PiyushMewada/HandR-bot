@@ -770,8 +770,8 @@ client.on("message", async msg => {
 						const Poll = new Discord.MessageEmbed()
 							.setColor("#ffffff")
 							.setURL("https://tinyurl.com/pollImage")
+							.setAuthor(" ","https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 							.setTitle(pollParts[0].substring(6))
-							.setThumbnail("https://images-na.ssl-images-amazon.com/images/I/51cOM2ZPaoL.png")
 
 						//Create one string for all the options with new lines
 						var optionText = ""
