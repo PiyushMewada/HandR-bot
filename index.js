@@ -755,13 +755,13 @@ client.on("message", async msg => {
 				else if (msg.content.substring(1, 5) === "poll") {
 					//Create a Poll
 					//Split the message by the '*' divider
-					const pollParts = msg.content.split('*')
+					const pollParts = msg.content.split('"')
 
-					if (pollParts.length < 3) {
+					if (pollParts.length < 6) {
 						//If there is something missing send this response to tell them how to format it
-						msg.channel.send("There is something missing from the poll, make sure there are 2 possible options. Separate the title and each option with a \'*\'.")
+						msg.channel.send("There is something missing from the poll, make sure there are at least 2 possible options and each option in is quotations. Ex: +poll \"option\" \"option2\".")
 					}
-					else if (pollParts.length > 11) {
+					else if (pollParts.length > 20) {
 						//If they use too many options then reply with this
 						msg.channel.send("The max number of options is 10.")
 					}
@@ -775,7 +775,7 @@ client.on("message", async msg => {
 
 						//Create one string for all the options with new lines
 						var optionText = ""
-						for (i = 1; i < pollParts.length; i++) {
+						for (i = 1; i < pollParts.length; i += 2) {
 							optionText += i + ". " + pollParts[i] + "\n"
 						}
 
@@ -787,21 +787,21 @@ client.on("message", async msg => {
 						msg.channel.send(Poll).then(pollMessage => {
 							pollMessage.react("1️⃣")
 							pollMessage.react("2️⃣")
-							if (pollParts.length > 3) {
+							if (pollParts.length > 6) {
 								pollMessage.react("3️⃣")
-								if (pollParts.length > 4) {
+								if (pollParts.length > 8) {
 									pollMessage.react("4️⃣")
-									if (pollParts.length > 5) {
+									if (pollParts.length > 10) {
 										pollMessage.react("5️⃣")
-										if (pollParts.length > 6) {
+										if (pollParts.length > 12) {
 											pollMessage.react("6️⃣")
-											if (pollParts.length > 7) {
+											if (pollParts.length > 14) {
 												pollMessage.react("7️⃣")
-												if (pollParts.length > 8) {
+												if (pollParts.length > 16) {
 													pollMessage.react("8️⃣")
-													if (pollParts.length > 9) {
+													if (pollParts.length > 18) {
 														pollMessage.react("9️⃣")
-														if (pollParts.length > 10) {
+														if (pollParts.length > 20) {
 															pollMessage.react("🔟")
 														}
 													}
