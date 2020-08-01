@@ -119,7 +119,7 @@ const commandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\".\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\"\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -164,7 +164,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\".\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\"\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -775,8 +775,10 @@ client.on("message", async msg => {
 
 						//Create one string for all the options with new lines
 						var optionText = ""
-						for (i = 1; i < pollParts.length; i++) {
-							optionText += i + ". " + pollParts[(i*2) - 1] + "\n"
+						var otherCounter = 1
+						for (i = 1; i < pollParts.length; i += 2) {
+							optionText += otherCounter.toString() + ". " + pollParts[i] + "\n"
+							otherCounter++
 						}
 
 						//Set the options in the option field
