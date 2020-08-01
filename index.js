@@ -119,7 +119,7 @@ const commandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate the title and each option with an '*'\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\".\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -164,7 +164,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+headout: Displays the 'aight imma head out' gif\n" +
 			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
 			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate the title and each option with an '*'\n" +
+			"+poll: Creates a poll. Separate each option with quotes. Ex: +poll \"option\" \"option2\".\n" +
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
@@ -757,11 +757,11 @@ client.on("message", async msg => {
 					//Split the message by the '*' divider
 					const pollParts = msg.content.split('"')
 
-					if (pollParts.length < 6) {
+					if (pollParts.length < 5) {
 						//If there is something missing send this response to tell them how to format it
-						msg.channel.send("There is something missing from the poll, make sure there are at least 2 possible options and each option in is quotations. Ex: +poll \"option\" \"option2\".")
+						msg.channel.send("There is something missing from the poll, make sure there are at least 2 possible options and put each option in quotes. Ex: +poll \"option\" \"option2\".")
 					}
-					else if (pollParts.length > 20) {
+					else if (pollParts.length > 21) {
 						//If they use too many options then reply with this
 						msg.channel.send("The max number of options is 10.")
 					}
@@ -775,8 +775,8 @@ client.on("message", async msg => {
 
 						//Create one string for all the options with new lines
 						var optionText = ""
-						for (i = 1; i < pollParts.length; i += 2) {
-							optionText += i + ". " + pollParts[i] + "\n"
+						for (i = 1; i < pollParts.length; i++) {
+							optionText += i + ". " + pollParts[(i*2) - 1] + "\n"
 						}
 
 						//Set the options in the option field
