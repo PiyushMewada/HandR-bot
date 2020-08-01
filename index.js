@@ -2,6 +2,7 @@ require("dotenv").config()
 const Discord = require("discord.js")
 const Canvas = require("canvas")
 const fs = require('fs')
+const { CLIENT_RENEG_WINDOW } = require("tls")
 const client = new Discord.Client()
 
 //All the different activities of the bot
@@ -454,6 +455,25 @@ client.on("message", async msg => {
 					client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)]).then(() => {
 						msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
 					})
+				}
+				else {
+					//Not a vaild command for people who aren't me
+					msg.channel.send("That's not a valid command. Try +info for help.")
+				}
+				break;
+			case "servers":
+				//So I can look at the servers the bot is in
+				if (msg.author.id == 241052712458911744) {
+					var serverList = ""
+					client.guilds.cache.forEach((server => {
+						serverList += server.name + "\n"
+					}))
+					msg.channel.send("Bot is in " + client.guilds.cache.size.toString() + " servers.")
+					msg.channel.send(serverList).catch(
+						client.guilds.cache.forEach((server) => {
+							msg.channel.send(server.name)
+						})
+					)
 				}
 				else {
 					//Not a vaild command for people who aren't me
