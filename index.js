@@ -478,9 +478,9 @@ client.on("message", async msg => {
 								type: "PLAYING"
 							},
 							status: "online"
-						})
+						}).then(msg.channel.send(`Changed status to ${client.user.presence.activities.toString()}`))
 					} else {
-						client.user.setPresence(newPresence)
+						client.user.setPresence(newPresence).then(msg.channel.send(`Changed status to ${client.user.presence.activities.toString()}`))
 					}
 				}
 				else {
