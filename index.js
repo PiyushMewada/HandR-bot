@@ -470,9 +470,18 @@ client.on("message", async msg => {
 			case "status":
 				//So I can manually change the status of the bot
 				if (msg.author.id == 241052712458911744) {
-					client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)]).then(() => {
-						msg.channel.send("Status Changed to " + client.user.presence.activities.toString() + "!")
-					})
+					const newPresence = presenceList[Math.floor(Math.random() * presenceList.length)]
+					if(newPresence.activity.name.toString() == "SERVERS"){
+						client.user.setPresence({
+							activity: {
+								name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+								type: "PLAYING"
+							},
+							status: "online"
+						})
+					} else {
+						client.user.setPresence(newPresence)
+					}
 				}
 				else {
 					//Not a vaild command for people who aren't me
