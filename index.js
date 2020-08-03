@@ -54,13 +54,6 @@ const presenceList = [{
 	},
 	{
 		activity: {
-			name: "the rise of machines and the fall of humanity",
-			type: "WATCHING"
-		},
-		status: "online"
-	},
-	{
-		activity: {
 			name: "with a blindfold on",
 			type: "PLAYING"
 		},
@@ -85,6 +78,13 @@ const presenceList = [{
 		activity: {
 			name: "SERVERS" ,
 			type: "PLAYING"
+		},
+		status: "online"
+	},
+	{
+		activity: {
+			name: "you vote with +vote" ,
+			type: "WATCHING"
 		},
 		status: "online"
 	}
