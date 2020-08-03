@@ -75,9 +75,16 @@ const presenceList = [{
 	},
 	{
 		activity: {
-			name: "Bowser's Big Bean Burrito | Trying to get the world record.",
+			name: "Bowser's Big Bean Burrito 2| Trying to get the world record.",
 			type: "STREAMING",
 			url: "https://www.twitch.tv/dunkstream"
+		},
+		status: "online"
+	},
+	{
+		activity: {
+			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+			type: "PLAYING"
 		},
 		status: "online"
 	}
@@ -262,7 +269,7 @@ client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`)
 	client.user.setPresence({
 		activity: {
-			name: "with tilt controls",
+			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
 			type: "PLAYING"
 		},
 		status: "online"
