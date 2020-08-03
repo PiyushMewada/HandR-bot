@@ -83,7 +83,7 @@ const presenceList = [{
 	},
 	{
 		activity: {
-			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+			name: "SERVERS" ,
 			type: "PLAYING"
 		},
 		status: "online"
@@ -267,6 +267,7 @@ function getServerIndex(dict, guildID) {
 //When the bot goes online
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`)
+
 	client.user.setPresence({
 		activity: {
 			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
@@ -381,7 +382,18 @@ client.on("message", async msg => {
 
 		//After an average of 25 commands, it'll change its status
 		if (Math.random() < .04) {
-			client.user.setPresence(presenceList[Math.floor(Math.random() * presenceList.length)])
+			const newPresence = presenceList[Math.floor(Math.random() * presenceList.length)]
+			if(newPresence.activity.name.toString() == "SERVERS"){
+				client.user.setPresence({
+					activity: {
+						name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+						type: "PLAYING"
+					},
+					status: "online"
+				})
+			} else {
+				client.user.setPresence(newPresence)
+			}
 			msg.channel.send("You changed my status!")
 		}
 		//Switch case for all the commands
