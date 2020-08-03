@@ -325,7 +325,7 @@ client.on("message", async msg => {
 				//If it is the finally emoji send this response
 				msg.react("🙌")
 				msg.react("🥳")
-				msg.channel.send("Finally, " + msg.author.username + " is leaving. Now we can have some real fun.")
+				msg.channel.send(`Finally, ${msg.author.username} is leaving. Now we can have some real fun.`)
 			}
 			else if (goodbye[0] == "Minecraft") {
 				//Minecraft Mobs: Zombie, Skeleton, Creeper, Enderman. in order
@@ -333,7 +333,7 @@ client.on("message", async msg => {
 				msg.react("718311214312325182")
 				msg.react("718311214375239681")
 				msg.react("718311864517525586")
-				msg.channel.send("You may not rest now, " + msg.author.username + ", there are monsters nearby...")
+				msg.channel.send(`You may not rest now, ${msg.author.username}, there are monsters nearby...`)
 			}
 			else {
 				//For all others send this response and reaction
@@ -458,7 +458,7 @@ client.on("message", async msg => {
 			case "Wwd":
 				//Tells you where to drop in fortnite
 				//Pick 2 random elements and use them to make a phrase
-				msg.channel.send("I think you should go to " + locations[Math.floor(Math.random() * locations.length)] + ". " + endings[Math.floor(Math.random() * endings.length)])
+				msg.channel.send(`I think you should go to ${locations[Math.floor(Math.random() * locations.length)]} . ${endings[Math.floor(Math.random() * endings.length)]}`)
 				break;
 			case "invite":
 				//Sends invite link
@@ -495,7 +495,7 @@ client.on("message", async msg => {
 					client.guilds.cache.forEach((server => {
 						serverList += server.name + "\n"
 					}))
-					msg.channel.send("Bot is in " + client.guilds.cache.size.toString() + " servers.")
+					msg.channel.send(`Bot is in ${client.guilds.cache.size.toString()} servers.`)
 					msg.channel.send(serverList)
 				}
 				else {
@@ -690,7 +690,7 @@ client.on("message", async msg => {
 							msg.channel.bulkDelete(botmessages, true)
 
 							//Send info message saying how many were deleted
-							msg.channel.send("Removed " + botmessages.size + " messages").then(tempMessage => {
+							msg.channel.send(`Removed ${botmessages.size} messages`).then(tempMessage => {
 								//React to it with Thanos, and then delete that message too
 								tempMessage.react('718312854973055027')
 								tempMessage.delete({
