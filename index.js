@@ -299,19 +299,19 @@ client.on("message", async msg => {
 
 	//If a message says bruh, reply with B R U H
 	if (msg.content.toLowerCase().includes("bruh")) {
-		msg.react("🇧")
-		msg.react("🇷")
-		msg.react("🇺")
-		msg.react("🇭")
-		msg.channel.send("𝓑𝓡𝓤𝓗")
-		msg.channel.send("***𝓑𝓡𝓤𝓗***")
-		msg.channel.send("***𝓑 𝓡 𝓤 𝓗***")
-		msg.channel.send("𝔹ℝ𝕌ℍ")
-		msg.channel.send("***𝔹ℝ𝕌ℍ***")
-		msg.channel.send("***𝔹 ℝ 𝕌 ℍ***")
-		msg.channel.send("𝕭𝕽𝖀𝕳")
-		msg.channel.send("***𝕭𝕽𝖀𝕳***")
-		msg.channel.send("***𝕭 𝕽 𝖀 𝕳***")
+		const randBruh = Math.random()
+		if(randBruh < .25) {
+			msg.react("🇧")
+			msg.react("🇷")
+			msg.react("🇺")
+			msg.react("🇭")
+		} else if (randBruh < .5) {
+			msg.channel.send("𝓑 𝓡 𝓤 𝓗")
+		} else if (randbruh < .75) {
+			msg.channel.send("𝔹 ℝ 𝕌 ℍ")
+		} else {
+			msg.channel.send("***B R U H***")
+		}
 	}
 
 	//If message says Good Night reply with a goodbye message
