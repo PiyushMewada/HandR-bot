@@ -307,7 +307,7 @@ client.on("message", async msg => {
 			msg.react("🇭")
 		} else if (randBruh < .5) {
 			msg.channel.send("𝓑 𝓡 𝓤 𝓗")
-		} else if (randbruh < .75) {
+		} else if (randBruh < .75) {
 			msg.channel.send("𝔹 ℝ 𝕌 ℍ")
 		} else {
 			msg.channel.send("***B R U H***")
