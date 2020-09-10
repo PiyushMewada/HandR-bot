@@ -536,10 +536,11 @@ client.on("message", async msg => {
 				msg.channel.stopTyping(true)
 				break;
 			case "CommandCount":
-				//Gets the number of commands used
-				msg.channel.send(`Commands Used: ${commandCount.toString()}\nText Commands Used: ${(commandCount - voiceCount).toString()}\n
-					Voice Commands Used: ${voiceCount.toString()}\nBruh Count: ${bruhCount.toString()}\nGoodNight Count: ${gnCount.toString()}`)
-
+				//Gets the number of commands used if I use it
+				if(msg.author.id = 241052712458911744){
+					msg.channel.send(`Commands Used: ${commandCount.toString()}\nText Commands Used: ${(commandCount - voiceCount).toString()}\n
+						Voice Commands Used: ${voiceCount.toString()}\nBruh Count: ${bruhCount.toString()}\nGoodNight Count: ${gnCount.toString()}`)
+				}
 				//Voice Channel Commands
 			case "ohyeah":
 			case "yeet":
