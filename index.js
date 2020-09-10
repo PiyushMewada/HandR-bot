@@ -540,6 +540,10 @@ client.on("message", async msg => {
 					msg.channel.send(`Commands Used: ${commandCount.toString()}\nText Commands Used: ${(commandCount - voiceCount).toString()}`)
 					msg.channel.send(`Voice Commands Used: ${voiceCount.toString()}\nI3ruh Count: ${bruhCount.toString()}\nGoodNight Count: ${gnCount.toString()})}`)
 				}
+				else {
+					//Not a vaild command for people who aren't me
+					msg.channel.send("That's not a valid command. Try +info for help.")
+				}
 				break;
 			//Voice Channel Commands
 			case "ohyeah":
