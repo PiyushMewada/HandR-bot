@@ -112,7 +112,11 @@ var endings = ["This is going to be quick one...", "May the Force be with you.",
 "*Yare Yare Daze*.", "Arrivederci.", "May the odds be ever in your favor.", "Watch out for the shark!"
 ]
 
-
+//Keeping track of how many commands are used so that I know how often the bot does stuff
+var commandCount = 0
+var voiceCount = 0
+var bruhCount = 0
+var gnCount = 0
 
 //The help command attachment
 const commandList = new Discord.MessageEmbed()
@@ -298,24 +302,33 @@ client.on("message", async msg => {
 	}
 
 	//If a message says bruh, reply with B R U H
-	if (msg.content.toLowerCase().includes("bruh")) {
-		const randBruh = Math.random()
-		if(randBruh < .25) {
-			msg.react("🇧")
-			msg.react("🇷")
-			msg.react("🇺")
-			msg.react("🇭")
-		} else if (randBruh < .5) {
-			msg.channel.send("𝓑 𝓡 𝓤 𝓗")
-		} else if (randBruh < .75) {
-			msg.channel.send("𝔹 ℝ 𝕌 ℍ")
-		} else {
-			msg.channel.send("***B R U H***")
-		}
+	if (
+		msg.content.toLowerCase().includes("bruh")) {
+			//Increment the bruh count
+			bruhCount++
+			
+			//Pick a random bruh reaction
+			const randBruh = Math.random()
+			if(randBruh < .25) {
+				msg.react("🇧")
+				msg.react("🇷")
+				msg.react("🇺")
+				msg.react("🇭")
+			} else if (randBruh < .5) {
+				msg.channel.send("𝓑 𝓡 𝓤 𝓗")
+			} else if (randBruh < .75) {
+				msg.channel.send("𝔹 ℝ 𝕌 ℍ")
+			} else {
+				msg.channel.send("***B R U H***")
+			}
 	}
 
 	//If message says Good Night reply with a goodbye message
 	if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
+		
+		//Increment gn count
+		gnCount++
+
 		var date = new Date()
 		var time = date.getHours()
 		//msg.channel.send(time.toString())
@@ -388,6 +401,9 @@ client.on("message", async msg => {
 
 	//If message is a command with prefix '+'
 	if (msg.content.startsWith("+")) {
+
+		//Add one to the command count
+		commandCount++
 
 		//Set bot status to typing so you know it is working
 		msg.channel.startTyping()
@@ -519,6 +535,10 @@ client.on("message", async msg => {
 				//Force the bot to stop typing
 				msg.channel.stopTyping(true)
 				break;
+			case "CommandCount":
+				//Gets the number of commands used
+				msg.channel.send(`Commands Used: ${commandCount.toString()}\nText Commands Used: ${(commandCount - voiceCount).toString()}\n
+					Voice Commands Used: ${voiceCount.toString()}\nBruh Count: ${bruhCount.toString()}\nGoodNight Count: ${gnCount.toString()}`)
 
 				//Voice Channel Commands
 			case "ohyeah":
@@ -540,6 +560,9 @@ client.on("message", async msg => {
 			case "oof":
 			case "math":
 			case "ligma":
+				//Increment the voice command count
+				voiceCount++
+				
 				//Join voice channel of memeber or the first voice channel available
 				var currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
 				if (msg.member.voice.channel) {
