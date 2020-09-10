@@ -536,9 +536,10 @@ client.on("message", async msg => {
 			case "CommandCount":
 			case "cc":
 				//Gets the number of commands used if I use it
-				if(msg.author.id = 241052712458911744){
+				if(msg.author.id == 241052712458911744) {
 					msg.channel.send(`Commands Used: ${commandCount.toString()}\nText Commands Used: ${(commandCount - voiceCount).toString()}`)
 					msg.channel.send(`Voice Commands Used: ${voiceCount.toString()}\nI3ruh Count: ${bruhCount.toString()}\nGoodNight Count: ${gnCount.toString()})}`)
+				}
 				break;
 			//Voice Channel Commands
 			case "ohyeah":
