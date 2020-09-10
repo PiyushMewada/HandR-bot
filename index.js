@@ -272,10 +272,19 @@ function getServerIndex(dict, guildID) {
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`)
 
+	/*
 	client.user.setPresence({
 		activity: {
 			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
 			type: "PLAYING"
+		},
+		status: "online"
+	})
+	*/
+	client.user.setPresence({
+		activity: {
+			name: "Happy Birthday on loop",
+			type: "LISTENING"
 		},
 		status: "online"
 	})
@@ -406,6 +415,7 @@ client.on("message", async msg => {
 		//Set bot status to typing so you know it is working
 		msg.channel.startTyping()
 
+		/*
 		//After an average of 25 commands, it'll change its status
 		if (Math.random() < .04) {
 			const newPresence = presenceList[Math.floor(Math.random() * presenceList.length)]
@@ -422,6 +432,8 @@ client.on("message", async msg => {
 			}
 			msg.channel.send("You changed my status!")
 		}
+		*/
+		
 		//Switch case for all the commands
 		switch (msg.content.substring(1)) {
 			case "ping":
