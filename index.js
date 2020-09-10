@@ -306,7 +306,6 @@ client.on("message", async msg => {
 		msg.content.toLowerCase().includes("bruh")) {
 			//Increment the bruh count
 			bruhCount++
-			
 			//Pick a random bruh reaction
 			const randBruh = Math.random()
 			if(randBruh < .25) {
@@ -325,10 +324,9 @@ client.on("message", async msg => {
 
 	//If message says Good Night reply with a goodbye message
 	if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
-		
 		//Increment gn count
 		gnCount++
-
+		//Get the time
 		var date = new Date()
 		var time = date.getHours()
 		//msg.channel.send(time.toString())
@@ -563,7 +561,6 @@ client.on("message", async msg => {
 			case "ligma":
 				//Increment the voice command count
 				voiceCount++
-				
 				//Join voice channel of memeber or the first voice channel available
 				var currentChannel = msg.guild.channels.cache.find(ch => (ch.type == 'voice' && ch.rawPosition == 0))
 				if (msg.member.voice.channel) {
