@@ -570,7 +570,6 @@ client.on("message", async msg => {
 			case "ligma":
 			case "bonk":
 			case "bnok":
-			case "bonker":
 				//Increment the voice command count
 				voiceCount++
 				//Join voice channel of memeber or the first voice channel available
