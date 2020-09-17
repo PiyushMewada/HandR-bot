@@ -569,6 +569,8 @@ client.on("message", async msg => {
 			case "math":
 			case "ligma":
 			case "bonk":
+			case "bnok":
+			case "bonker":
 				//Increment the voice command count
 				voiceCount++
 				//Join voice channel of memeber or the first voice channel available
@@ -696,9 +698,21 @@ client.on("message", async msg => {
 							})
 							break;
 						case "bonk":
-							//Steve Jobs died of Ligma
+							//Plays Bonk Noise
 							dispatcher = connection.play(fs.createReadStream('./sounds/bonk.mp3'), {
 								volume: 1.2
+							})
+							break;
+						case "bnok":
+							//Plays Bonk Noise louder
+							dispatcher = connection.play(fs.createReadStream('./sounds/bonk.mp3'), {
+								volume: 3
+							})
+							break;
+						case "bonker":
+							//Plays Bonk Noise way too loud
+							dispatcher = connection.play(fs.createReadStream('./sounds/bonk.mp3'), {
+								volume: 100
 							})
 							break;
 						default:
