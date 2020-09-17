@@ -709,12 +709,6 @@ client.on("message", async msg => {
 								volume: 3
 							})
 							break;
-						case "bonker":
-							//Plays Bonk Noise way too loud
-							dispatcher = connection.play(fs.createReadStream('./sounds/bonk.mp3'), {
-								volume: 100
-							})
-							break;
 						default:
 							break;
 					}
