@@ -372,10 +372,12 @@ client.on("message", async msg => {
 		msg.channel.send(questionAttactment)
 	}
 
+	/*
 	//Personal command for a friend. Whenever he says "wot", it replies
 	if (msg.content.toLowerCase() === "wot" && msg.author.id == 488542158542995458) {
 		msg.channel.send("Conner, that was not confusing in any way. What could you possibly not understand.")
 	}
+	*/
 
 	//When someone votes for the bot at https://top.gg/bot/707642874766032916
 	//I get a notification in this channel
