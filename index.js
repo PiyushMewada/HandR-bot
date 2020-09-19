@@ -307,19 +307,20 @@ client.on("message", async msg => {
 			//Increment the bruh count
 			bruhCount++
 			//Pick a random bruh reaction
-			const randBruh = Math.random()
-			if(randBruh < .25) {
+			
+			/*const randBruh = Math.random()
+			if(randBruh < .25) {*/
 				msg.react("🇧")
 				msg.react("🇷")
 				msg.react("🇺")
 				msg.react("🇭")
-			} else if (randBruh < .5) {
+			/*} else if (randBruh < .5) {
 				msg.channel.send("𝓑 𝓡 𝓤 𝓗")
 			} else if (randBruh < .75) {
 				msg.channel.send("𝔹 ℝ 𝕌 ℍ")
 			} else {
 				msg.channel.send("***B R U H***")
-			}
+			}*/
 	}
 
 	//If message says Good Night reply with a goodbye message
