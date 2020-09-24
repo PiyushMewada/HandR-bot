@@ -271,6 +271,10 @@ function getServerIndex(dict, guildID) {
 //When the bot goes online
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`)
+	client.channels.fetch('758749523450789989')
+	.then(channel => {
+	channel.send("Bot was restarted.")
+	}).catch();
 
 	client.user.setPresence({
 		activity: {
@@ -405,6 +409,14 @@ client.on("message", async msg => {
 
 		//Add one to the command count
 		commandCount++
+		
+		//This is to monitor the commands used so that I can find out what is causing my bot to restart
+		client.channels.fetch('758749523450789989')
+		.then(channel => {
+			if(msg.channel.id != '758749523450789989'){
+				channel.send(msg.content)
+			}
+		}).catch();
 
 		//Set bot status to typing so you know it is working
 		msg.channel.startTyping()
