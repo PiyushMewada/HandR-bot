@@ -287,7 +287,7 @@ client.on("ready", () => {
 
 //Whenever a message is sent
 client.on("message", async msg => {
-	if(!msg.author.bot()){
+	if(msg.author.id != '707642874766032916'){
 		//If someone says chickin nogget then send a picture of a nugget
 		if(msg.content.toLowerCase() == "chickin nogget"){
 			const noggetAttachment = new Discord.MessageAttachment('./images/nugget.jpg')
