@@ -99,8 +99,8 @@ const goodnights = [
 	["Bye", "👋"],
 	["Sleep tight", "🛏️"],
 	["Farewell", "🌊"],
-	/*["Finally", "🙌"],
-	["Minecraft", "Minecraft Mobs"]*/
+	["Finally", "🙌"],
+	["Minecraft", "Minecraft Mobs"]
 ]
 
 //List of locations for wwd command
@@ -288,6 +288,7 @@ client.on("ready", () => {
 //Whenever a message is sent
 client.on("message", async msg => {
 	if(msg.author.id != '707642874766032916'){
+
 		//If someone says chickin nogget then send a picture of a nugget
 		if(msg.content.toLowerCase() == "chickin nogget"){
 			const noggetAttachment = new Discord.MessageAttachment('./images/nugget.jpg')
@@ -331,7 +332,7 @@ client.on("message", async msg => {
 		if ((msg.content.toLowerCase().includes("good night") || msg.content.toLowerCase().includes("goodnight") || msg.content.toLowerCase() === "gn") && !msg.author.bot) {
 			//Increment gn count
 			gnCount++
-			//Get the time
+			/* //Get the time
 			var date = new Date()
 			var time = date.getHours()
 			//msg.channel.send(time.toString())
@@ -346,7 +347,7 @@ client.on("message", async msg => {
 					msg.channel.send("You can only sleep at night.")
 				}
 			} 
-			else {
+			else {*/
 				//Pick a random phrase and emoji
 				goodbye = goodnights[Math.floor(Math.random() * goodnights.length)]
 				if (goodbye[0] == "Finally") {
@@ -362,14 +363,13 @@ client.on("message", async msg => {
 					msg.react("718311214375239681")
 					msg.react("718311864517525586")
 					msg.channel.send(`You may not rest now, ${msg.author.username}, there are monsters nearby...`)
-				}
-				else {
+				} else {
 					//For all others send this response and reaction
 					msg.react(goodbye[1])
 					msg.channel.send(goodbye[0] + ", " + msg.author.username)
 				}
 			}
-		}
+		//}
 
 		//Confused command, sends an image with question marks
 		if (msg.content === "?") {
