@@ -87,6 +87,13 @@ const presenceList = [{
 			type: "WATCHING"
 		},
 		status: "online"
+	},
+	{
+		activity: {
+			name: "You Like a Fiddle" ,
+			type: "PLAYING"
+		},
+		status: "idle"
 	}
 ]
 
@@ -278,10 +285,10 @@ client.on("ready", () => {
 
 	client.user.setPresence({
 		activity: {
-			name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+			name: "You Like a Fiddle" ,
 			type: "PLAYING"
 		},
-		status: "online"
+		status: "idle"
 	})
 })
 
