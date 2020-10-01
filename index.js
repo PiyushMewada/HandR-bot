@@ -285,10 +285,10 @@ client.on("ready", () => {
 
 	client.user.setPresence({
 		activity: {
-			name: "You Like a Fiddle" ,
+			name: "Minecraft Steve in Super Smash Bros." ,
 			type: "PLAYING"
 		},
-		status: "idle"
+		status: "dnd"
 	})
 })
 
