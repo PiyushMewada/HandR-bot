@@ -880,7 +880,7 @@ client.on("message", async msg => {
 
 						if (pollParts.length < 5) {
 							//If there is something missing send this response to tell them how to format it
-							msg.channel.send("There is something missing from the poll, you need at least 2 options. Ex: +poll Title \"option\" \"option2\".")
+							msg.channel.send("There is something missing from the poll, you need at least 2 options that are in quotes. Ex: +poll Title \"option\" \"option2\".")
 						}
 						else if (pollParts.length > 21) {
 							//If they use too many options then reply with this
