@@ -186,7 +186,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
-			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" +
+			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '. Ex: +tourney * Person1 * Person2 * Person3 * Person4\n" +
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
 			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
@@ -1051,7 +1051,7 @@ client.on("message", async msg => {
 								}
 								else {
 									msg.channel.send("You need a minimum of 4 participants for a tournament. If you have less than that, then I'm sure you can make the bracket in your head." +
-										" Make sure you are formatting the command correctly. Put ' * ' in between each participant (with the spaces).")
+										" Make sure you are formatting the command correctly. Put ' * ' in between each participant (with the spaces). Ex: +tourney * Person1 * Person2 * Person3 * Person4")
 								}
 							}
 						}
