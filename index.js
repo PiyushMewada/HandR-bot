@@ -294,7 +294,7 @@ client.on("ready", () => {
 
 //Whenever a message is sent
 client.on("message", async msg => {
-	if(msg.author.id != '707642874766032916'){
+	if(msg.channel.id != '758749523450789989'){
 
 		//If someone says chickin nogget then send a picture of a nugget
 		if(msg.content.toLowerCase() == "chickin nogget"){
