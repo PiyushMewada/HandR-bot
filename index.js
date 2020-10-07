@@ -265,8 +265,6 @@ fs.readFile('images/Jokes.txt', (err, fileContents) => {
   jokeList = fileContents.toString().split(',')
 }) 
 
-const DebugChannel
-
 //Function to get the index of the server from the tournament dictionary
 function getServerIndex(dict, guildID) {
 	for (i = 0; i < dict.length; i++) {
@@ -280,17 +278,10 @@ function getServerIndex(dict, guildID) {
 //When the bot goes online
 client.on("ready", () => {
 	//console.log(`Logged in as ${client.user.tag}!`)
-	
-	
-	
-	
 	client.channels.fetch('758749523450789989')
 	.then(channel => {
 	channel.send("Bot was restarted.")
-	DebugChannel = channel;
 	}).catch();
-
-	//DebugChannel = client.channels.fetch('758749523450789989')
 
 	client.user.setPresence({
 		activity: {
@@ -427,7 +418,9 @@ client.on("message", async msg => {
 			commandCount++
 			
 			//This is to monitor the commands used so that I can find out what is causing my bot to restart
-			DebugChannel.send(msg.content).catch();
+			const DebugChannel =  client.channels.fetch('758749523450789989')
+
+			DebugChannel.send(msg.content).catch()
 
 			//Set bot status to typing so you know it is working
 			msg.channel.startTyping()
