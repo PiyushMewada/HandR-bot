@@ -265,8 +265,7 @@ fs.readFile('images/Jokes.txt', (err, fileContents) => {
   jokeList = fileContents.toString().split(',')
 }) 
 
-const DebugChannel = client.channels.fetch('758749523450789989')
-
+const DebugChannel
 
 //Function to get the index of the server from the tournament dictionary
 function getServerIndex(dict, guildID) {
@@ -280,11 +279,18 @@ function getServerIndex(dict, guildID) {
 
 //When the bot goes online
 client.on("ready", () => {
-	console.log(`Logged in as ${client.user.tag}!`)
+	//console.log(`Logged in as ${client.user.tag}!`)
+	
+	
+	
+	
 	client.channels.fetch('758749523450789989')
 	.then(channel => {
 	channel.send("Bot was restarted.")
+	DebugChannel = channel;
 	}).catch();
+
+	//DebugChannel = client.channels.fetch('758749523450789989')
 
 	client.user.setPresence({
 		activity: {
