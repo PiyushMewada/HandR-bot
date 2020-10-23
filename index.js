@@ -876,10 +876,11 @@ client.on("message", async msg => {
 					else if (msg.content.substring(1, 5) === "poll") {
 						//Create a Poll
 						//Split the message by the '""' divider
+						const pollParts = []
 						if(msg.includes("\"")){
-							const pollParts = msg.content.split('"')
+							pollParts = msg.content.split('"')
 						} else if(msg.includes("“")) {
-							const pollParts = msg.content.split('“')
+							pollParts = msg.content.split('“')
 						}
 						if (pollParts.length < 5) {
 							//If there is something missing send this response to tell them how to format it
