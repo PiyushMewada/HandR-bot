@@ -875,9 +875,12 @@ client.on("message", async msg => {
 					}
 					else if (msg.content.substring(1, 5) === "poll") {
 						//Create a Poll
-						//Split the message by the '*' divider
-						const pollParts = msg.content.split('"')
-
+						//Split the message by the '""' divider
+						if(msg.includes("\"")){
+							const pollParts = msg.content.split('"')
+						} else if(msg.includes("“")) {
+							const pollParts = msg.content.split('“')
+						}
 						if (pollParts.length < 5) {
 							//If there is something missing send this response to tell them how to format it
 							msg.channel.send("There is something missing from the poll, you need at least 2 options that are in quotes. Ex: +poll Title \"option\" \"option2\".")
