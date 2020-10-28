@@ -141,7 +141,7 @@ const commandList = new Discord.MessageEmbed()
 			"+ping: Replies with Pong! to test if bot is online\n" +
 			"+server: Displays server information\n" +
 			"+sonicsays text: Gets Sonic to say the message\n" +
-			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '\n" +
+			"+tourney: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
 			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
 			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
 			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
@@ -179,21 +179,21 @@ const hiddenCommandList = new Discord.MessageEmbed()
 	.addFields({
 		name: "**Text Channel Commands:**",
 		value: "```diff\n" +
-			"+headout: Displays the 'aight imma head out' gif\n" +
-			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
-			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
-			"+ping: Replies with Pong! to test if bot is online\n" +
-			"+server: Displays server information\n" +
-			"+sonicsays text: Gets Sonic to say the message\n" +
-			"+tourney: Creates a tournament bracket. Separate the command and each participant with an ' * '. Ex: +tourney * Person1 * Person2 * Person3 * Person4\n" +
-			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
-			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
-			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
-			"+wwd: Tells you where to drop in Fortnite\n" +
-			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
-			"+#1: Creates a Victory Royale image with custom text\n" +
-			"```"
+		"+headout: Displays the 'aight imma head out' gif\n" +
+		"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
+		"+megamoto: Sends a bunch of moto moto emojis\n" +
+		"+poll: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
+		"+ping: Replies with Pong! to test if bot is online\n" +
+		"+server: Displays server information\n" +
+		"+sonicsays text: Gets Sonic to say the message\n" +
+		"+tourney: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
+		"+tourneyr: Same as +tourney, but randomizes the participants\n" +
+		"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
+		"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
+		"+wwd: Tells you where to drop in Fortnite\n" +
+		"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
+		"+#1: Creates a Victory Royale image with custom text\n" +
+		"```"
 	}, {
 		name: "**Voice Channel Commands:**",
 		value: "```fix\n" +
@@ -509,7 +509,7 @@ client.on("message", async msg => {
 				case "Wwd":
 					//Tells you where to drop in fortnite
 					//Pick 2 random elements and use them to make a phrase
-					msg.channel.send(`I think you should go to ${locations[Math.floor(Math.random() * locations.length)]} . ${endings[Math.floor(Math.random() * endings.length)]}`)
+					msg.channel.send(`I think you should go to ${locations[Math.floor(Math.random() * locations.length)]}. ${endings[Math.floor(Math.random() * endings.length)]}`)
 					break;
 				case "invite":
 					//Sends invite link
