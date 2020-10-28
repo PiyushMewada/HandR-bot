@@ -133,41 +133,36 @@ const commandList = new Discord.MessageEmbed()
 	.setThumbnail("https://i.imgur.com/I2IrB4s.png")
 	.addFields({
 		name: "**Text Channel Commands:**",
-		value: "```diff\n" +
-			"+headout: Displays the 'aight imma head out' gif\n" +
-			"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
-			"+megamoto: Sends a bunch of moto moto emojis\n" +
-			"+poll: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
-			"+ping: Replies with Pong! to test if bot is online\n" +
-			"+server: Displays server information\n" +
-			"+sonicsays text: Gets Sonic to say the message\n" +
-			"+tourney: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
-			"+tourneyr: Same as +tourney, but randomizes the participants\n" +
-			"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
-			"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
-			"+wwd: Tells you where to drop in Fortnite\n" +
-			"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
-			"+#1: Creates a Victory Royale image with custom text\n" +
-			"```"
+		value: "**+headout**: Displays the 'aight imma head out' gif\n" +
+		"**+invite**: Gets an invite link for the bot so that you can add it to another server\n" +
+		"**+poll**: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
+		"**+ping**: Replies with Pong! to test if bot is online\n" +
+		"**+server**: Displays server information\n" +
+		"**+sonicsays *text***: Gets Sonic to say the *text*\n" +
+		"**+tourney**: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
+		"**+tourneyr**: Same as +tourney, but randomizes the participants\n" +
+		"**+tourneys**: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
+		"**+vote**: Gives a link to vote for the bot. You get a reward for voting!\n" +
+		"**+wwd**: Tells you where to drop in Fortnite\n" +
+		"**+wipe *n***: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50\n" +
+		"**+#1 *text***: Creates a Victory Royale image with custom *text*\n"
 	}, {
 		name: "**Voice Channel Commands:**",
-		value: "```fix\n" +
-			"+math: Plays Advanced Math\n" +
-			"+clap: Ha, Gottem\n" +
-			"+default: Default dance from Fortnite\n" +
-			"+dum: Calls you dumb\n" +
-			"+haha: Laughtrack\n" +
-			"+horn: MLG-AirHorn\n" +
-			"+loss: Losing sound effect\n" +
-			"+mad: When you make people mad\n" +
-			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
-			"+oof: OOF sound\n" +
-			"+roll: Try it out\n" +
-			"+rekt: Crowd going wild\n" +
-			"+sans: Plays first notes of Megalovania\n" +
-			"+yeet: \"YEET\"\n" +
-			"+leave: Makes bot leave the voice channel\n" +
-			"```"
+		value: 
+			"**+clap**: Ha, Gottem\n" +
+			"**+default**: Default dance from Fortnite\n" +
+			"**+dum**: Calls you dumb\n" +
+			"**+haha**: Laughtrack\n" +
+			"**+horn**: MLG-AirHorn\n" +
+			"**+loss**: Losing sound effect\n" +
+			"**+mad**: When you make people mad\n" +
+			"**+ohyeah**: Vector's iconic line: \"Oh yeah\"\n" +
+			"+**oof**: OOF sound\n" +
+			"**+roll**: Try it out\n" +
+			"**+rekt**: Crowd going wild\n" +
+			"**+sans**: Plays first notes of Megalovania\n" +
+			"**+yeet**: \"YEET\"\n" +
+			"**+leave**: Makes bot leave the voice channel\n"
 	})
 
 //The hidden help command attachment
@@ -178,64 +173,56 @@ const hiddenCommandList = new Discord.MessageEmbed()
 	.setThumbnail("https://i.imgur.com/I2IrB4s.png")
 	.addFields({
 		name: "**Text Channel Commands:**",
-		value: "```diff\n" +
-		"+headout: Displays the 'aight imma head out' gif\n" +
-		"+invite: Gets an invite link for the bot so that you can add it to another server\n" +
-		"+megamoto: Sends a bunch of moto moto emojis\n" +
-		"+poll: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
-		"+ping: Replies with Pong! to test if bot is online\n" +
-		"+server: Displays server information\n" +
-		"+sonicsays text: Gets Sonic to say the message\n" +
-		"+tourney: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
-		"+tourneyr: Same as +tourney, but randomizes the participants\n" +
-		"+tourneys: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
-		"+vote: Gives a link to vote for the bot. You get a reward for voting!\n" +
-		"+wwd: Tells you where to drop in Fortnite\n" +
-		"+wipe n: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50 if no n is given\n" +
-		"+#1: Creates a Victory Royale image with custom text\n" +
-		"```"
+		value: "**+headout**: Displays the 'aight imma head out' gif\n" +
+		"**+invite**: Gets an invite link for the bot so that you can add it to another server\n" +
+		"**+poll**: Creates a poll. Separate each option with quotes. You can have upto 10 options. Ex: +poll Title \"option\" \"option2\"\n" +
+		"**+ping**: Replies with Pong! to test if bot is online\n" +
+		"**+server**: Displays server information\n" +
+		"**+sonicsays *text***: Gets Sonic to say the *text*\n" +
+		"**+tourney**: Creates a tournament bracket. Ex. +tourney * Person1 * Person2 * Person3 * Person4\n" +
+		"**+tourneyr**: Same as +tourney, but randomizes the participants\n" +
+		"**+tourneys**: Same as +tourney, but seeds the participants. Enter them in order of skill level\n" +
+		"**+vote**: Gives a link to vote for the bot. You get a reward for voting!\n" +
+		"**+wwd**: Tells you where to drop in Fortnite\n" +
+		"**+wipe *n***: Searches the last n (max 100) messages and deletes bot messages and commands within the last 2 weeks. Default is 50\n" +
+		"**+#1 *text***: Creates a Victory Royale image with custom *text*\n"
 	}, {
 		name: "**Voice Channel Commands:**",
-		value: "```fix\n" +
-			"+clap: Ha, Gottem\n" +
-			"+default: Default dance from Fortnite\n" +
-			"+dum: Calls you dumb\n" +
-			"+haha: Laughtrack\n" +
-			"+horn: MLG-AirHorn\n" +
-			"+loss: Losing sound effect\n" +
-			"+mad: When you make people mad\n" +
-			"+ohyeah: Vector's iconic line: \"Oh yeah\"\n" +
-			"+oof: OOF sound\n" +
-			"+roll: Try it out\n" +
-			"+rekt: Crowd going wild\n" +
-			"+sans: Plays first notes of Megalovania\n" +
-			"+yeet: \"YEET\"\n" +
-			"+leave: Makes bot leave the voice channel\n" +
-			"```"
+		value: 
+			"**+clap**: Ha, Gottem\n" +
+			"**+default**: Default dance from Fortnite\n" +
+			"**+dum**: Calls you dumb\n" +
+			"**+haha**: Laughtrack\n" +
+			"**+horn**: MLG-AirHorn\n" +
+			"**+loss**: Losing sound effect\n" +
+			"**+mad**: When you make people mad\n" +
+			"**+ohyeah**: Vector's iconic line: \"Oh yeah\"\n" +
+			"+**oof**: OOF sound\n" +
+			"**+roll**: Try it out\n" +
+			"**+rekt**: Crowd going wild\n" +
+			"**+sans**: Plays first notes of Megalovania\n" +
+			"**+yeet**: \"YEET\"\n" +
+			"**+leave**: Makes bot leave the voice channel\n"
 	}, {
 		name: "**Hidden Commands:**",
-		value: "```diff\n" +
-			"+anikait: Sends an image of his car exploding\n" +
-			"+ansh: Calls Justin a dumbass\n" +
-			"+help, +info: Sends command list\n" +
-			"+help all, +info all, +ia: Sends hidden command list\n" +
-			"+freemoney, +piyush, +rickroll: Calls you a fool\n" +
-			"```" +
-			"```fix\n" +
-			"+butt: Ansh getting boned\n" +
-			"+donkey: Gordom Ramsay calling you a donkey\n" +
-			"+getover: Trevor getting over\n" +
-			"+smooth: Smooth Moves from Fortnite\n" +
-			"```"
+		value: "**Text**:\n" + 
+			"**+anikait**: Sends an image of his car exploding\n" +
+			"**+ansh**: Calls Justin a dumbass\n" +
+			"**+help, +info**: Sends command list\n" +
+			"**+help all, +info all, +ia**: Sends hidden command list\n" +
+			"**+freemoney, +piyush, +rickroll**: Calls you a fool\n" +
+			"**Voice**:\n" +
+			"**+butt**: Ansh getting boned\n" +
+			"**+donkey**: Gordom Ramsay calling you a donkey\n" +
+			"**+getover**: Trevor getting over\n" +
+			"**+smooth**: Smooth Moves from Fortnite\n"
 	}, {
-		name: "**Other:**",
-		value: "```bash\n" +
-			"\"-If a message includes 'bruh' reply with B R U H\n" +
-			"-If a message includes 'good night' reply with a farewell and react to their message\n" +
-			"-If a message includes 'sda' reply with sad waluigi\n" +
-			"-If a message includes 'thirsty' reply with Justin drinking\n" +
-			"-If a message is '?' reply with question mark image\n" +
-			"```"
+		name: "**If a message includes:**",
+		value:"**bruh**: react with B R U H\n" +
+			"**good night/gn**: reply with a farewell and react to message\n" +
+			"**sda**: reply with sad waluigi\n" +
+			"**thirsty**: react with Justin drinking\n" +
+			"**?**: reply with question mark image\n"
 	})
 
 //Embed that has the invite link for the bot
