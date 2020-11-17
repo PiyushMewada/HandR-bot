@@ -111,8 +111,8 @@ const goodnights = [
 ]
 
 //List of locations for wwd command
-var locations = ["Slurpy Swamp", "Holly Hedges", "Misty Meadows", "A Quinjet",
-"Doom's Domain", "whatever the party leader picks", "A Quinjet", "Different Quinjets"
+var locations = ["Slurpy Swamp", "Dirty Docks", "Misty Meadows", "Stark Industries",
+"Doom's Domain", "whatever the party leader picks", "Holly Hedges"
 ]
 //List of endings to sentence
 var endings = ["This is going to be quick one...", "May the Force be with you.", "Use those Lucky Cheeks.",
@@ -269,13 +269,20 @@ client.on("ready", () => {
 	channel.send("Bot was restarted.")
 	}).catch();
 
-	client.user.setPresence({
-		activity: {
-			name: "Minecraft Steve in Super Smash Bros." ,
-			type: "PLAYING"
-		},
-		status: "dnd"
-	})
+	if (Math.random() < .04) {
+		const newPresence = presenceList[Math.floor(Math.random() * presenceList.length)]
+		if(newPresence.activity.name.toString() == "SERVERS"){
+			client.user.setPresence({
+				activity: {
+					name: `sound effects in ${client.guilds.cache.size.toString()} servers!` ,
+					type: "PLAYING"
+				},
+				status: "online"
+			})
+		} else {
+			client.user.setPresence(newPresence)
+		}
+	}
 })
 
 //Whenever a message is sent
