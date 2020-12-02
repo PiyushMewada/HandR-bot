@@ -371,11 +371,12 @@ client.on("message", async msg => {
 			}
 		//}
 
+		/*
 		//Confused command, sends an image with question marks
 		if (msg.content === "?") {
 			const questionAttactment = new Discord.MessageAttachment("./images/questionmark.jpg");
 			msg.channel.send(questionAttactment)
-		}
+		}*/
 
 		/*
 		//Personal command for a friend. Whenever he says "wot", it replies
