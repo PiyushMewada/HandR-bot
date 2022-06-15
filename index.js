@@ -178,20 +178,26 @@ const commandList = new Discord.MessageEmbed()
       name: "**Voice Channel Commands:**",
       value:
         "**+backup**: Back it up Terry!\n" +
-        "**+clap**: Ha, Gottem\n" +
+        "**+clap**: Applause\n" +
         "**+default**: Default dance from Fortnite\n" +
         "**+deez**: Deez Nuts\n" +
-        "**+dum**: Calls you dumb\n" +
+        "**+gotem**: Ladies and Gentlemen, we got em,\n" +
         "**+haha**: Laughtrack\n" +
         "**+horn**: MLG-AirHorn\n" +
-        "**+loss**: Losing sound effect\n" +
-        "**+mad**: When you make people mad\n" +
+        "**+jail**: Law and Order\n" +
+        "**+kronk**: It's all coming together\n" +
+        "**+mimimi**: Snore\n" +
+        "**+mogus**: Among Us Role Reveal\n" +
+        "**+no**: Talking Ben No\n" +
         '**+ohyeah**: Vector\'s iconic line: "Oh yeah"\n' +
         "+**oof**: OOF sound\n" +
-        "**+rekt**: Crowd going wild\n" +
         "**+reverse**: Put it in reverse Terry!\n" +
         "**+rickroll**: Try it out\n" +
-        "**+sans**: Plays first notes of Megalovania\n" +
+        "**+scoob**: Scooby-doo laugh\n" +
+        "**+spongedrama**: Spongebob Drama Sound Effect\n" +
+        "**+spongefail**: Spongebob Fail Sound Effect\n" +
+        "**+stink**: Stinky Boi\n" +
+        "**+yea**: Talking Ben Yea\n" +
         '**+yeet**: "YEET"\n' +
         "**+leave**: Makes bot leave the voice channel\n",
     }
@@ -225,20 +231,31 @@ const hiddenCommandList = new Discord.MessageEmbed()
       name: "**Voice Channel Commands:**",
       value:
         "**+backup**: Back it up Terry!\n" +
-        "**+clap**: Ha, Gottem\n" +
+        "**+clap**: Applause\n" +
         "**+default**: Default dance from Fortnite\n" +
         "**+deez**: Deez Nuts\n" +
         "**+dum**: Calls you dumb\n" +
+        "**+gotem**: Ladies and Gentlemen, we got em,\n" +
         "**+haha**: Laughtrack\n" +
         "**+horn**: MLG-AirHorn\n" +
         "**+loss**: Losing sound effect\n" +
+        "**+jail**: Law and Order\n" +
+        "**+kronk**: It's all coming together\n" +
         "**+mad**: When you make people mad\n" +
+        "**+mimimi**: Snore\n" +
+        "**+mogus**: Among Us Role Reveal\n" +
+        "**+no**: Talking Ben No\n" +
         '**+ohyeah**: Vector\'s iconic line: "Oh yeah"\n' +
         "+**oof**: OOF sound\n" +
         "**+rekt**: Crowd going wild\n" +
         "**+reverse**: Put it in reverse Terry!\n" +
         "**+rickroll**: Try it out\n" +
         "**+sans**: Plays first notes of Megalovania\n" +
+        "**+scoob**: Scooby-doo laugh\n" +
+        "**+spongedrama**: Spongebob Drama Sound Effect\n" +
+        "**+spongefail**: Spongebob Fail Sound Effect\n" +
+        "**+stink**: Stinky Boi\n" +
+        "**+yea**: Talking Ben Yea\n" +
         '**+yeet**: "YEET"\n' +
         "**+leave**: Makes bot leave the voice channel\n",
     },
@@ -663,7 +680,6 @@ client.on("message", async (msg) => {
         case "donkey":
         case "getover":
         case "haha":
-        case "clap":
         case "rickroll":
         case "smooth":
         case "default":
@@ -678,6 +694,18 @@ client.on("message", async (msg) => {
         case "bnok":
         case "backup":
         case "reverse":
+        case "clap":
+        case "gotem":
+        case "jail":
+        case "kronk":
+        case "mimimi":
+        case "mogus":
+        case "no":
+        case "scoob":
+        case "yea":
+        case "stink":
+        case "spongefail":
+        case "spongedrama":
           //Increment the voice command count
           voiceCount++;
           //Join voice channel of memeber or the first voice channel available
@@ -771,7 +799,7 @@ client.on("message", async (msg) => {
                   }
                 );
                 break;
-              case "clap":
+              /*case "clap":
                 //Friend saying "ha gottem"
                 msg.channel.send("That was a good one" + "👏👏");
                 dispatcher = connection.play(
@@ -780,7 +808,7 @@ client.on("message", async (msg) => {
                     volume: 0.8,
                   }
                 );
-                break;
+                break;*/
               case "rickroll":
                 //Rickroll
                 dispatcher = connection.play(
@@ -907,6 +935,102 @@ client.on("message", async (msg) => {
                   fs.createReadStream("./sounds/putitinreverse.mp3"),
                   {
                     volume: 0.6,
+                  }
+                );
+                break;
+              case "clap":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/clapping.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "gotem":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/gotem.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "jail":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/jail.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "kronk":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/kronk.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "mimimi":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/mimimi.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "mogus":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/mogus.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "no":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/no.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "scoob":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/scoob.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "yea":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/yea.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "stink":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/stink.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "spongefail":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/spongefail.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "spongedrama":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/spongedrama.mp3"),
+                  {
+                    volume: 0.7,
                   }
                 );
                 break;
