@@ -914,9 +914,9 @@ client.on("message", async (msg) => {
                 break;
             }
             //Once the audio clip finishes leave the channel
-            dispatcher.on("finish", () => {
-              currentChannel.leave();
-            });
+            //dispatcher.on("finish", () => {
+            // currentChannel.leave();
+            //});
             dispatcher.on("error", console.error);
           });
           break;
