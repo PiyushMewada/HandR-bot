@@ -223,6 +223,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
       value:
         "**+clap**: Ha, Gottem\n" +
         "**+default**: Default dance from Fortnite\n" +
+        "**+deez**: Deez nuts\n" +
         "**+dum**: Calls you dumb\n" +
         "**+haha**: Laughtrack\n" +
         "**+horn**: MLG-AirHorn\n" +
@@ -653,6 +654,7 @@ client.on("message", async (msg) => {
         case "horn":
         case "butt":
         case "rekt":
+        case "deez":
         case "donkey":
         case "getover":
         case "haha":
@@ -669,6 +671,8 @@ client.on("message", async (msg) => {
         case "ligma":
         case "bonk":
         case "bnok":
+        case "backup":
+        case "reverse":
           //Increment the voice command count
           voiceCount++;
           //Join voice channel of memeber or the first voice channel available
@@ -723,6 +727,15 @@ client.on("message", async (msg) => {
                   fs.createReadStream("./sounds/career.mp3"),
                   {
                     volume: 0.3,
+                  }
+                );
+                break;
+              case "deez":
+                //Hidden Gordon Ramsay
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/deez.mp3"),
+                  {
+                    volume: 1.0,
                   }
                 );
                 break;
@@ -869,6 +882,24 @@ client.on("message", async (msg) => {
                 //Plays Bonk Noise louder
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/bonk.mp3"),
+                  {
+                    volume: 3,
+                  }
+                );
+                break;
+              case "backup":
+                //Plays Bonk Noise louder
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/backup.mp3"),
+                  {
+                    volume: 3,
+                  }
+                );
+                break;
+              case "reverse":
+                //Plays Bonk Noise louder
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/putitinreverse.mp3"),
                   {
                     volume: 3,
                   }
