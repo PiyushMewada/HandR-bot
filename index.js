@@ -735,7 +735,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/deez.mp3"),
                   {
-                    volume: 1.0,
+                    volume: 0.8,
                   }
                 );
                 break;
@@ -892,7 +892,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/backup.mp3"),
                   {
-                    volume: 3,
+                    volume: 0.6,
                   }
                 );
                 break;
@@ -901,7 +901,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/putitinreverse.mp3"),
                   {
-                    volume: 3,
+                    volume: 0.6,
                   }
                 );
                 break;
