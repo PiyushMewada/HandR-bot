@@ -71,7 +71,7 @@ const presenceList = [
     activity: {
       name: "Bowser's Big Bean Burrito 2| Trying to get the world record.",
       type: "STREAMING",
-      url: "https://www.twitch.tv/dunkstream",
+      url: "https://www.twitch.tv/izadoodle",
     },
     status: "online",
   },
