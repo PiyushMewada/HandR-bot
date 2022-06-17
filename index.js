@@ -182,12 +182,14 @@ const commandList = new Discord.MessageEmbed()
         "**+default**: Default dance from Fortnite\n" +
         "**+deez**: Deez Nuts\n" +
         "**+gotem**: Ladies and Gentlemen, we got em,\n" +
+        "**+growl**: Morbius Growl Noise \n" +
         "**+haha**: Laughtrack\n" +
         "**+horn**: MLG-AirHorn\n" +
         "**+jail**: Law and Order\n" +
         "**+kronk**: It's all coming together\n" +
         "**+mimimi**: Snore\n" +
         "**+mogus**: Among Us Role Reveal\n" +
+        "**+morbin**: It's Morbin Time\n" +
         "**+no**: Talking Ben No\n" +
         '**+ohyeah**: Vector\'s iconic line: "Oh yeah"\n' +
         "+**oof**: OOF sound\n" +
@@ -236,6 +238,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
         "**+deez**: Deez Nuts\n" +
         "**+dum**: Calls you dumb\n" +
         "**+gotem**: Ladies and Gentlemen, we got em,\n" +
+        "**+growl**: Morbius Growl Noise \n" +
         "**+haha**: Laughtrack\n" +
         "**+horn**: MLG-AirHorn\n" +
         "**+loss**: Losing sound effect\n" +
@@ -244,6 +247,7 @@ const hiddenCommandList = new Discord.MessageEmbed()
         "**+mad**: When you make people mad\n" +
         "**+mimimi**: Snore\n" +
         "**+mogus**: Among Us Role Reveal\n" +
+        "**+morbin**: It's Morbin Time\n" +
         "**+no**: Talking Ben No\n" +
         '**+ohyeah**: Vector\'s iconic line: "Oh yeah"\n' +
         "+**oof**: OOF sound\n" +
