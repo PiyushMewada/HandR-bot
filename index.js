@@ -706,6 +706,8 @@ client.on("message", async (msg) => {
         case "stink":
         case "spongefail":
         case "spongedrama":
+        case "morbin":
+        case "growl":
           //Increment the voice command count
           voiceCount++;
           //Join voice channel of memeber or the first voice channel available
@@ -1029,6 +1031,31 @@ client.on("message", async (msg) => {
               case "spongedrama":
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/spongedrama.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "morbin":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/morbin.mp3"),
+                  {
+                    volume: 0.7,
+                  }
+                );
+                break;
+              case "growl":
+                //Roblox oof sound
+                const growlSounds = [
+                  "./sounds/growl1.mp3",
+                  "./sounds/growl2.mp3",
+                  "./sounds/growl3.mp3",
+                  "./sounds/growl4.mp3",
+                ];
+                dispatcher = connection.play(
+                  fs.createReadStream(
+                    growlSounds[Math.floor(Math.random() * growlSounds.length)]
+                  ),
                   {
                     volume: 0.7,
                   }
