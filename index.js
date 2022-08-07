@@ -712,6 +712,7 @@ client.on("message", async (msg) => {
         case "spongedrama":
         case "morbin":
         case "growl":
+        case "bello":
           //Increment the voice command count
           voiceCount++;
           //Join voice channel of memeber or the first voice channel available
@@ -956,7 +957,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/gotem.mp3"),
                   {
-                    volume: 0.7,
+                    volume: 0.75,
                   }
                 );
                 break;
@@ -964,7 +965,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/jail.mp3"),
                   {
-                    volume: 0.7,
+                    volume: 0.8,
                   }
                 );
                 break;
@@ -972,7 +973,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/kronk.mp3"),
                   {
-                    volume: 0.7,
+                    volume: 0.9,
                   }
                 );
                 break;
@@ -1044,7 +1045,7 @@ client.on("message", async (msg) => {
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/morbin.mp3"),
                   {
-                    volume: 0.7,
+                    volume: 0.9,
                   }
                 );
                 break;
@@ -1061,7 +1062,15 @@ client.on("message", async (msg) => {
                     growlSounds[Math.floor(Math.random() * growlSounds.length)]
                   ),
                   {
-                    volume: 0.7,
+                    volume: 0.9,
+                  }
+                );
+                break;
+              case "bello":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/bello.mp3"),
+                  {
+                    volume: 0.9,
                   }
                 );
                 break;
