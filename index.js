@@ -713,6 +713,8 @@ client.on("message", async (msg) => {
         case "morbin":
         case "growl":
         case "bello":
+        case "bob":
+        case "hmmm":
           //Increment the voice command count
           voiceCount++;
           //Join voice channel of memeber or the first voice channel available
@@ -1069,6 +1071,22 @@ client.on("message", async (msg) => {
               case "bello":
                 dispatcher = connection.play(
                   fs.createReadStream("./sounds/bello.mp3"),
+                  {
+                    volume: 0.9,
+                  }
+                );
+                break;
+              case "bob":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/bob.mp3"),
+                  {
+                    volume: 0.9,
+                  }
+                );
+                break;
+              case "hmmm":
+                dispatcher = connection.play(
+                  fs.createReadStream("./sounds/hmmm.mp3"),
                   {
                     volume: 0.9,
                   }
